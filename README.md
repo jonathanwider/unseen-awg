@@ -1,5 +1,5 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/source/images/wg_white.png">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/source/images/wg_white_with_text.png">
   <source media="(prefers-color-scheme: light)" srcset="docs/source/images/wg.png">
   <img alt="unseen-awg logo" src="docs/source/images/wg.png" width="400">
 </picture>
