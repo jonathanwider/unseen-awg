@@ -1,7 +1,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/source/images/wg_white_with_text.png">
   <source media="(prefers-color-scheme: light)" srcset="docs/source/images/wg.png">
-  <img alt="unseen-awg logo" src="docs/source/images/wg.png" width="400">
+  <img alt="unseen-awg logo" src="docs/source/images/wg.png" width="300">
 </picture>
 
 # Spatio-temporal weather generation using analogs and unseen data
@@ -18,7 +18,7 @@ unseen-awg provides a method for the generation of spatio-temporal weather data 
 - We provide a reforecast dataset of geopotential height fields [[ECMWF Data]](ecmwf-data) as a starting point for a new weather generator.
 
 ## Accompanying resources
-|Ressource                            |Link|
+|Ressource|Link|
 |---|---|
 | Paper preprint | To be submitted. |
 | User guide | [https://jonathanwider.github.io/unseen-awg/](https://jonathanwider.github.io/unseen-awg/) |
@@ -54,4 +54,6 @@ In the `data/` subdirectory, we include a land-sea mask derived from ERA5 data (
 
 
 ## An example simulation created with unseen-awg
-<img src="docs/source/images/animation_all_vars.gif" width="600" alt="Gif of unseen-awg simulations showing fields of geopotential height at 500hPa, daily total precipitation sums, and daily mean, maximum, and minimum temperatures over Europe."/>
+<div align="center">
+  <img src="docs/source/images/animation_all_vars.gif" width="600" alt="Gif of unseen-awg simulations showing fields of geopotential height at 500hPa, daily total precipitation sums, and daily mean, maximum, and minimum temperatures over Europe."/>
+</div>
