@@ -8,14 +8,11 @@
 
 *unseen-awg* provides a method for generating spatio-temporal weather data by resampling "UNSEEN" reforecast data, i.e. data from weather forecasts initialized with historical weather conditions.
 
-> **Want to analyze simulations created with the weather generator?**
-> We provide 500 21-year simulations and a reforecast dataset of impact-relevant atmospheric variables over Europe at 0.4° resolution. See [ECMWF Data](#ecmwf-data).
+**Want to analyze simulations created with the weather generator?** We provide 500 21-year simulations and a reforecast dataset of impact-relevant atmospheric variables over Europe at 0.4° resolution. See [ECMWF Data](#ecmwf-data).
 
-> **Want to generate new simulations with a weather generator?**
-> You can use our provided weather generator with precomputed similarities.
+**Want to generate new simulations with a weather generator?** You can use our provided weather generator with precomputed similarities.
 
-> **Want to set up your own (*unseen-awg*) weather generator?**
-> We provide a reforecast dataset of preprocessed geopotential height fields as a starting point.
+**Want to set up your own (*unseen-awg*) weather generator?** We provide a reforecast dataset of preprocessed geopotential height fields as a starting point.
 
 ## Accompanying resources
 |Resource|Link|
