@@ -141,3 +141,4 @@ images/*
 reinstall_env.sh
 rm.sh
 configs/paths.yaml
+configs/paths_old.yaml

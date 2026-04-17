@@ -8,5 +8,5 @@ paths:
   dir_code_core: ""  # Absolute path to unseen-awg code
   dir_code_eval: ""  # Absolute path to unseen-awg evaluation code (if secondary repository is installed).
   dir_results: ""  # Directory that evaluation results get stored in
-  path_original_grid_impact_variables: ""  #  Path to grid used for reforecast impact-relevant variables.
-  path_lsm: ""  #  Path to a land-sea mask used in some analyses.
+  path_original_grid_impact_variables: ""  #  Path to grid used for reforecast impact-relevant variables. By default, they are included in the data/ subdirectory.
+  path_lsm: ""  #  Path to a land-sea mask used in some analyses. By default, they are included in the data/ subdirectory.
