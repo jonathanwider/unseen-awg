@@ -1,0 +1,44 @@
+# `unseen-awg`: analog weather generation using UNSEEN data
+
+`unseen-awg` provides a method for the generation of spatio-temporal weather data from "UNSEEN" reforecast data, i.e. data from weather forecasts initialized with historical weather conditions.
+
+## User guide
+A user guide is available at ...
+
+## Installation
+
+The [installation guide](docs/source/installation.md) provides instructions on how to set up the required conda environment.
+
+## Data & model availability
+Details on using the data and models are described in the [user guide](#user-guide).
+
+**Want to analyze simulations created with the weather generator?**
+- We provide 500 21-year simulations with the weather generator and a reforecast dataset of impact-relevant atmospheric variables over Europe at 0.4° resolution [[ECMWF Data]](#ecmwf-data)
+
+**Want to generate new simulations with a weather generator?**
+- We provide a weather generator with precomputed similarities
+
+**Want to set up your own weather generator?**
+- We provide a reforecast dataset of geopotential height fields [[ECMWF Data]](#ecmwf-data) as a starting point for a new weather generator
+
+## How to cite
+
+## ECMWF data
+We utilize data from the European Centre for Medium-Range Weather Forecasts (ECMWF, [www.ecmwf.int](www.ecmwf.int)). 
+
+We provide a preprocessed version of their "Extended ensemble forecast hindcast" dataset [1] from cycle 48r1 of the Integrated Forecast System (IFS). The preprocessed version follows the input data format used by `unseen-awg`.
+
+This data is published under a Creative Commons Attribution 4.0 International (CC BY 4.0) license https://creativecommons.org/licenses/by/4.0/
+
+Disclaimer: ECMWF does not accept any liability whatsoever for any error or omission in the data, their availability, or for any loss or damage arising from their use.
+
+Additionally, we include preprocessed daily ERA5 data retrieved from the Copernicus Climate Change Service [2, 3]. Neither the European Commission nor ECMWF is responsible for any use that may be made of the Copernicus information or data it contains.
+
+In the `data/` subdirectory, we include a land-sea mask derived from ERA5 data (CC BY 4.0).
+
+
+> [1] ECMWF (2023). IFS Documentation CY48R1 - Part V: Ensemble Prediction System. DOI: [https://doi.org/10.21957/E529074162](https://doi.org/10.21957/E529074162)
+
+> [2] Hersbach, H., Comyn-Platt, E., Bell, B., Berrisford, P., Biavati, G., Horányi, A., Muñoz Sabater, J., Nicolas, J., Peubey, C., Radu, R., Rozum, I., Schepers, D., Simmons, A., Soci, C., Dee, D., Thépaut, J-N., Cagnazo, C., Cucchi, M. (2023): ERA5 post-processed daily-statistics on pressure levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS), DOI: [https://doi.org/10.24381/cds.4991cf48](https://doi.org/10.24381/cds.4991cf48)
+
+> [3] Copernicus Climate Change Service, Climate Data Store, (2024): ERA5 post-processed daily-statistics on single levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS), DOI: [https://doi.org/10.24381/cds.4991cf48](https://doi.org/10.24381/cds.4991cf48)

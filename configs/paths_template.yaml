@@ -1,0 +1,12 @@
+paths: 
+  dir_preprocessed_datasets: ""  # here, preprocessed datasets (e.g. unzipped archived data) should be stored
+  dir_ERA5Raw: "" # If creating a new unseen-awg-ready data set with the provided snakemake workflow is desired, this directory holds 'raw' daily ERA5 data.
+  dir_ReforecastsRaw: "" # If creating a new unseen-awg-ready data set with the provided snakemake workflow is desired, this directory holds raw reforecast data.
+  dir_wgs: ""  # Directory to store weather generators in (e.g. the unzipped archived one).
+  dir_simulations: ""  # Directory that new simulations with a unseen-awg weather generator get stored in.
+  dir_images: ""  # For media produced during evaluation
+  dir_code_core: ""  # Absolute path to unseen-awg code
+  dir_code_eval: ""  # Absolute path to unseen-awg evaluation code (if secondary repository is installed).
+  dir_results: ""  # Directory that evaluation results get stored in
+  path_original_grid_impact_variables: ""  #  Path to grid used for reforecast impact-relevant variables.
+  path_lsm: ""  #  Path to a land-sea mask used in some analyses.

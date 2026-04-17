@@ -1,0 +1,129 @@
+import os
+
+from pathlib import Path
+import yaml
+
+import json
+import numpy as np
+from datetime import datetime
+
+
+# Load multiple config files - paths are relative to working directory.
+configfile: "configs/paths.yaml"
+configfile: "configs/variables.yaml"
+
+
+include: "rules/common.smk"
+
+
+# configfile: "../configs/weather_generators/reforecasts_lowres.yaml"
+
+DS_TYPE = config["dataset_type"]
+DIR_CODE_CORE = config["paths"]["dir_code_core"]
+GB_TO_MB = 1024
+
+
+# Validate required config keys
+validate_config()
+
+if DS_TYPE == "era5":
+    ERA5_CIRCULATION_FILES = get_era5_files("preprocess_circulation_era5")
+    ERA5_IMPACT_VARIABLES_FILES = get_era5_files("preprocess_impact_variables_era5")
+    TMP_BIAS_CORRECTION_REFORECASTS = []
+    TMP_BIAS_CORRECTION_ERA5 = []
+    IMPACT_VARIABLES_WG = expand(
+        os.path.join(
+            get_preprocessed_dir("impact_variables", "era5"),
+            "combined_{hash_preprocess_impact_variables_era5}.zarr",
+        ),
+        hash_preprocess_impact_variables_era5=get_params_hash(
+            f"preprocess_impact_variables_era5"
+        ),
+    )[0]
+elif DS_TYPE == "reforecasts":
+    if config["use_bias_corrected"]:
+        assert (
+            config["lead_time_days_low"] is not None
+            and config["lead_time_days_high"] is not None
+        ), "lead_time_days_low and lead_time_days_high may not be empty."
+        TMP_BIAS_CORRECTION_REFORECASTS = get_bias_correction_files("reforecasts")
+        TMP_BIAS_CORRECTION_ERA5 = get_bias_correction_files("era5")
+        ERA5_CIRCULATION_FILES = get_era5_files("preprocess_circulation_era5")
+        ERA5_IMPACT_VARIABLES_FILES = get_era5_files("preprocess_impact_variables_era5")
+        IMPACT_VARIABLES_WG = expand(
+            os.path.join(
+                get_preprocessed_dir("impact_variables", "reforecasts"),
+                "combined-corrected_{hash_era5}_{hash_re}_{hash_compute_bias}_"
+                + "{hash_correct_bias}.zarr",
+            ),
+            var_type="impact_variables",
+            hash_era5=get_params_hash(f"preprocess_impact_variables_era5"),
+            hash_re=get_params_hash(f"preprocess_impact_variables_reforecasts"),
+            hash_compute_bias=get_params_hash(f"compute_bias"),
+            hash_correct_bias=get_params_hash("correct_bias"),
+        )[0]
+
+    else:
+        TMP_BIAS_CORRECTION_REFORECASTS = []
+        TMP_BIAS_CORRECTION_ERA5 = []
+        ERA5_CIRCULATION_FILES = []
+        ERA5_IMPACT_VARIABLES_FILES = get_era5_files("preprocess_impact_variables_era5")
+        IMPACT_VARIABLES_WG = expand(
+            os.path.join(
+                get_preprocessed_dir("impact_variables", "reforecasts"),
+                "combined_{hash_preprocess_impact_variables_reforecasts}.zarr",
+            ),
+            hash_preprocess_impact_variables_reforecasts=get_params_hash(
+                "preprocess_impact_variables_reforecasts"
+            ),
+        )[0]
+else:
+    raise ValueError(f"Invalid value for dataset_type: {DS_TYPE}")
+
+IMPACT_VARIABLES_WG_RECHUNK = IMPACT_VARIABLES_WG.replace(
+    "/combined", "/rechunk_combined"
+)
+
+
+# Include modular rule files
+include: "rules/preprocessing.smk"
+include: "rules/weather_generator.smk"
+include: "rules/bias_correction.smk"
+
+
+rule all:
+    input:
+        sample_trajectory=expand(
+            os.path.join(
+                config["paths"]["dir_simulations"],
+                f"wg_{DS_TYPE}"
+                + "_{hash_combine_circulation}_{hash_merge_restructure_ds}_{hash_wg}_{hash_traj}/",
+                "{seed}_{sigma}_{blocksize}/trajectory.nc",
+            ),
+            hash_combine_circulation=get_params_hash(
+                f"preprocess_circulation_{DS_TYPE}"
+            ),
+            hash_merge_restructure_ds=get_params_hash("merge_restructure_ds"),
+            hash_wg=get_params_hash("weather_generator"),
+            hash_traj=get_params_hash("simulate_trajectory"),
+            seed=0,
+            sigma=2.5,
+            blocksize=5,
+        ),
+        tuned_wg=expand(
+            os.path.join(
+                config["paths"]["dir_wgs"],
+                "wg_{merge_ds_type}_{hash_combine_circulation}_{hash_merge_restructure_ds}_{hash_wg}_tune",
+                    "{seed}_{n_analogs}_{forecast_lead_time_days}_optuna_study.pkl",
+                ),
+                merge_ds_type=DS_TYPE,
+                hash_combine_circulation=get_params_hash(
+                f"preprocess_circulation_{DS_TYPE}"
+            ),
+            hash_merge_restructure_ds=get_params_hash("merge_restructure_ds"),
+            hash_wg=get_params_hash("weather_generator"),
+            seed=0,
+            n_analogs=80,
+            forecast_lead_time_days=[3, 4],
+        ),
+        impact_data_for_analysis=IMPACT_VARIABLES_WG,

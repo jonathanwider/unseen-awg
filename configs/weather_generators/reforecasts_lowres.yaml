@@ -1,0 +1,161 @@
+era5_year_min: 2003  # 1941  # 
+era5_year_max: 2023  # 2025  # 
+
+dataset_type: reforecasts
+sigma: 2.5
+use_bias_corrected: True
+
+preprocess_circulation_era5:
+  var_type: circulation
+  used_vars: ["geopotential_height", ]
+  target_grid: analogs_tiny
+  all_params:
+    - "era5_year_min"
+    - "era5_year_max"
+    - "preprocess_circulation_era5.var_type"
+    - "preprocess_circulation_era5.target_grid"
+    - "preprocess_circulation_era5.used_vars"
+  untracked_params:
+
+
+preprocess_impact_variables_era5:
+  var_type: impact_variables
+  used_vars: ["t2m", "tp", "mx2t", "mn2t"]
+  target_grid: impacts_AR6_EU_tiny
+  all_params:
+    - "era5_year_min"
+    - "era5_year_max"
+    - "preprocess_impact_variables_era5.var_type"
+    - "preprocess_impact_variables_era5.target_grid"
+    - "preprocess_impact_variables_era5.used_vars"
+  untracked_params:
+
+preprocess_in_format: grib
+lead_time_days_low: 0 # Inclusive, can not be empty.
+lead_time_days_high: 45 # Inclusive, can not be empty.
+
+preprocess_circulation_reforecasts:
+  var_type: circulation
+  used_vars: [geopotential_height, ] 
+  target_grid: analogs_tiny
+  all_params:
+    - "preprocess_in_format"
+    - "lead_time_days_low"
+    - "lead_time_days_high"
+    - "preprocess_circulation_reforecasts.var_type"
+    - "preprocess_circulation_reforecasts.used_vars"
+    - "preprocess_circulation_reforecasts.target_grid"
+  untracked_params:
+    - "preprocess_in_format"
+
+preprocess_impact_variables_reforecasts:
+  var_type: impact_variables
+  used_vars: ["t2m", "tp", "mn2t", "mx2t"]
+  target_grid: impacts_AR6_EU_tiny
+  all_params:
+    - "preprocess_in_format"
+    - "lead_time_days_low"
+    - "lead_time_days_high"
+    - "preprocess_impact_variables_reforecasts.var_type"
+    - "preprocess_impact_variables_reforecasts.used_vars"
+    - "preprocess_impact_variables_reforecasts.target_grid"
+  untracked_params:
+    - "preprocess_in_format"
+
+merge_restructure_ds:
+  standardization:
+  dt_mean_variance: 1  # how many days to look into the future to determine a typical mean and variance.
+  dt_used_in_sim: [0]
+  all_params:
+    - "merge_restructure_ds.standardization"
+    - "merge_restructure_ds.dt_mean_variance"
+    - "merge_restructure_ds.dt_used_in_sim"
+    - "dataset_type"
+  untracked_params:
+
+
+weather_generator:
+  similarity: mse_similarity
+  var: geopotential_height  # must be a one of the variables selected in "circulation" steps.
+  window_size: 10
+  n_samples: 14
+  use_precomputed_similarities: True
+  all_params:
+    - "weather_generator.similarity"
+    - "weather_generator.var"
+    - "weather_generator.window_size"
+    - "weather_generator.n_samples"
+    - "weather_generator.use_precomputed_similarities"
+  untracked_params:
+
+tune_weather_generator:
+  sigma_min: 0.1
+  sigma_max: 40
+  use_log_scale: true
+  probability_model_type: ["NormalProbabilityNotLargerThanFixedDate"]
+  blocksize: 1
+  # if the analog forecast's starting valid_time is too close to the start date of the dataset, 
+  # only a tiny subset of states can be used as analogs
+  min_timedelta_from_dataset_start: 5475  # roughly 15 years
+  var: geopotential_height
+  N_sampled_inits: 100 # 50  # 100
+  N_optuna_trials: 30 # 20  # 30
+  all_params:
+    - "tune_weather_generator.sigma_min"
+    - "tune_weather_generator.sigma_max"
+    - "tune_weather_generator.use_log_scale"
+    - "tune_weather_generator.probability_model_type"
+    - "tune_weather_generator.blocksize"
+    - "tune_weather_generator.min_timedelta_from_dataset_start"
+    - "tune_weather_generator.var"
+    - "tune_weather_generator.N_sampled_inits"
+    - "tune_weather_generator.N_optuna_trials"
+  untracked_params:
+
+compute_climatology:
+  slice_lead_times: [null, null, null]
+  slice_ensemble_members: [null, null, null]
+  year_min:
+  year_max:
+  half_window_size: 30
+  interp_method: linear
+  n_partitions_lon: 1
+  all_params:
+    - "compute_climatology.slice_lead_times"
+    - "compute_climatology.slice_ensemble_members"
+    - "compute_climatology.year_min"
+    - "compute_climatology.year_max"
+    - "compute_climatology.half_window_size"
+    - "compute_climatology.interp_method"
+    - "compute_climatology.n_partitions_lon"
+  untracked_params:
+
+compute_bias:
+  seed: 0
+  half_window_size: 30
+  n_partitions_lon: 3
+  delta_lead_time_days: 0
+  all_params:
+    - "compute_bias.seed"
+    - "compute_bias.half_window_size"
+    - "compute_bias.n_partitions_lon"
+    - "compute_bias.delta_lead_time_days"
+  untracked_params:
+
+correct_bias:
+  vars_to_correct: [t2m, mn2t, mx2t]
+  init_time_partition_length: 10
+  all_params:
+    - "correct_bias.vars_to_correct"
+    - "correct_bias.init_time_partition_length"
+  untracked_params:
+
+simulate_trajectory:
+  probability_model: "NoRestrictions"
+  n_days_min:
+  n_days: 8100
+  all_params: 
+    - "simulate_trajectory.probability_model"
+    - "simulate_trajectory.n_days_min"
+    - "simulate_trajectory.n_days"
+  untracked_params:

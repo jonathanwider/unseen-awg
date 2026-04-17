@@ -1,0 +1,80 @@
+stages:
+  - lint
+  - docs
+  - deploy
+
+.ruff-base:
+  image: python:3.12-slim
+  before_script:
+    - pip install ruff
+
+ruff-lint:
+  extends: .ruff-base
+  stage: lint
+  script:
+    - ruff check src/ tests/
+
+ruff-format:
+  extends: .ruff-base
+  stage: lint
+  script:
+    - ruff format --check src/ tests/
+
+build-docs:
+  stage: docs
+  image: condaforge/miniforge3:latest
+  variables:
+    CONDA_ENV_PATH: "${CI_PROJECT_DIR}/.conda-env"
+  cache:
+    key:
+      files:
+        - conda-lock.yml
+    paths:
+      - .conda-env/
+  before_script:
+    - source /opt/conda/etc/profile.d/conda.sh
+    # Switch to conda-forge and remove the defaults channel
+    - conda config --remove channels defaults || true
+    - conda config --add channels conda-forge
+    - conda config --add channels bioconda
+    - conda config --set channel_priority strict
+    # Install conda-lock from conda-forge
+    - conda install -y -n base -c conda-forge conda-lock
+    # Install the locked environment
+    - conda-lock install --prefix "${CONDA_ENV_PATH}" conda-lock.yml
+    - conda activate "${CONDA_ENV_PATH}"
+    - pip install -e .
+  script:
+    - sphinx-build -b html docs/source/ docs/_build/html
+  artifacts:
+    paths:
+      - docs/_build/html
+
+
+deploy-docs:
+  stage: deploy
+  image: alpine:latest
+  needs:
+    - job: build-docs
+      artifacts: true
+  variables:
+    GIT_STRATEGY: none
+    GITHUB_USER: "jonathanwider"
+    GITHUB_REPO: "unseen-awg"
+    TARGET_BRANCH: "gh-pages"
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  before_script:
+    - apk add --no-cache git
+    - git config --global user.email "ci@gitlab.local"
+    - git config --global user.name  "GitLab CI"
+  script:
+    - git clone --depth 1 --branch "$TARGET_BRANCH"
+        "https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/${GITHUB_USER}/${GITHUB_REPO}.git"
+        gh-pages
+    - find gh-pages -mindepth 1 -maxdepth 1 ! -name '.git' ! -name 'CNAME' -exec rm -rf {} +
+    - cp -a docs/_build/html/. gh-pages/
+    - cd gh-pages
+    - git add -A
+    - git diff --cached --quiet || git commit -m "Deploy docs from GitLab CI ($CI_COMMIT_SHORT_SHA)"
+    - git push origin "$TARGET_BRANCH"

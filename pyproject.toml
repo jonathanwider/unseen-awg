@@ -1,0 +1,27 @@
+[project]
+name = "unseen-awg"
+version = "0.1.0"
+description = "unseen-awg: analogue weather generation using UNSEEN data."
+authors = [{name = "Jonathan Wider", email = "jonathan.wider@ufz.de"}]
+readme = "README.md"
+requires-python = ">=3.12"
+# Dependencies are managed by conda since project requires xesmf (in preprocessing) which isn't installable with pip.
+dependencies = []
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# Tool configuration (Ruff)
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "N"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"

@@ -1,0 +1,31 @@
+# Figure settings
+figure.figsize: 6.3, 4
+# figure.dpi: 300
+
+# Font settings
+font.size: 10
+axes.labelsize: 10
+xtick.labelsize: 8
+ytick.labelsize: 8
+
+# mathtext.fontset : cm
+
+
+# Grid settings
+axes.grid: True
+grid.linestyle: --
+grid.alpha: 0.7
+
+# Frame settings
+# axes.spines.top: False
+# axes.spines.right: False
+# axes.spines.bottom: False
+# axes.spines.left: False
+
+# Color settings
+axes.prop_cycle: cycler('color', ['006BA4', 'FF800E', 'ABABAB', '595959', '5F9ED1', 'C85200', '898989', 'A2C8EC', 'FFBC79', 'CFCFCF'])
+image.cmap: viridis
+
+# Save settings
+savefig.dpi: 300
+savefig.bbox: tight

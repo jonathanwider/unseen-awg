@@ -1,0 +1,14 @@
+#  To give an impression of the requests used to download the raw reforecast data from ECMWF's operational archive
+class: od
+date: # selected forecast initialization date
+hdate: # all 20 corresponding hindcast (reforecast) initialization dates
+expver: "1"
+levtype: sfc
+param: "121.128/122.128/167.128/228.128"  # 2m temperature 6h min/max temperature, 2m temperature, total precipitation
+step: "6/to/1104/by/6"  # forecast time steps. Download step 0 separately.
+number: "1/to/10"  # all perturbed ensemble members
+stream: "eefh"
+time: "00:00:00"  # initialization time
+type: "pf"  # perturbed forecasts
+area: "72/-25/25/46"
+grid: "0.4/0.4"  # (close to) native resolution of reforecasts
