@@ -3,7 +3,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/source/images/wg_white.png">
   <source media="(prefers-color-scheme: light)" srcset="docs/source/images/wg.png">
-  <img alt="unseen-awg logo" src="docs/source/images/wg.png">
+  <img alt="unseen-awg logo" src="docs/source/images/wg.png" height="400">
 </picture>
 
 unseen-awg provides a method for the generation of spatio-temporal weather data from "UNSEEN" reforecast data, i.e. data from weather forecasts initialized with historical weather conditions.
