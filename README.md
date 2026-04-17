@@ -4,17 +4,13 @@ unseen-awg provides a method for the generation of spatio-temporal weather data 
 
 ## Accompanying resources
 
+|Ressource                            |Link|
 |---|---|
 | Preprint | To be submitted. |
-|---|---|
 | User guide | [https://jonathanwider.github.io/unseen-awg/](https://jonathanwider.github.io/unseen-awg/) |
-|---|---|
 | Evaluation code | [https://codebase.helmholtz.cloud/jonathan.wider/eval-unseen-awg](https://codebase.helmholtz.cloud/jonathan.wider/eval-unseen-awg)|
-|---|---|
 | Achived input ECMWF data ([overview](#ecmwf-data)) | [https://www.wdc-climate.de/ui/entry?acronym=unsawg_inp](https://www.wdc-climate.de/ui/entry?acronym=unsawg_inp) |
-|---|---|
 | Unseen-awg instance and simulations | [https://www.wdc-climate.de/ui/entry?acronym=unsawg_wg](https://www.wdc-climate.de/ui/entry?acronym=unsawg_wg) |
-|---|---|
 
 ## Installation
 Installation instructions are specified in the [user guide](#accompanying-resources).
