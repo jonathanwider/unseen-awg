@@ -24,7 +24,23 @@
 | Evaluation code | [https://codebase.helmholtz.cloud/jonathan.wider/eval-unseen-awg](https://codebase.helmholtz.cloud/jonathan.wider/eval-unseen-awg)|
 
 ## Installation
-Installation instructions are specified in the [user guide](#accompanying-resources).
+Installation instructions are given in the [user guide](#accompanying-resources). 
+
+In short, you can install the provided conda environment using
+```Bash
+conda env create -f env.yml
+conda activate unseen-awg
+pip install -e .  # Install the unseen-awg package in development mode
+```
+
+or using `conda-lock` with
+
+```Bash
+conda install -c conda-forge conda-lock
+conda-lock install -n unseen-awg conda-lock.yml
+conda activate unseen-awg
+pip install -e .
+```
 
 ## Data & model availability
 We release data to allow reproducing our results and creating new *unseen-awg* weather generators as described in the table of [accompanying resources](#accompanying-resources).
