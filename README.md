@@ -19,7 +19,7 @@
 |---|---|
 | Paper preprint | To be submitted. |
 | User guide | [https://jonathanwider.github.io/unseen-awg/](https://jonathanwider.github.io/unseen-awg/) |
-| Archived input ECMWF data ([overview](ecmwf-data)) | [https://www.wdc-climate.de/ui/entry?acronym=unsawg_inp](https://www.wdc-climate.de/ui/entry?acronym=unsawg_inp) |
+| Archived input ECMWF data ([overview](#ecmwf-data)) | [https://www.wdc-climate.de/ui/entry?acronym=unsawg_inp](https://www.wdc-climate.de/ui/entry?acronym=unsawg_inp) |
 | *unseen-awg* instance and simulations | [https://www.wdc-climate.de/ui/entry?acronym=unsawg_wg](https://www.wdc-climate.de/ui/entry?acronym=unsawg_wg) |
 | Evaluation code | [https://codebase.helmholtz.cloud/jonathan.wider/eval-unseen-awg](https://codebase.helmholtz.cloud/jonathan.wider/eval-unseen-awg)|
 
