@@ -14,7 +14,7 @@ unseen-awg provides a method for the generation of spatio-temporal weather data 
 **You want to generate new simulations with a weather generator?**
 - We provide a weather generator with precomputed similarities.
 
-**You want to set up your own weather generator?**
+**You want to set up your own (unseen-awg) weather generator?**
 - We provide a reforecast dataset of geopotential height fields [[ECMWF Data]](ecmwf-data) as a starting point for a new weather generator.
 
 ## Accompanying resources
