@@ -1,0 +1,242 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>unseen-awg: analog weather generation using UNSEEN data &mdash; unseen-awg 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=01f34227"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="What is unseen-awg?" href="what_is_unseen_awg.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            unseen-awg
+              <img src="_static/wg_white.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="what_is_unseen_awg.html">What is unseen-awg?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#adapting-predefined-paths">Adapting predefined paths</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_deal_with_archived_data.html">Downloading and preparing archived data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="how_to_deal_with_archived_data.html#extracting-the-data">Extracting the data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_to_deal_with_archived_data.html#snakemake-workflow-integration">Snakemake workflow integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="how_to_deal_with_archived_data.html#extract-the-input-datasets">1. Extract the input datasets:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_use_simulations.html">Using the provided simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_use_wg_to_create_simulations.html">Simulating time series with the provided <em>unseen-awg</em> weather generator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="how_to_use_wg_to_create_simulations.html#each-weather-generator-is-stored-in-a-directory">Each weather generator is stored in a directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_to_use_wg_to_create_simulations.html#loading-a-weather-generator">Loading a Weather Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_to_use_wg_to_create_simulations.html#sampling-a-time-series-with-the-weather-generator">Sampling a Time Series With the Weather Generator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_train_wg.html">Constructing an <em>unseen-awg</em> weather generator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="how_to_train_wg.html#using-snakemake-to-configure-generation">Using Snakemake to Configure Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_to_train_wg.html#preprocessing-details-and-motivation">Preprocessing Details and Motivation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="how_to_train_wg.html#reforecast-data">Reforecast Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how_to_train_wg.html#era5-data">ERA5 Data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_documentation.html">API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/unseen_awg.html">unseen_awg package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/unseen_awg.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/unseen_awg.html#module-unseen_awg.data_classes">unseen_awg.data_classes module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.data_classes.InitTimeLeadTimeMemberState"><code class="docutils literal notranslate"><span class="pre">InitTimeLeadTimeMemberState</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/unseen_awg.html#module-unseen_awg.data_utils">unseen_awg.data_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.data_utils.create_zarr_store_for_dataarray"><code class="docutils literal notranslate"><span class="pre">create_zarr_store_for_dataarray()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.data_utils.create_zarr_store_for_dataset"><code class="docutils literal notranslate"><span class="pre">create_zarr_store_for_dataset()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/unseen_awg.html#unseen-awg-grids-module">unseen_awg.grids module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/unseen_awg.html#module-unseen_awg.plotting_utils">unseen_awg.plotting_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.plotting_utils.add_contours"><code class="docutils literal notranslate"><span class="pre">add_contours()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.plotting_utils.add_headers"><code class="docutils literal notranslate"><span class="pre">add_headers()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.plotting_utils.add_label_to_axes"><code class="docutils literal notranslate"><span class="pre">add_label_to_axes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.plotting_utils.contourf_plot_without_frame_with_bounds"><code class="docutils literal notranslate"><span class="pre">contourf_plot_without_frame_with_bounds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.plotting_utils.map_plot_without_frame_with_bounds"><code class="docutils literal notranslate"><span class="pre">map_plot_without_frame_with_bounds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.plotting_utils.transition_init_time_plot"><code class="docutils literal notranslate"><span class="pre">transition_init_time_plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.plotting_utils.transition_lead_time_plot"><code class="docutils literal notranslate"><span class="pre">transition_lead_time_plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.plotting_utils.transition_valid_time_plot"><code class="docutils literal notranslate"><span class="pre">transition_valid_time_plot()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/unseen_awg.html#module-unseen_awg.probability_models">unseen_awg.probability_models module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityAvoidDirectRepeats"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityAvoidDirectRepeats</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityKeepMinimalNDays"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityKeepMinimalNDays</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityModel"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityModelSeasonality"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityModelSeasonality</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityNotLargerThanFixedDate"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityNotLargerThanFixedDate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.probability_models.ProbabilityModel"><code class="docutils literal notranslate"><span class="pre">ProbabilityModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.probability_models.UniformProbabilityModel"><code class="docutils literal notranslate"><span class="pre">UniformProbabilityModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.probability_models.gumbel_max_sample"><code class="docutils literal notranslate"><span class="pre">gumbel_max_sample()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/unseen_awg.html#module-unseen_awg.similarity_measures">unseen_awg.similarity_measures module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.similarity_measures.mse_similarity"><code class="docutils literal notranslate"><span class="pre">mse_similarity()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/unseen_awg.html#module-unseen_awg.simulate_trajectory">unseen_awg.simulate_trajectory module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.simulate_trajectory.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.simulate_trajectory.simulate_trajectory"><code class="docutils literal notranslate"><span class="pre">simulate_trajectory()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/unseen_awg.html#module-unseen_awg.time_steppers">unseen_awg.time_steppers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.time_steppers.FractionalYearStepper"><code class="docutils literal notranslate"><span class="pre">FractionalYearStepper</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.time_steppers.NoLeapYearStepper"><code class="docutils literal notranslate"><span class="pre">NoLeapYearStepper</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.time_steppers.StandardStepper"><code class="docutils literal notranslate"><span class="pre">StandardStepper</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.time_steppers.TimeStepper"><code class="docutils literal notranslate"><span class="pre">TimeStepper</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/unseen_awg.html#module-unseen_awg.timestep_utils">unseen_awg.timestep_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.timestep_utils.convert_to_cftime_gregorian"><code class="docutils literal notranslate"><span class="pre">convert_to_cftime_gregorian()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.timestep_utils.dayofyear_year_to_datetime64"><code class="docutils literal notranslate"><span class="pre">dayofyear_year_to_datetime64()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.timestep_utils.dayofyear_year_to_datetime64_naive"><code class="docutils literal notranslate"><span class="pre">dayofyear_year_to_datetime64_naive()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.timestep_utils.is_in_window_from_time"><code class="docutils literal notranslate"><span class="pre">is_in_window_from_time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.timestep_utils.is_in_window_from_year_fraction"><code class="docutils literal notranslate"><span class="pre">is_in_window_from_year_fraction()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.timestep_utils.time_to_year_fraction_cftime"><code class="docutils literal notranslate"><span class="pre">time_to_year_fraction_cftime()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.timestep_utils.time_to_year_fraction_np_datetime64"><code class="docutils literal notranslate"><span class="pre">time_to_year_fraction_np_datetime64()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/unseen_awg.html#module-unseen_awg.tune_wg_by_forecasting">unseen_awg.tune_wg_by_forecasting module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.analog_ensemble_forecast"><code class="docutils literal notranslate"><span class="pre">analog_ensemble_forecast()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.crps_climatology"><code class="docutils literal notranslate"><span class="pre">crps_climatology()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.crps_persistence"><code class="docutils literal notranslate"><span class="pre">crps_persistence()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.crps_wg_forecasts"><code class="docutils literal notranslate"><span class="pre">crps_wg_forecasts()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.eval_analogue_forecast_skill"><code class="docutils literal notranslate"><span class="pre">eval_analogue_forecast_skill()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.eval_climatology_persistence_forecast"><code class="docutils literal notranslate"><span class="pre">eval_climatology_persistence_forecast()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.eval_wg"><code class="docutils literal notranslate"><span class="pre">eval_wg()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.get_gt"><code class="docutils literal notranslate"><span class="pre">get_gt()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.get_gt_coords"><code class="docutils literal notranslate"><span class="pre">get_gt_coords()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.get_n_valid_forecast_start_points"><code class="docutils literal notranslate"><span class="pre">get_n_valid_forecast_start_points()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.persistence_forecast"><code class="docutils literal notranslate"><span class="pre">persistence_forecast()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/unseen_awg.html#module-unseen_awg.utils">unseen_awg.utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.utils.apply_similarity_metric"><code class="docutils literal notranslate"><span class="pre">apply_similarity_metric()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.utils.get_k_random_indices"><code class="docutils literal notranslate"><span class="pre">get_k_random_indices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.utils.get_k_smallest_indices"><code class="docutils literal notranslate"><span class="pre">get_k_smallest_indices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.utils.get_map_valid_n_day_transitions"><code class="docutils literal notranslate"><span class="pre">get_map_valid_n_day_transitions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.utils.grids_are_identical_subset"><code class="docutils literal notranslate"><span class="pre">grids_are_identical_subset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.utils.is_no_jump"><code class="docutils literal notranslate"><span class="pre">is_no_jump()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/unseen_awg.html#module-unseen_awg.weather_generator">unseen_awg.weather_generator module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator"><code class="docutils literal notranslate"><span class="pre">WeatherGenerator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.weather_generator.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.weather_generator.setup_lazy_similarity_dataset"><code class="docutils literal notranslate"><span class="pre">setup_lazy_similarity_dataset()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">unseen-awg</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><em>unseen-awg</em>: analog weather generation using UNSEEN data</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="unseen-awg-analog-weather-generation-using-unseen-data">
+<h1><em>unseen-awg</em>: analog weather generation using UNSEEN data<a class="headerlink" href="#unseen-awg-analog-weather-generation-using-unseen-data" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="what_is_unseen_awg.html">What is unseen-awg?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_deal_with_archived_data.html">Downloading and preparing archived data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_use_simulations.html">Using the provided simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_use_wg_to_create_simulations.html">Simulating time series with the provided <em>unseen-awg</em> weather generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_train_wg.html">Constructing an <em>unseen-awg</em> weather generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_documentation.html">API Documentation</a></li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="what_is_unseen_awg.html" class="btn btn-neutral float-right" title="What is unseen-awg?" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

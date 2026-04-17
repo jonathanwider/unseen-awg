@@ -1,0 +1,1568 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>unseen_awg.weather_generator &mdash; unseen-awg 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            unseen-awg
+              <img src="../../_static/wg_white.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../what_is_unseen_awg.html">What is unseen-awg?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#adapting-predefined-paths">Adapting predefined paths</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_deal_with_archived_data.html">Downloading and preparing archived data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_deal_with_archived_data.html#extracting-the-data">Extracting the data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_deal_with_archived_data.html#snakemake-workflow-integration">Snakemake workflow integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../how_to_deal_with_archived_data.html#extract-the-input-datasets">1. Extract the input datasets:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_use_simulations.html">Using the provided simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_use_wg_to_create_simulations.html">Simulating time series with the provided <em>unseen-awg</em> weather generator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_use_wg_to_create_simulations.html#each-weather-generator-is-stored-in-a-directory">Each weather generator is stored in a directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_use_wg_to_create_simulations.html#loading-a-weather-generator">Loading a Weather Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_use_wg_to_create_simulations.html#sampling-a-time-series-with-the-weather-generator">Sampling a Time Series With the Weather Generator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_train_wg.html">Constructing an <em>unseen-awg</em> weather generator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_train_wg.html#using-snakemake-to-configure-generation">Using Snakemake to Configure Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_train_wg.html#preprocessing-details-and-motivation">Preprocessing Details and Motivation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../how_to_train_wg.html#reforecast-data">Reforecast Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../how_to_train_wg.html#era5-data">ERA5 Data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_documentation.html">API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/unseen_awg.html">unseen_awg package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.data_classes">unseen_awg.data_classes module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.data_classes.InitTimeLeadTimeMemberState"><code class="docutils literal notranslate"><span class="pre">InitTimeLeadTimeMemberState</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.data_utils">unseen_awg.data_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.data_utils.create_zarr_store_for_dataarray"><code class="docutils literal notranslate"><span class="pre">create_zarr_store_for_dataarray()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.data_utils.create_zarr_store_for_dataset"><code class="docutils literal notranslate"><span class="pre">create_zarr_store_for_dataset()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#unseen-awg-grids-module">unseen_awg.grids module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.plotting_utils">unseen_awg.plotting_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.add_contours"><code class="docutils literal notranslate"><span class="pre">add_contours()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.add_headers"><code class="docutils literal notranslate"><span class="pre">add_headers()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.add_label_to_axes"><code class="docutils literal notranslate"><span class="pre">add_label_to_axes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.contourf_plot_without_frame_with_bounds"><code class="docutils literal notranslate"><span class="pre">contourf_plot_without_frame_with_bounds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.map_plot_without_frame_with_bounds"><code class="docutils literal notranslate"><span class="pre">map_plot_without_frame_with_bounds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.transition_init_time_plot"><code class="docutils literal notranslate"><span class="pre">transition_init_time_plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.transition_lead_time_plot"><code class="docutils literal notranslate"><span class="pre">transition_lead_time_plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.transition_valid_time_plot"><code class="docutils literal notranslate"><span class="pre">transition_valid_time_plot()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.probability_models">unseen_awg.probability_models module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityAvoidDirectRepeats"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityAvoidDirectRepeats</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityKeepMinimalNDays"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityKeepMinimalNDays</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityModel"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityModelSeasonality"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityModelSeasonality</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityNotLargerThanFixedDate"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityNotLargerThanFixedDate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.ProbabilityModel"><code class="docutils literal notranslate"><span class="pre">ProbabilityModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.UniformProbabilityModel"><code class="docutils literal notranslate"><span class="pre">UniformProbabilityModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.gumbel_max_sample"><code class="docutils literal notranslate"><span class="pre">gumbel_max_sample()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.similarity_measures">unseen_awg.similarity_measures module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.similarity_measures.mse_similarity"><code class="docutils literal notranslate"><span class="pre">mse_similarity()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.simulate_trajectory">unseen_awg.simulate_trajectory module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.simulate_trajectory.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.simulate_trajectory.simulate_trajectory"><code class="docutils literal notranslate"><span class="pre">simulate_trajectory()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.time_steppers">unseen_awg.time_steppers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.time_steppers.FractionalYearStepper"><code class="docutils literal notranslate"><span class="pre">FractionalYearStepper</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.time_steppers.NoLeapYearStepper"><code class="docutils literal notranslate"><span class="pre">NoLeapYearStepper</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.time_steppers.StandardStepper"><code class="docutils literal notranslate"><span class="pre">StandardStepper</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.time_steppers.TimeStepper"><code class="docutils literal notranslate"><span class="pre">TimeStepper</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.timestep_utils">unseen_awg.timestep_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.convert_to_cftime_gregorian"><code class="docutils literal notranslate"><span class="pre">convert_to_cftime_gregorian()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.dayofyear_year_to_datetime64"><code class="docutils literal notranslate"><span class="pre">dayofyear_year_to_datetime64()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.dayofyear_year_to_datetime64_naive"><code class="docutils literal notranslate"><span class="pre">dayofyear_year_to_datetime64_naive()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.is_in_window_from_time"><code class="docutils literal notranslate"><span class="pre">is_in_window_from_time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.is_in_window_from_year_fraction"><code class="docutils literal notranslate"><span class="pre">is_in_window_from_year_fraction()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.time_to_year_fraction_cftime"><code class="docutils literal notranslate"><span class="pre">time_to_year_fraction_cftime()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.time_to_year_fraction_np_datetime64"><code class="docutils literal notranslate"><span class="pre">time_to_year_fraction_np_datetime64()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.tune_wg_by_forecasting">unseen_awg.tune_wg_by_forecasting module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.analog_ensemble_forecast"><code class="docutils literal notranslate"><span class="pre">analog_ensemble_forecast()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.crps_climatology"><code class="docutils literal notranslate"><span class="pre">crps_climatology()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.crps_persistence"><code class="docutils literal notranslate"><span class="pre">crps_persistence()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.crps_wg_forecasts"><code class="docutils literal notranslate"><span class="pre">crps_wg_forecasts()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.eval_analogue_forecast_skill"><code class="docutils literal notranslate"><span class="pre">eval_analogue_forecast_skill()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.eval_climatology_persistence_forecast"><code class="docutils literal notranslate"><span class="pre">eval_climatology_persistence_forecast()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.eval_wg"><code class="docutils literal notranslate"><span class="pre">eval_wg()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.get_gt"><code class="docutils literal notranslate"><span class="pre">get_gt()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.get_gt_coords"><code class="docutils literal notranslate"><span class="pre">get_gt_coords()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.get_n_valid_forecast_start_points"><code class="docutils literal notranslate"><span class="pre">get_n_valid_forecast_start_points()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.persistence_forecast"><code class="docutils literal notranslate"><span class="pre">persistence_forecast()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.utils">unseen_awg.utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.utils.apply_similarity_metric"><code class="docutils literal notranslate"><span class="pre">apply_similarity_metric()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.utils.get_k_random_indices"><code class="docutils literal notranslate"><span class="pre">get_k_random_indices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.utils.get_k_smallest_indices"><code class="docutils literal notranslate"><span class="pre">get_k_smallest_indices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.utils.get_map_valid_n_day_transitions"><code class="docutils literal notranslate"><span class="pre">get_map_valid_n_day_transitions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.utils.grids_are_identical_subset"><code class="docutils literal notranslate"><span class="pre">grids_are_identical_subset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.utils.is_no_jump"><code class="docutils literal notranslate"><span class="pre">is_no_jump()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.weather_generator">unseen_awg.weather_generator module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator"><code class="docutils literal notranslate"><span class="pre">WeatherGenerator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.weather_generator.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.weather_generator.setup_lazy_similarity_dataset"><code class="docutils literal notranslate"><span class="pre">setup_lazy_similarity_dataset()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">unseen-awg</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">unseen_awg.weather_generator</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for unseen_awg.weather_generator</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Weather generator module for analog-based weather simulation.</span>
+
+<span class="sd">This module provides the core WeatherGenerator class that implements analog-based</span>
+<span class="sd">weather generation using similarity measures and probability models to sample</span>
+<span class="sd">realistic weather trajectories from historical data.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">uuid</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">cartopy.crs</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ccrs</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">dask</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.figure</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">yaml</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">icecream</span><span class="w"> </span><span class="kn">import</span> <span class="n">ic</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.gridspec</span><span class="w"> </span><span class="kn">import</span> <span class="n">GridSpec</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm.auto</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">unseen_awg.similarity_measures</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">unseen_awg.data_classes</span><span class="w"> </span><span class="kn">import</span> <span class="n">InitTimeLeadTimeMemberState</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">unseen_awg.plotting_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">add_contours</span><span class="p">,</span> <span class="n">map_plot_without_frame_with_bounds</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">unseen_awg.probability_models</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProbabilityModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">unseen_awg.snakemake_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">snakemake_handler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">unseen_awg.time_steppers</span><span class="w"> </span><span class="kn">import</span> <span class="n">TimeStepper</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">unseen_awg.timestep_utils</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">dayofyear_year_to_datetime64_naive</span><span class="p">,</span>
+    <span class="n">is_in_window_from_time</span><span class="p">,</span>
+    <span class="n">is_in_window_from_year_fraction</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">unseen_awg.utils</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">apply_similarity_metric</span><span class="p">,</span>
+    <span class="n">get_k_random_indices</span><span class="p">,</span>
+    <span class="n">get_k_smallest_indices</span><span class="p">,</span>
+    <span class="n">get_map_valid_n_day_transitions</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<div class="viewcode-block" id="setup_lazy_similarity_dataset">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.weather_generator.setup_lazy_similarity_dataset">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">setup_lazy_similarity_dataset</span><span class="p">(</span>
+    <span class="n">ds_year_dayofyear_format</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+    <span class="n">window_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">ref_time</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s2">&quot;2000-01-01&quot;</span><span class="p">,</span> <span class="s2">&quot;ns&quot;</span><span class="p">),</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Set up a lazy dataset to store similarities computed in weather generator in.</span>
+
+<span class="sd">    Creates a dataset structure for computing similarities between weather states</span>
+<span class="sd">    within a specified time window. The dataset includes coordinates for reference</span>
+<span class="sd">    states and candidate states with time shifts.</span>
+
+<span class="sd">    The dataset has dimensions that identify the base sample</span>
+<span class="sd">    (dayofyear, year, sample, ensemble member) and additional dimensions that identify</span>
+<span class="sd">    the candidate (d_shift, c_year, c_sample, c_ensemble_member). The valid_time of</span>
+<span class="sd">    the candidate state can be computed from c_year, dayofyear, and d_shift.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ds_year_dayofyear_format : xr.Dataset</span>
+<span class="sd">        Input dataset in year-dayofyear format containing weather data.</span>
+<span class="sd">    window_size : int</span>
+<span class="sd">        Size of the time window (in days) for similarity computations.</span>
+<span class="sd">    ref_time : np.datetime64, optional</span>
+<span class="sd">        Reference time for temporal calculations, by default</span>
+<span class="sd">        np.datetime64(&quot;2000-01-01&quot;, &quot;ns&quot;).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    xr.Dataset</span>
+<span class="sd">        Lazy dataset with similarity computation structure including coordinates</span>
+<span class="sd">        for reference and candidate states.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ds_similarities</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span>
+        <span class="n">coords</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;dayofyear&quot;</span><span class="p">:</span> <span class="n">ds_year_dayofyear_format</span><span class="o">.</span><span class="n">dayofyear</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+            <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="n">ds_year_dayofyear_format</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+            <span class="s2">&quot;sample&quot;</span><span class="p">:</span> <span class="n">ds_year_dayofyear_format</span><span class="o">.</span><span class="n">sample</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+            <span class="s2">&quot;ensemble_member&quot;</span><span class="p">:</span> <span class="n">ds_year_dayofyear_format</span><span class="o">.</span><span class="n">ensemble_member</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+            <span class="s2">&quot;d_shift&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">window_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">window_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="s2">&quot;c_year&quot;</span><span class="p">:</span> <span class="n">ds_year_dayofyear_format</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+            <span class="s2">&quot;c_sample&quot;</span><span class="p">:</span> <span class="n">ds_year_dayofyear_format</span><span class="o">.</span><span class="n">sample</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+            <span class="s2">&quot;c_ensemble_member&quot;</span><span class="p">:</span> <span class="n">ds_year_dayofyear_format</span><span class="o">.</span><span class="n">ensemble_member</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+
+    <span class="n">l_dims</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">ds_similarities</span><span class="p">[</span><span class="n">d</span><span class="p">])</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">ds_similarities</span><span class="o">.</span><span class="n">dims</span><span class="p">]</span>
+    <span class="n">l_chunks</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">ds_similarities</span><span class="o">.</span><span class="n">dims</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">d</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;dayofyear&quot;</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">]:</span>
+            <span class="n">l_chunks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">l_chunks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ds_similarities</span><span class="p">[</span><span class="n">d</span><span class="p">]))</span>
+    <span class="n">ds_similarities</span><span class="p">[</span><span class="s2">&quot;similarities&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">ds_similarities</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span>
+        <span class="n">dask</span><span class="o">.</span><span class="n">array</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">l_dims</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">chunks</span><span class="o">=</span><span class="n">l_chunks</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="n">ds_similarities</span> <span class="o">=</span> <span class="n">ds_similarities</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;init_time&quot;</span><span class="p">:</span> <span class="n">ds_year_dayofyear_format</span><span class="o">.</span><span class="n">init_time</span><span class="o">.</span><span class="n">load</span><span class="p">(),</span>
+            <span class="s2">&quot;c_init_time&quot;</span><span class="p">:</span> <span class="n">ds_year_dayofyear_format</span><span class="o">.</span><span class="n">init_time</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+            <span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s2">&quot;sample&quot;</span><span class="p">:</span> <span class="s2">&quot;c_sample&quot;</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="s2">&quot;c_year&quot;</span><span class="p">})</span>
+            <span class="o">.</span><span class="n">sel</span><span class="p">(</span>
+                <span class="n">dayofyear</span><span class="o">=</span><span class="p">(</span>
+                    <span class="p">((</span><span class="n">ds_similarities</span><span class="o">.</span><span class="n">dayofyear</span> <span class="o">+</span> <span class="n">ds_similarities</span><span class="o">.</span><span class="n">d_shift</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">366</span>
+                <span class="p">)</span>
+                <span class="o">+</span> <span class="mi">1</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;c_dayofyear&quot;</span><span class="p">:</span> <span class="p">(</span>
+                <span class="p">((</span><span class="n">ds_similarities</span><span class="o">.</span><span class="n">dayofyear</span> <span class="o">+</span> <span class="n">ds_similarities</span><span class="o">.</span><span class="n">d_shift</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">366</span>
+            <span class="p">)</span>
+            <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">valid_time_reference</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">apply_ufunc</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">dayofyear_year_to_datetime64_naive</span><span class="p">),</span>
+        <span class="n">ds_similarities</span><span class="o">.</span><span class="n">dayofyear</span><span class="p">,</span>
+        <span class="n">ds_similarities</span><span class="o">.</span><span class="n">year</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">valid_time_candidates</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">apply_ufunc</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">dayofyear_year_to_datetime64_naive</span><span class="p">),</span>
+        <span class="p">(((</span><span class="n">ds_similarities</span><span class="o">.</span><span class="n">dayofyear</span> <span class="o">+</span> <span class="n">ds_similarities</span><span class="o">.</span><span class="n">d_shift</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">366</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">ds_similarities</span><span class="o">.</span><span class="n">c_year</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">ds_similarities</span> <span class="o">=</span> <span class="n">ds_similarities</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">(</span>
+        <span class="n">m_is_near</span><span class="o">=</span><span class="n">is_in_window_from_time</span><span class="p">(</span>
+            <span class="n">valid_time_reference</span><span class="p">,</span>
+            <span class="n">valid_time_candidates</span><span class="p">,</span>
+            <span class="n">window_size</span><span class="o">=</span><span class="n">window_size</span><span class="p">,</span>
+            <span class="n">ref_time</span><span class="o">=</span><span class="n">ref_time</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">ds_similarities</span> <span class="o">=</span> <span class="n">ds_similarities</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;valid_time&quot;</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">apply_ufunc</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">dayofyear_year_to_datetime64_naive</span><span class="p">),</span>
+                <span class="n">ds_similarities</span><span class="o">.</span><span class="n">dayofyear</span><span class="p">,</span>
+                <span class="n">ds_similarities</span><span class="o">.</span><span class="n">year</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;c_valid_time&quot;</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">apply_ufunc</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">dayofyear_year_to_datetime64_naive</span><span class="p">),</span>
+                <span class="p">(((</span><span class="n">ds_similarities</span><span class="o">.</span><span class="n">dayofyear</span> <span class="o">+</span> <span class="n">ds_similarities</span><span class="o">.</span><span class="n">d_shift</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">366</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="n">ds_similarities</span><span class="o">.</span><span class="n">c_year</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">ds_similarities</span> <span class="o">=</span> <span class="n">ds_similarities</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;lead_time&quot;</span><span class="p">:</span> <span class="n">ds_similarities</span><span class="o">.</span><span class="n">valid_time</span> <span class="o">-</span> <span class="n">ds_similarities</span><span class="o">.</span><span class="n">init_time</span><span class="p">,</span>
+            <span class="s2">&quot;c_lead_time&quot;</span><span class="p">:</span> <span class="n">ds_similarities</span><span class="o">.</span><span class="n">c_valid_time</span> <span class="o">-</span> <span class="n">ds_similarities</span><span class="o">.</span><span class="n">c_init_time</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+
+    <span class="c1"># cf-conventions:</span>
+    <span class="n">ds_similarities</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;Conventions&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;CF-1.7&quot;</span>
+    <span class="n">ds_similarities</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;Title&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Similarities between pairs of states in the underlying dataset&quot;</span>
+    <span class="p">)</span>
+    <span class="n">ds_similarities</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;Source&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Computed according to the selected similarity measure from underlying dataset.&quot;</span>
+    <span class="p">)</span>
+    <span class="n">ds_similarities</span><span class="p">[</span><span class="s2">&quot;dayofyear&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+        <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;day of year&quot;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>  <span class="c1"># dimensionless integer index</span>
+    <span class="p">)</span>
+    <span class="n">ds_similarities</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+        <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">ds_similarities</span><span class="p">[</span><span class="s2">&quot;sample&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+        <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;index for data on same valid_time.&quot;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">ds_similarities</span><span class="p">[</span><span class="s2">&quot;ensemble_member&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+        <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;reforecast ensemble member&quot;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">ds_similarities</span><span class="p">[</span><span class="s2">&quot;d_shift&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+        <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;shift between day of year of base sample &quot;</span>
+        <span class="s2">&quot;and day of year of candidate&quot;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">ds_similarities</span><span class="p">[</span><span class="s2">&quot;c_year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+        <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;year of candidate&quot;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">ds_similarities</span><span class="p">[</span><span class="s2">&quot;c_sample&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+        <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;index for data on same valid_time of candidate&quot;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">ds_similarities</span><span class="p">[</span><span class="s2">&quot;c_ensemble_member&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+        <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;reforecas ensemble member of candidate&quot;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">ds_similarities</span><span class="p">[</span><span class="s2">&quot;valid_time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+        <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;valid time of forecast&quot;</span><span class="p">,</span>
+        <span class="n">standard_name</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">ds_similarities</span><span class="p">[</span><span class="s2">&quot;lead_time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+        <span class="n">standard_name</span><span class="o">=</span><span class="s2">&quot;forecast_period&quot;</span><span class="p">,</span>
+        <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;reforecast lead time&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">ds_similarities</span><span class="p">[</span><span class="s2">&quot;init_time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+        <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;reforecast initialisation time&quot;</span><span class="p">,</span>
+        <span class="n">standard_name</span><span class="o">=</span><span class="s2">&quot;forecast_reference_time&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">ds_similarities</span><span class="p">[</span><span class="s2">&quot;c_valid_time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+        <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;valid time of candidate&quot;</span><span class="p">,</span>
+        <span class="n">standard_name</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">ds_similarities</span><span class="p">[</span><span class="s2">&quot;c_init_time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+        <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;reforecast initialisation time of candidate&quot;</span><span class="p">,</span>
+        <span class="n">standard_name</span><span class="o">=</span><span class="s2">&quot;forecast_reference_time&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">ds_similarities</span><span class="p">[</span><span class="s2">&quot;c_lead_time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+        <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;reforecast lead time of candidate&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">ds_similarities</span><span class="p">[</span><span class="s2">&quot;c_dayofyear&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+        <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;day of year of candidate&quot;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>  <span class="c1"># dimensionless integer index</span>
+    <span class="p">)</span>
+    <span class="n">ds_similarities</span><span class="p">[</span><span class="s2">&quot;m_is_near&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+        <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;mask: candidate date is near target date&quot;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">ds_similarities</span><span class="p">[</span><span class="s2">&quot;similarities&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+        <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;similarity score between forecast and candidate analog&quot;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;init_time&quot;</span><span class="p">,</span> <span class="s2">&quot;c_init_time&quot;</span><span class="p">,</span> <span class="s2">&quot;valid_time&quot;</span><span class="p">,</span> <span class="s2">&quot;c_valid_time&quot;</span><span class="p">]:</span>
+        <span class="n">ds_similarities</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">encoding</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+            <span class="n">units</span><span class="o">=</span><span class="s2">&quot;seconds since 1970-01-01&quot;</span><span class="p">,</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int64&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="c1"># timedelta variables: encode as seconds (a plain number + units)</span>
+    <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;lead_time&quot;</span><span class="p">,</span> <span class="s2">&quot;c_lead_time&quot;</span><span class="p">]:</span>
+        <span class="n">ds_similarities</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">encoding</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+            <span class="n">units</span><span class="o">=</span><span class="s2">&quot;seconds&quot;</span><span class="p">,</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int64&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">ds_similarities</span></div>
+
+
+
+<div class="viewcode-block" id="WeatherGenerator">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">WeatherGenerator</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Analog-based weather generator for creating synthetic weather trajectories.</span>
+
+<span class="sd">    This class implements an analog-based approach to weather generation, where</span>
+<span class="sd">    weather states are sampled from historical data while assuring that successive</span>
+<span class="sd">    states either follow each other in the historical dataset or are analogs of the true</span>
+<span class="sd">    successor. The generator uses configurable similarity measures and probability</span>
+<span class="sd">    models to create realistic weather sequences, additional parameters can be specified</span>
+<span class="sd">    when sampling time series.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    params : dict[str, Any]</span>
+<span class="sd">        Configuration parameters containing:</span>
+
+<span class="sd">        - weather_generator.window_size : int</span>
+<span class="sd">              Half-window size within which states are considered as potential analogs.</span>
+<span class="sd">        - weather_generator.var : str</span>
+<span class="sd">              Name of variable to use for similarity calculations.</span>
+<span class="sd">        - weather_generator.similarity : str</span>
+<span class="sd">              Name of similarity function to use.</span>
+<span class="sd">        - weather_generator.use_precomputed_similarities : bool</span>
+<span class="sd">              Whether to use precomputed similarities or not. If True, similarities</span>
+<span class="sd">              are precomputed when a WeatherGenerator instance is initialized.</span>
+<span class="sd">              Otherwise, a lazy array is set up and similarities are computed on-the-fly</span>
+<span class="sd">              during the sampling process. This slows down the sampling process.</span>
+<span class="sd">        - weather_generator.n_samples : int</span>
+<span class="sd">              Number of samples to use from dataset. By &quot;sample&quot; we denote</span>
+<span class="sd">              datapoints that possess the same valid_time (but a different init_time).</span>
+<span class="sd">              Providing a low n_samples allows restricting the number of included</span>
+<span class="sd">              states.</span>
+<span class="sd">        - dir_wg : str</span>
+<span class="sd">              Directory path for weather generator outputs.</span>
+<span class="sd">        - zarr_year_dayofyear : str</span>
+<span class="sd">              Path to zarr store containing the preprocessed input dataset.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    window_size : int</span>
+<span class="sd">        Half-window size within which states are considered as potential analogs.</span>
+<span class="sd">    var : str</span>
+<span class="sd">        Name of variable to use for similarity calculations.</span>
+<span class="sd">    similarity_function : callable</span>
+<span class="sd">        Function used to compute similarities between states.</span>
+<span class="sd">    path_wg : str</span>
+<span class="sd">        Path to weather generator working directory.</span>
+<span class="sd">    path_dataset : str</span>
+<span class="sd">        Path to input dataset.</span>
+<span class="sd">    use_precomputed_similarities : bool</span>
+<span class="sd">        Flag indicating whether to use precomputed similarities.</span>
+<span class="sd">    ds_similarities : xr.Dataset</span>
+<span class="sd">        Dataset containing results of similarity computations. Is initialized as</span>
+<span class="sd">        lazy dataset and computed during initialization if</span>
+<span class="sd">        use_precomputed_similarities is True.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;weather_generator.window_size&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;weather_generator.var&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">similarity_function</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span>
+            <span class="n">unseen_awg</span><span class="o">.</span><span class="n">similarity_measures</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;weather_generator.similarity&quot;</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path_wg</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;dir_wg&quot;</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">path_dataset</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;zarr_year_dayofyear&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_precomputed_similarities</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span>
+            <span class="s2">&quot;weather_generator.use_precomputed_similarities&quot;</span>
+        <span class="p">]</span>
+
+        <span class="c1"># load the reshaped year dayofyear dataset (chunks along dayofyear).</span>
+        <span class="n">ic</span><span class="p">(</span><span class="s2">&quot;Load circulation dataset&quot;</span><span class="p">)</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_zarr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path_dataset</span><span class="p">,</span> <span class="n">decode_timedelta</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span>
+            <span class="n">sample</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;weather_generator.n_samples&quot;</span><span class="p">])</span>
+        <span class="p">)</span>
+
+        <span class="c1"># set up store for similarities</span>
+        <span class="n">path_similarities</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path_wg</span><span class="p">,</span> <span class="s2">&quot;similarities.zarr&quot;</span><span class="p">)</span>
+
+        <span class="n">ic</span><span class="p">(</span><span class="s2">&quot;Set up array for similarities&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ds_similarities</span> <span class="o">=</span> <span class="n">setup_lazy_similarity_dataset</span><span class="p">(</span>
+            <span class="n">ds_year_dayofyear_format</span><span class="o">=</span><span class="n">ds</span><span class="p">,</span>
+            <span class="n">window_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">window_size</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">d_shifts</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="n">dims</span><span class="o">=</span><span class="s2">&quot;d_shift&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">drop_vars</span><span class="p">(</span><span class="s2">&quot;init_time&quot;</span><span class="p">)</span>
+        <span class="n">ds_candidate</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">ds</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="s2">&quot;c_year&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;ensemble_member&quot;</span><span class="p">:</span> <span class="s2">&quot;c_ensemble_member&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;sample&quot;</span><span class="p">:</span> <span class="s2">&quot;c_sample&quot;</span><span class="p">,</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+            <span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">dayofyear</span><span class="o">=</span><span class="p">((((</span><span class="n">ds</span><span class="o">.</span><span class="n">dayofyear</span> <span class="o">+</span> <span class="n">d_shifts</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">366</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="o">.</span><span class="n">assign_coords</span><span class="p">({</span><span class="s2">&quot;d_shifts&quot;</span><span class="p">:</span> <span class="n">d_shifts</span><span class="p">})</span>
+        <span class="p">)</span>
+
+        <span class="n">ic</span><span class="p">(</span><span class="s2">&quot;Set up similarity computation lazily&quot;</span><span class="p">)</span>
+        <span class="n">similarities</span> <span class="o">=</span> <span class="n">apply_similarity_metric</span><span class="p">(</span>
+            <span class="n">ds_reference</span><span class="o">=</span><span class="n">ds</span><span class="p">,</span>
+            <span class="n">ds_candidate</span><span class="o">=</span><span class="n">ds_candidate</span><span class="p">,</span>
+            <span class="n">similarity_func</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">similarity_function</span><span class="p">,</span>
+            <span class="n">variable_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">var</span><span class="p">,</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">&quot;similarities&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_precomputed_similarities</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ds_similarities</span><span class="o">.</span><span class="n">to_zarr</span><span class="p">(</span>
+                <span class="n">path_similarities</span><span class="p">,</span>
+                <span class="n">compute</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">i_doy</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span>
+                <span class="n">tqdm</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">ds_similarities</span><span class="o">.</span><span class="n">similarities</span><span class="o">.</span><span class="n">dayofyear</span><span class="p">,</span>
+                    <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Compute similarities&quot;</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">):</span>
+                <span class="n">similarities</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span>
+                    <span class="n">dayofyear</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="n">i_doy</span><span class="p">,</span> <span class="n">i_doy</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">drop_vars</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="s2">&quot;ensemble_member&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;c_sample&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;c_ensemble_member&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;c_year&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;d_shifts&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;sample&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;year&quot;</span><span class="p">,</span>
+                    <span class="p">]</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span><span class="o">.</span><span class="n">to_zarr</span><span class="p">(</span>
+                    <span class="n">path_similarities</span><span class="p">,</span>
+                    <span class="n">region</span><span class="o">=</span><span class="p">{</span>
+                        <span class="s2">&quot;dayofyear&quot;</span><span class="p">:</span> <span class="nb">slice</span><span class="p">(</span><span class="n">i_doy</span><span class="p">,</span> <span class="n">i_doy</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+                    <span class="p">},</span>
+                <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path_wg</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ds_similarities</span><span class="p">[</span><span class="s2">&quot;similarities&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">similarities</span>
+
+<div class="viewcode-block" id="WeatherGenerator.sample_trajectory">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator.sample_trajectory">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sample_trajectory</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">blocksize</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">probability_model</span><span class="p">:</span> <span class="n">ProbabilityModel</span><span class="p">,</span>
+        <span class="n">stepper_class</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">TimeStepper</span><span class="p">],</span>
+        <span class="n">n_steps</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">rng</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">,</span>
+        <span class="n">initialization</span><span class="p">:</span> <span class="n">InitTimeLeadTimeMemberState</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">start_by_taking_analog</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">show_progressbar</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sample a synthetic weather trajectory using the analog method.</span>
+
+<span class="sd">        Generates a weather trajectory by iteratively sampling analog states</span>
+<span class="sd">        from historical data. The sampling alternates between following a historical</span>
+<span class="sd">        trajectory and sampling analogs of the true successor states - so that in effect</span>
+<span class="sd">        blocks of size blocksize are sampled while for the transition between blocks</span>
+<span class="sd">        close analogs of the &quot;true&quot; state that would follow each block are chosen.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        blocksize : int</span>
+<span class="sd">            Number of days to sample contiguously from the same historical trajectory.</span>
+<span class="sd">        probability_model : ProbabilityModel</span>
+<span class="sd">            Model defining sampling probabilities given similarities between base states</span>
+<span class="sd">            and candidate states.</span>
+<span class="sd">        stepper_class : type[TimeStepper]</span>
+<span class="sd">            Class for managing the output time assigned to each sample in the resulting</span>
+<span class="sd">            trajectory. This is used as a means for supporting different calendars in</span>
+<span class="sd">            sampled datasets.</span>
+<span class="sd">        n_steps : int</span>
+<span class="sd">            Number of sampling steps to perform, not necessarily equal to the length of</span>
+<span class="sd">            the sampled series in days.</span>
+<span class="sd">        rng : np.random.Generator</span>
+<span class="sd">            Random number generator for sampling.</span>
+<span class="sd">        initialization : InitTimeLeadTimeMemberState | None, optional</span>
+<span class="sd">            Initial state specification, by default None (random initialization).</span>
+<span class="sd">        start_by_taking_analog : bool, optional</span>
+<span class="sd">            Whether to start by taking an analog of the initial state, by default False.</span>
+<span class="sd">        show_progressbar : bool, optional</span>
+<span class="sd">            Whether to display progress bar, by default False.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        xr.Dataset</span>
+<span class="sd">            Generated weather trajectory with time series of sampled states.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># set up a &quot;map&quot; between states and their successors states</span>
+        <span class="c1"># for blocksize-long transitions:</span>
+        <span class="n">path_map</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path_wg</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;map_</span><span class="si">{</span><span class="n">blocksize</span><span class="si">}</span><span class="s2">_steps_transition.nc&quot;</span><span class="p">)</span>
+        <span class="n">map_n_step_transition</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_or_create_map_file</span><span class="p">(</span><span class="n">path_map</span><span class="p">,</span> <span class="n">blocksize</span><span class="p">)</span>
+
+        <span class="n">current_block_start_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_initial_state</span><span class="p">(</span>
+            <span class="n">initialization</span><span class="o">=</span><span class="n">initialization</span><span class="p">,</span>
+            <span class="n">map_n_step_transition</span><span class="o">=</span><span class="n">map_n_step_transition</span><span class="p">,</span>
+            <span class="n">blocksize</span><span class="o">=</span><span class="n">blocksize</span><span class="p">,</span>
+            <span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="c1"># initialize stepper with starting condition.</span>
+        <span class="c1"># Stepper is iterator that on each call returns tuple of (time, year_fraction)</span>
+        <span class="n">stepper</span> <span class="o">=</span> <span class="n">stepper_class</span><span class="p">(</span>
+            <span class="n">init_year</span><span class="o">=</span><span class="n">current_block_start_state</span><span class="o">.</span><span class="n">valid_time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="p">,</span>
+            <span class="n">init_month</span><span class="o">=</span><span class="n">current_block_start_state</span><span class="o">.</span><span class="n">valid_time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span><span class="p">,</span>
+            <span class="n">init_day</span><span class="o">=</span><span class="n">current_block_start_state</span><span class="o">.</span><span class="n">valid_time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">day</span><span class="p">,</span>
+            <span class="n">blocksize</span><span class="o">=</span><span class="n">blocksize</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">current_out_time</span><span class="p">,</span> <span class="n">current_year_fraction</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">stepper</span><span class="p">)</span>
+        <span class="n">current_block_start_state</span><span class="p">[</span><span class="s2">&quot;out_time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">current_out_time</span>
+        <span class="k">if</span> <span class="n">start_by_taking_analog</span><span class="p">:</span>
+            <span class="n">current_block_start_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sampling_step</span><span class="p">(</span>
+                <span class="n">next_state</span><span class="o">=</span><span class="n">current_block_start_state</span><span class="p">,</span>
+                <span class="n">next_year_fraction</span><span class="o">=</span><span class="n">current_year_fraction</span><span class="p">,</span>
+                <span class="n">map_n_step_transition</span><span class="o">=</span><span class="n">map_n_step_transition</span><span class="p">,</span>
+                <span class="n">probability_model</span><span class="o">=</span><span class="n">probability_model</span><span class="p">,</span>
+                <span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="c1"># initialize empty trajectory</span>
+        <span class="n">trajectory</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
+            <span class="nb">range</span><span class="p">(</span><span class="n">n_steps</span><span class="p">),</span> <span class="n">disable</span><span class="o">=</span><span class="p">(</span><span class="ow">not</span> <span class="n">show_progressbar</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Sampling trajectory&quot;</span>
+        <span class="p">):</span>
+            <span class="c1"># alternate between following what actually happend and analog sampling</span>
+            <span class="n">next_state</span><span class="p">,</span> <span class="n">next_year_fraction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_evolution_step</span><span class="p">(</span>
+                <span class="n">trajectory</span><span class="o">=</span><span class="n">trajectory</span><span class="p">,</span>
+                <span class="n">current_block_start_state</span><span class="o">=</span><span class="n">current_block_start_state</span><span class="p">,</span>
+                <span class="n">map_n_step_transition</span><span class="o">=</span><span class="n">map_n_step_transition</span><span class="p">,</span>
+                <span class="n">stepper</span><span class="o">=</span><span class="n">stepper</span><span class="p">,</span>
+                <span class="n">blocksize</span><span class="o">=</span><span class="n">blocksize</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">next_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sampling_step</span><span class="p">(</span>
+                <span class="n">next_state</span><span class="o">=</span><span class="n">next_state</span><span class="p">,</span>
+                <span class="n">next_year_fraction</span><span class="o">=</span><span class="n">next_year_fraction</span><span class="p">,</span>
+                <span class="n">map_n_step_transition</span><span class="o">=</span><span class="n">map_n_step_transition</span><span class="p">,</span>
+                <span class="n">probability_model</span><span class="o">=</span><span class="n">probability_model</span><span class="p">,</span>
+                <span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">current_block_start_state</span> <span class="o">=</span> <span class="n">next_state</span>
+        <span class="k">return</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">trajectory</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;out_time&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="WeatherGenerator.load">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator.load">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">load</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">wg_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;WeatherGenerator&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load a WeatherGenerator instance from saved configuration.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        wg_path : str</span>
+<span class="sd">            Path to directory containing saved weather generator configuration.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        WeatherGenerator</span>
+<span class="sd">            Loaded weather generator instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">wg_path</span><span class="p">,</span> <span class="s2">&quot;params.yaml&quot;</span><span class="p">),</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="n">params</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+        <span class="n">instance</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">window_size</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;weather_generator.window_size&quot;</span><span class="p">]</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">var</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;weather_generator.var&quot;</span><span class="p">]</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">similarity_function</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span>
+            <span class="n">unseen_awg</span><span class="o">.</span><span class="n">similarity_measures</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;weather_generator.similarity&quot;</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="n">instance</span><span class="o">.</span><span class="n">path_wg</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;dir_wg&quot;</span><span class="p">]</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">path_dataset</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;zarr_year_dayofyear&quot;</span><span class="p">]</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">use_precomputed_similarities</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span>
+            <span class="s2">&quot;weather_generator.use_precomputed_similarities&quot;</span>
+        <span class="p">]</span>
+        <span class="k">if</span> <span class="n">instance</span><span class="o">.</span><span class="n">use_precomputed_similarities</span><span class="p">:</span>
+            <span class="n">instance</span><span class="o">.</span><span class="n">ds_similarities</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_zarr</span><span class="p">(</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">wg_path</span><span class="p">,</span> <span class="s2">&quot;similarities.zarr&quot;</span><span class="p">),</span> <span class="n">decode_timedelta</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_zarr</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">path_dataset</span><span class="p">,</span> <span class="n">decode_timedelta</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span>
+                <span class="n">sample</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;weather_generator.n_samples&quot;</span><span class="p">])</span>
+            <span class="p">)</span>
+
+            <span class="n">instance</span><span class="o">.</span><span class="n">ds_similarities</span> <span class="o">=</span> <span class="n">setup_lazy_similarity_dataset</span><span class="p">(</span>
+                <span class="n">ds_year_dayofyear_format</span><span class="o">=</span><span class="n">ds</span><span class="p">,</span>
+                <span class="n">window_size</span><span class="o">=</span><span class="n">instance</span><span class="o">.</span><span class="n">window_size</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">d_shifts</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">window_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">window_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+                <span class="n">dims</span><span class="o">=</span><span class="s2">&quot;d_shift&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">drop_vars</span><span class="p">(</span><span class="s2">&quot;init_time&quot;</span><span class="p">)</span>
+            <span class="n">ds_candidate</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">ds</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+                    <span class="p">{</span>
+                        <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="s2">&quot;c_year&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;ensemble_member&quot;</span><span class="p">:</span> <span class="s2">&quot;c_ensemble_member&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;sample&quot;</span><span class="p">:</span> <span class="s2">&quot;c_sample&quot;</span><span class="p">,</span>
+                    <span class="p">}</span>
+                <span class="p">)</span>
+                <span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">dayofyear</span><span class="o">=</span><span class="p">((((</span><span class="n">ds</span><span class="o">.</span><span class="n">dayofyear</span> <span class="o">+</span> <span class="n">d_shifts</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">366</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+                <span class="o">.</span><span class="n">assign_coords</span><span class="p">({</span><span class="s2">&quot;d_shifts&quot;</span><span class="p">:</span> <span class="n">d_shifts</span><span class="p">})</span>
+            <span class="p">)</span>
+            <span class="n">similarities</span> <span class="o">=</span> <span class="n">apply_similarity_metric</span><span class="p">(</span>
+                <span class="n">ds_reference</span><span class="o">=</span><span class="n">ds</span><span class="p">,</span>
+                <span class="n">ds_candidate</span><span class="o">=</span><span class="n">ds_candidate</span><span class="p">,</span>
+                <span class="n">similarity_func</span><span class="o">=</span><span class="n">instance</span><span class="o">.</span><span class="n">similarity_function</span><span class="p">,</span>
+                <span class="n">variable_name</span><span class="o">=</span><span class="n">instance</span><span class="o">.</span><span class="n">var</span><span class="p">,</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">&quot;similarities&quot;</span><span class="p">)</span>
+            <span class="n">instance</span><span class="o">.</span><span class="n">ds_similarities</span><span class="p">[</span><span class="s2">&quot;similarities&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">similarities</span>
+
+        <span class="k">return</span> <span class="n">instance</span></div>
+
+
+<div class="viewcode-block" id="WeatherGenerator.time_evolution_step">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator.time_evolution_step">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">time_evolution_step</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">trajectory</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">],</span>
+        <span class="n">current_block_start_state</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+        <span class="n">map_n_step_transition</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+        <span class="n">stepper</span><span class="p">:</span> <span class="n">TimeStepper</span><span class="p">,</span>
+        <span class="n">blocksize</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Perform one time evolution step in trajectory generation.</span>
+
+<span class="sd">        Advances the trajectory by one block of time steps, following the</span>
+<span class="sd">        evolution in the underlying historical data set starting from current_state.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        trajectory : list[xr.Dataset]</span>
+<span class="sd">            List of trajectory states to append new states to.</span>
+<span class="sd">        current_block_start_state : xr.Dataset</span>
+<span class="sd">            State to start current state from.</span>
+<span class="sd">        map_n_step_transition : xr.Dataset</span>
+<span class="sd">            Mapping of allowed n-day transitions between states.</span>
+<span class="sd">        stepper : TimeStepper</span>
+<span class="sd">            Time stepper instance for managing temporal progression.</span>
+<span class="sd">        blocksize : int</span>
+<span class="sd">            Number of days in each time block.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        tuple[xr.Dataset, float]</span>
+<span class="sd">            Next state and corresponding year fraction.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">blocksize</span><span class="p">):</span>
+            <span class="n">trajectory</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span>
+                    <span class="p">{</span>
+                        <span class="s2">&quot;lead_time&quot;</span><span class="p">:</span> <span class="n">current_block_start_state</span><span class="o">.</span><span class="n">lead_time</span>
+                        <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">),</span>
+                        <span class="s2">&quot;init_time&quot;</span><span class="p">:</span> <span class="n">current_block_start_state</span><span class="o">.</span><span class="n">init_time</span><span class="p">,</span>
+                        <span class="s2">&quot;ensemble_member&quot;</span><span class="p">:</span> <span class="n">current_block_start_state</span><span class="o">.</span><span class="n">ensemble_member</span><span class="p">,</span>
+                    <span class="p">},</span>
+                    <span class="n">coords</span><span class="o">=</span><span class="p">{</span>
+                        <span class="s2">&quot;out_time&quot;</span><span class="p">:</span> <span class="n">current_block_start_state</span><span class="o">.</span><span class="n">out_time</span>
+                        <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+                    <span class="p">},</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="n">next_coords</span> <span class="o">=</span> <span class="n">map_n_step_transition</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span>
+            <span class="n">dayofyear</span><span class="o">=</span><span class="n">current_block_start_state</span><span class="o">.</span><span class="n">dayofyear</span><span class="p">,</span>
+            <span class="n">year</span><span class="o">=</span><span class="n">current_block_start_state</span><span class="o">.</span><span class="n">year</span><span class="p">,</span>
+            <span class="n">sample</span><span class="o">=</span><span class="n">current_block_start_state</span><span class="o">.</span><span class="n">sample</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">next_state</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ds_similarities</span><span class="o">.</span><span class="n">init_time</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span>
+                <span class="n">dayofyear</span><span class="o">=</span><span class="n">next_coords</span><span class="o">.</span><span class="n">next_dayofyear</span><span class="p">,</span>
+                <span class="n">year</span><span class="o">=</span><span class="n">next_coords</span><span class="o">.</span><span class="n">next_year</span><span class="p">,</span>
+                <span class="n">sample</span><span class="o">=</span><span class="n">next_coords</span><span class="o">.</span><span class="n">next_sample</span><span class="p">,</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">coords</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">reset_coords</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">next_out_time</span><span class="p">,</span> <span class="n">next_year_fraction</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">stepper</span><span class="p">)</span>
+        <span class="n">next_state</span><span class="p">[</span><span class="s2">&quot;out_time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">next_out_time</span>
+        <span class="n">next_state</span><span class="p">[</span><span class="s2">&quot;ensemble_member&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">current_block_start_state</span><span class="o">.</span><span class="n">ensemble_member</span>
+        <span class="k">return</span> <span class="n">next_state</span><span class="p">,</span> <span class="n">next_year_fraction</span></div>
+
+
+<div class="viewcode-block" id="WeatherGenerator.sampling_step">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator.sampling_step">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sampling_step</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">next_state</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+        <span class="n">next_year_fraction</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">map_n_step_transition</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+        <span class="n">probability_model</span><span class="p">:</span> <span class="n">ProbabilityModel</span><span class="p">,</span>
+        <span class="n">rng</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Perform analog sampling step to select next weather state.</span>
+
+<span class="sd">        Samples an analog state from historical data based on similarity</span>
+<span class="sd">        to the true next state and according to distribution and constraints</span>
+<span class="sd">        defined by the probability_model.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        next_state : xr.Dataset</span>
+<span class="sd">            True next state in underlying historic dataset.</span>
+<span class="sd">        next_year_fraction : float</span>
+<span class="sd">            Year fraction of next sample. Used to define temporal similarity</span>
+<span class="sd">            rather than an actual calender date to simplify calendar handling.</span>
+<span class="sd">        map_n_step_transition : xr.Dataset</span>
+<span class="sd">            Mapping of allowed n-day transitions between states.</span>
+<span class="sd">        probability_model : ProbabilityModel</span>
+<span class="sd">            Model defining sampling probabilities given similarities.</span>
+<span class="sd">        rng : np.random.Generator</span>
+<span class="sd">            Random number generator for sampling.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        xr.Dataset</span>
+<span class="sd">            Sampled analog state for the next time step.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">s_sims</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ds_similarities</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span>
+            <span class="n">year</span><span class="o">=</span><span class="n">next_state</span><span class="o">.</span><span class="n">year</span><span class="p">,</span>
+            <span class="n">dayofyear</span><span class="o">=</span><span class="n">next_state</span><span class="o">.</span><span class="n">dayofyear</span><span class="p">,</span>
+            <span class="n">sample</span><span class="o">=</span><span class="n">next_state</span><span class="o">.</span><span class="n">sample</span><span class="p">,</span>
+            <span class="n">ensemble_member</span><span class="o">=</span><span class="n">next_state</span><span class="o">.</span><span class="n">ensemble_member</span><span class="p">,</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="p">[</span>
+            <span class="s2">&quot;c_year&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;c_valid_time&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;c_sample&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;c_init_time&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;c_dayofyear&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;c_lead_time&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;c_ensemble_member&quot;</span><span class="p">,</span>
+        <span class="p">]:</span>
+            <span class="n">s_sims</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;sampled_</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">s_sims</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">broadcast_like</span><span class="p">(</span><span class="n">s_sims</span><span class="o">.</span><span class="n">similarities</span><span class="p">)</span>
+
+        <span class="c1"># Mask that indicates whether a sample is a valid sample</span>
+        <span class="c1"># (i.e. the corresponding date is actually contained in the data set).</span>
+        <span class="n">m_is_valid</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span>
+            <span class="n">map_n_step_transition</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span>
+                <span class="n">sample</span><span class="o">=</span><span class="n">s_sims</span><span class="o">.</span><span class="n">c_sample</span><span class="p">,</span>
+                <span class="n">year</span><span class="o">=</span><span class="n">s_sims</span><span class="o">.</span><span class="n">c_year</span><span class="p">,</span>
+                <span class="n">dayofyear</span><span class="o">=</span><span class="p">((</span><span class="n">s_sims</span><span class="o">.</span><span class="n">dayofyear</span> <span class="o">+</span> <span class="n">s_sims</span><span class="o">.</span><span class="n">d_shift</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">366</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">next_year</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Mask that is true if the states are close to the next assigned output date.</span>
+        <span class="n">m_is_near_to_year_fraction</span> <span class="o">=</span> <span class="n">is_in_window_from_year_fraction</span><span class="p">(</span>
+            <span class="n">base_year_fractions</span><span class="o">=</span><span class="n">next_year_fraction</span><span class="p">,</span>
+            <span class="n">other_dates</span><span class="o">=</span><span class="n">s_sims</span><span class="o">.</span><span class="n">c_valid_time</span><span class="o">.</span><span class="n">load</span><span class="p">(),</span>
+            <span class="n">window_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">window_size</span><span class="p">,</span>
+            <span class="n">ref_time</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s2">&quot;2000-01-01&quot;</span><span class="p">,</span> <span class="s2">&quot;ns&quot;</span><span class="p">),</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Combine masks with additional mask that is true if the states</span>
+        <span class="c1"># are close to valid_date of the next sample.</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">m_is_valid</span>
+            <span class="o">&amp;</span> <span class="n">m_is_near_to_year_fraction</span>
+            <span class="o">&amp;</span> <span class="n">s_sims</span><span class="o">.</span><span class="n">m_is_near</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">({</span><span class="s2">&quot;c_sample&quot;</span><span class="p">:</span> <span class="n">s_sims</span><span class="o">.</span><span class="n">c_sample</span><span class="p">})</span>
+            <span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span>
+                <span class="p">{</span><span class="s2">&quot;ensemble_member&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">ds_similarities</span><span class="o">.</span><span class="n">ensemble_member</span><span class="p">},</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span>
+            <span class="p">)</span>
+            <span class="o">.</span><span class="n">load</span><span class="p">()</span>
+        <span class="p">)</span>
+
+        <span class="c1"># take the mask subset:</span>
+        <span class="n">similarities</span> <span class="o">=</span> <span class="n">s_sims</span><span class="o">.</span><span class="n">similarities</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>
+        <span class="n">coords</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="n">c</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;datapoint&quot;</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">m</span><span class="p">])</span>
+                <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">s_sims</span><span class="o">.</span><span class="n">data_vars</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">c</span>
+                <span class="ow">in</span> <span class="p">[</span>
+                    <span class="s2">&quot;sampled_c_valid_time&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;sampled_c_init_time&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;sampled_c_ensemble_member&quot;</span><span class="p">,</span>
+                <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;sampled_c_valid_time&quot;</span><span class="p">:</span> <span class="s2">&quot;valid_time&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;sampled_c_init_time&quot;</span><span class="p">:</span> <span class="s2">&quot;init_time&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;sampled_c_ensemble_member&quot;</span><span class="p">:</span> <span class="s2">&quot;ensemble_member&quot;</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+
+        <span class="n">i</span> <span class="o">=</span> <span class="n">probability_model</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span>
+            <span class="n">similarities</span><span class="o">=</span><span class="n">similarities</span><span class="p">,</span>
+            <span class="n">coords_s_next</span><span class="o">=</span><span class="n">next_state</span><span class="p">[[</span><span class="s2">&quot;init_time&quot;</span><span class="p">,</span> <span class="s2">&quot;valid_time&quot;</span><span class="p">,</span> <span class="s2">&quot;ensemble_member&quot;</span><span class="p">]],</span>
+            <span class="n">coords_candidates</span><span class="o">=</span><span class="n">coords</span><span class="p">,</span>
+            <span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">,</span>
+            <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">res</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="n">var</span><span class="p">:</span> <span class="n">s_sims</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;sampled_c_</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="p">[</span>
+                    <span class="s2">&quot;year&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;valid_time&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;sample&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;init_time&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;dayofyear&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;lead_time&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;ensemble_member&quot;</span><span class="p">,</span>
+                <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+        <span class="n">res</span><span class="p">[</span><span class="s2">&quot;out_time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">next_state</span><span class="p">[</span><span class="s2">&quot;out_time&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">res</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_load_or_create_map_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path_map</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">blocksize</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load existing transition map or create new one if not found.</span>
+
+<span class="sd">        Attempts to load a precomputed transition map file. If the file doesn&#39;t</span>
+<span class="sd">        exist or cannot be opened, creates a new transition map and saves it</span>
+<span class="sd">        atomically to prevent race conditions in parallel execution.</span>
+<span class="sd">        The map file is used to identify valid samples and provides a mapping between</span>
+<span class="sd">        coordinates of each state and the coordinates of its corresponding true</span>
+<span class="sd">        successor state.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        path_map : str</span>
+<span class="sd">            Path to the transition map file.</span>
+<span class="sd">        blocksize : int</span>
+<span class="sd">            Number of days for each block of states.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        xr.Dataset</span>
+<span class="sd">            Transition map dataset containing valid n-day transitions.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If no valid transitions exist for the chosen blocksize.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Try to load the existing file first</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span>
+                <span class="n">path_map</span><span class="p">,</span> <span class="n">decode_timedelta</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">lock</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;r&quot;</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">FileNotFoundError</span><span class="p">,</span> <span class="ne">OSError</span><span class="p">):</span>
+            <span class="c1"># File doesn&#39;t exist or can&#39;t be opened - we&#39;ll need to create it</span>
+            <span class="c1"># Create a unique temporary filename</span>
+            <span class="n">temp_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">path_map</span><span class="p">),</span>
+                <span class="sa">f</span><span class="s2">&quot;temp_map_</span><span class="si">{</span><span class="n">blocksize</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">()</span><span class="o">.</span><span class="n">hex</span><span class="si">}</span><span class="s2">.nc&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Create the map</span>
+                <span class="n">map_n_step_transition</span> <span class="o">=</span> <span class="n">get_map_valid_n_day_transitions</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">ds_similarities</span><span class="o">.</span><span class="n">init_time</span><span class="o">.</span><span class="n">load</span><span class="p">(),</span> <span class="n">n</span><span class="o">=</span><span class="n">blocksize</span>
+                <span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">map_n_step_transition</span><span class="p">[</span><span class="s2">&quot;next_sample&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;No valid transitions for chosen blocksize: </span><span class="si">{</span><span class="n">blocksize</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="p">)</span>
+                <span class="c1"># Save to temporary file first</span>
+                <span class="n">map_n_step_transition</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="n">temp_path</span><span class="p">)</span>
+
+                <span class="c1"># Try to atomically move the temp file to the final location</span>
+                <span class="c1"># This will fail if another process has created the file in the meantime</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="c1"># Make sure directory exists</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">path_map</span><span class="p">),</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+                    <span class="c1"># Try to move the file (atomic on same filesystem)</span>
+                    <span class="n">shutil</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">temp_path</span><span class="p">,</span> <span class="n">path_map</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="n">map_n_step_transition</span>
+                <span class="k">except</span> <span class="p">(</span><span class="ne">OSError</span><span class="p">,</span> <span class="n">shutil</span><span class="o">.</span><span class="n">Error</span><span class="p">):</span>
+                    <span class="c1"># If move fails, another process likely created the file first</span>
+                    <span class="c1"># Try to load the existing file</span>
+                    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path_map</span><span class="p">):</span>
+                        <span class="k">return</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span>
+                            <span class="n">path_map</span><span class="p">,</span> <span class="n">decode_timedelta</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">lock</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;r&quot;</span>
+                        <span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="c1"># If the file still doesn&#39;t exist, return our computed map</span>
+                        <span class="k">return</span> <span class="n">map_n_step_transition</span>
+            <span class="k">finally</span><span class="p">:</span>
+                <span class="c1"># Clean up the temp file if it still exists</span>
+                <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">temp_path</span><span class="p">):</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">temp_path</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+                        <span class="k">pass</span>
+
+<div class="viewcode-block" id="WeatherGenerator.get_initial_state">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator.get_initial_state">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_initial_state</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">initialization</span><span class="p">:</span> <span class="n">InitTimeLeadTimeMemberState</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">map_n_step_transition</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+        <span class="n">blocksize</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">rng</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get initial state to start sampling a trajectory from.</span>
+
+<span class="sd">        Determines the starting state for weather generation, either from</span>
+<span class="sd">        a specified initialization or by random selection from set of valid states.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        initialization : InitTimeLeadTimeMemberState | None</span>
+<span class="sd">            Specific initialization state, or None for random selection.</span>
+<span class="sd">        map_n_step_transition : xr.Dataset</span>
+<span class="sd">            Mapping of allowed n-day transitions between states.</span>
+<span class="sd">        blocksize : int</span>
+<span class="sd">            Number of days in each time block.</span>
+<span class="sd">        rng : np.random.Generator</span>
+<span class="sd">            Random number generator for random initialization.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        xr.Dataset</span>
+<span class="sd">            Initial state for trajectory generation.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If the specified initialization is invalid.</span>
+<span class="sd">        AssertionError</span>
+<span class="sd">            If the initialization state is not found in valid transitions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">initialization</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># if no initialization provided select randomly from possible samples.</span>
+            <span class="n">stacked_isnotnan_ds</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">map_n_step_transition</span><span class="o">.</span><span class="n">next_sample</span><span class="p">)</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
+                <span class="n">datapoint</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;dayofyear&quot;</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;sample&quot;</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">initial_state</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span>
+                <span class="n">stacked_isnotnan_ds</span><span class="p">[</span><span class="n">stacked_isnotnan_ds</span><span class="p">]</span>
+                <span class="o">.</span><span class="n">isel</span><span class="p">(</span>
+                    <span class="n">datapoint</span><span class="o">=</span><span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span>
+                        <span class="nb">len</span><span class="p">(</span><span class="n">stacked_isnotnan_ds</span><span class="p">[</span><span class="n">stacked_isnotnan_ds</span><span class="p">])</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+                <span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;datapoint&quot;</span><span class="p">)</span>
+                <span class="o">.</span><span class="n">coords</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="n">initial_state</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">(</span>
+                <span class="n">ensemble_member</span><span class="o">=</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ds_similarities</span><span class="o">.</span><span class="n">ensemble_member</span><span class="p">)</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">reset_coords</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">initialization</span><span class="p">,</span> <span class="n">InitTimeLeadTimeMemberState</span><span class="p">):</span>
+            <span class="n">stacked_isnotnan_ds</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span>
+                <span class="n">get_map_valid_n_day_transitions</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">ds_similarities</span><span class="o">.</span><span class="n">init_time</span><span class="o">.</span><span class="n">load</span><span class="p">(),</span> <span class="n">n</span><span class="o">=</span><span class="n">blocksize</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">next_sample</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">datapoint</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;dayofyear&quot;</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;sample&quot;</span><span class="p">))</span>
+            <span class="n">vsa</span> <span class="o">=</span> <span class="n">stacked_isnotnan_ds</span><span class="p">[</span><span class="n">stacked_isnotnan_ds</span><span class="p">]</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span>
+                <span class="n">vsa</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+                    <span class="p">(</span><span class="n">vsa</span><span class="o">.</span><span class="n">init_time</span> <span class="o">==</span> <span class="n">initialization</span><span class="o">.</span><span class="n">init_time</span><span class="p">)</span>
+                    <span class="o">&amp;</span> <span class="p">(</span><span class="n">vsa</span><span class="o">.</span><span class="n">lead_time</span> <span class="o">==</span> <span class="n">initialization</span><span class="o">.</span><span class="n">lead_time</span><span class="p">),</span>
+                    <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">datapoint</span>
+                <span class="o">==</span> <span class="mi">1</span>
+            <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">initialization</span><span class="si">}</span><span class="s2"> seems to be an invalid starting point.&quot;</span>
+            <span class="n">initial_state</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span>
+                <span class="n">vsa</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+                    <span class="p">(</span><span class="n">vsa</span><span class="o">.</span><span class="n">init_time</span> <span class="o">==</span> <span class="n">initialization</span><span class="o">.</span><span class="n">init_time</span><span class="p">)</span>
+                    <span class="o">&amp;</span> <span class="p">(</span><span class="n">vsa</span><span class="o">.</span><span class="n">lead_time</span> <span class="o">==</span> <span class="n">initialization</span><span class="o">.</span><span class="n">lead_time</span><span class="p">),</span>
+                    <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
+                <span class="o">.</span><span class="n">coords</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">drop_vars</span><span class="p">(</span><span class="s2">&quot;datapoint&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">initial_state</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">(</span>
+                <span class="n">ensemble_member</span><span class="o">=</span><span class="n">initialization</span><span class="o">.</span><span class="n">ensemble_member</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">reset_coords</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid initial condition </span><span class="si">{</span><span class="n">initialization</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="WeatherGenerator.get_similarities_k_closest_neighbors">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator.get_similarities_k_closest_neighbors">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_similarities_k_closest_neighbors</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">states</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span>
+        <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">minimum_timedelta_days</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">dim_states</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the k closest neighbors based on similarity measures.</span>
+
+<span class="sd">        Finds the k most similar historical states to the given query states</span>
+<span class="sd">        based on (precomputed) similarity measures.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        states : xr.DataArray</span>
+<span class="sd">            Query states to find neighbors for.</span>
+<span class="sd">        k : int</span>
+<span class="sd">            Number of closest neighbors to return.</span>
+<span class="sd">        minimum_timedelta_days : int | None, optional</span>
+<span class="sd">            Minimum time separation in days between query and candidate states, that</span>
+<span class="sd">            allows excluding analogs that are temporally close to the base state if</span>
+<span class="sd">            this is undesired. By default None, i.e. no restriction.</span>
+<span class="sd">        dim_states : str | None, optional</span>
+<span class="sd">            Dimension name for states, by default None.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        xr.Dataset</span>
+<span class="sd">            Dataset containing the k closest neighbor states and their similarities.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">sims</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ds_similarities</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span>
+            <span class="n">dayofyear</span><span class="o">=</span><span class="n">states</span><span class="o">.</span><span class="n">dayofyear</span><span class="p">,</span>
+            <span class="n">year</span><span class="o">=</span><span class="n">states</span><span class="o">.</span><span class="n">year</span><span class="p">,</span>
+            <span class="n">sample</span><span class="o">=</span><span class="n">states</span><span class="o">.</span><span class="n">sample</span><span class="p">,</span>
+            <span class="n">ensemble_member</span><span class="o">=</span><span class="n">states</span><span class="o">.</span><span class="n">ensemble_member</span><span class="p">,</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+        <span class="n">sims_flattened</span> <span class="o">=</span> <span class="o">-</span><span class="n">sims</span><span class="o">.</span><span class="n">similarities</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
+            <span class="n">flat_dim</span><span class="o">=</span><span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">sims</span><span class="o">.</span><span class="n">dims</span> <span class="k">if</span> <span class="n">d</span> <span class="o">!=</span> <span class="n">dim_states</span><span class="p">]</span>
+        <span class="p">)</span>  <span class="c1"># assume that similarity increases the more similar the points are</span>
+
+        <span class="k">if</span> <span class="n">minimum_timedelta_days</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">keeps_minimum_distance</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="nb">abs</span><span class="p">(</span>
+                    <span class="p">(</span><span class="n">sims_flattened</span><span class="o">.</span><span class="n">valid_time</span> <span class="o">-</span> <span class="n">sims_flattened</span><span class="o">.</span><span class="n">c_valid_time</span><span class="p">)</span>
+                    <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">)</span>
+                <span class="p">)</span>
+                <span class="o">&gt;=</span> <span class="n">minimum_timedelta_days</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">keeps_minimum_distance</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">sims_flattened</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="o">-</span><span class="n">sims_flattened</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span>
+            <span class="n">flat_dim</span><span class="o">=</span><span class="n">xr</span><span class="o">.</span><span class="n">apply_ufunc</span><span class="p">(</span>
+                <span class="n">get_k_smallest_indices</span><span class="p">,</span>
+                <span class="n">sims_flattened</span><span class="p">,</span>
+                <span class="n">keeps_minimum_distance</span><span class="p">,</span>
+                <span class="n">k</span><span class="p">,</span>
+                <span class="n">input_core_dims</span><span class="o">=</span><span class="p">[[</span><span class="s2">&quot;flat_dim&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;flat_dim&quot;</span><span class="p">],</span> <span class="p">[]],</span>
+                <span class="n">output_core_dims</span><span class="o">=</span><span class="p">[[</span><span class="s2">&quot;neighbor&quot;</span><span class="p">]],</span>
+                <span class="n">vectorize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="WeatherGenerator.get_similarities_k_random_neighbors">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator.get_similarities_k_random_neighbors">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_similarities_k_random_neighbors</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">states</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span>
+        <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">rng</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">,</span>
+        <span class="n">minimum_timedelta_days</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">dim_states</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get k randomly selected neighbors from valid candidates.</span>
+
+<span class="sd">        Randomly selects k historical states from valid candidates that meet</span>
+<span class="sd">        the specified temporal constraints.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        states : xr.DataArray</span>
+<span class="sd">            Query states to find neighbors for.</span>
+<span class="sd">        k : int</span>
+<span class="sd">            Number of random neighbors to return.</span>
+<span class="sd">        rng : np.random.Generator</span>
+<span class="sd">            Random number generator for sampling.</span>
+<span class="sd">        minimum_timedelta_days : int | None, optional</span>
+<span class="sd">            Minimum time separation in days between query and candidate states,</span>
+<span class="sd">            by default None.</span>
+<span class="sd">        dim_states : str | None, optional</span>
+<span class="sd">            Dimension name for states, by default None.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        xr.Dataset</span>
+<span class="sd">            Dataset containing k randomly selected neighbor states.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">sims</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ds_similarities</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span>
+            <span class="n">dayofyear</span><span class="o">=</span><span class="n">states</span><span class="o">.</span><span class="n">dayofyear</span><span class="p">,</span>
+            <span class="n">year</span><span class="o">=</span><span class="n">states</span><span class="o">.</span><span class="n">year</span><span class="p">,</span>
+            <span class="n">sample</span><span class="o">=</span><span class="n">states</span><span class="o">.</span><span class="n">sample</span><span class="p">,</span>
+            <span class="n">ensemble_member</span><span class="o">=</span><span class="n">states</span><span class="o">.</span><span class="n">ensemble_member</span><span class="p">,</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+        <span class="n">sims_flattened</span> <span class="o">=</span> <span class="o">-</span><span class="n">sims</span><span class="o">.</span><span class="n">similarities</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
+            <span class="n">flat_dim</span><span class="o">=</span><span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">sims</span><span class="o">.</span><span class="n">dims</span> <span class="k">if</span> <span class="n">d</span> <span class="o">!=</span> <span class="n">dim_states</span><span class="p">]</span>
+        <span class="p">)</span>  <span class="c1"># assume that similarity increases the more similar the points are</span>
+
+        <span class="k">if</span> <span class="n">minimum_timedelta_days</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">keeps_minimum_distance</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="nb">abs</span><span class="p">(</span>
+                    <span class="p">(</span><span class="n">sims_flattened</span><span class="o">.</span><span class="n">valid_time</span> <span class="o">-</span> <span class="n">sims_flattened</span><span class="o">.</span><span class="n">c_valid_time</span><span class="p">)</span>
+                    <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">)</span>
+                <span class="p">)</span>
+                <span class="o">&gt;=</span> <span class="n">minimum_timedelta_days</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">keeps_minimum_distance</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">sims_flattened</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="o">-</span><span class="n">sims_flattened</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span>
+            <span class="n">flat_dim</span><span class="o">=</span><span class="n">xr</span><span class="o">.</span><span class="n">apply_ufunc</span><span class="p">(</span>
+                <span class="n">get_k_random_indices</span><span class="p">,</span>
+                <span class="n">sims_flattened</span><span class="p">,</span>
+                <span class="n">keeps_minimum_distance</span><span class="p">,</span>
+                <span class="n">k</span><span class="p">,</span>
+                <span class="n">rng</span><span class="p">,</span>
+                <span class="n">input_core_dims</span><span class="o">=</span><span class="p">[[</span><span class="s2">&quot;flat_dim&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;flat_dim&quot;</span><span class="p">],</span> <span class="p">[],</span> <span class="p">[]],</span>
+                <span class="n">output_core_dims</span><span class="o">=</span><span class="p">[[</span><span class="s2">&quot;neighbor&quot;</span><span class="p">]],</span>
+                <span class="n">vectorize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="WeatherGenerator.get_analog_data">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator.get_analog_data">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_analog_data</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">queries</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span> <span class="n">use_candidate_coords</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve analog weather data for specified query coordinates.</span>
+
+<span class="sd">        Extracts weather data from the dataset at the coordinates specified</span>
+<span class="sd">        in the query array, either using the query coordinates directly or</span>
+<span class="sd">        the candidate coordinates.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        queries : xr.DataArray</span>
+<span class="sd">            Query array containing coordinate information.</span>
+<span class="sd">        use_candidate_coords : bool, optional</span>
+<span class="sd">            Whether to pick the sample according to provided coordinates of a candidate</span>
+<span class="sd">            state or of a base state.</span>
+<span class="sd">            by default False.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        xr.Dataset</span>
+<span class="sd">            Weather data at the specified coordinates.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">da_wg</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_zarr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path_dataset</span><span class="p">,</span> <span class="n">decode_timedelta</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="bp">self</span><span class="o">.</span><span class="n">var</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">use_candidate_coords</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">da_wg</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span>
+                <span class="n">dayofyear</span><span class="o">=</span><span class="n">queries</span><span class="o">.</span><span class="n">c_dayofyear</span><span class="p">,</span>
+                <span class="n">year</span><span class="o">=</span><span class="n">queries</span><span class="o">.</span><span class="n">c_year</span><span class="p">,</span>
+                <span class="n">sample</span><span class="o">=</span><span class="n">queries</span><span class="o">.</span><span class="n">c_sample</span><span class="p">,</span>
+                <span class="n">ensemble_member</span><span class="o">=</span><span class="n">queries</span><span class="o">.</span><span class="n">c_ensemble_member</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">da_wg</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span>
+                <span class="n">dayofyear</span><span class="o">=</span><span class="n">queries</span><span class="o">.</span><span class="n">dayofyear</span><span class="p">,</span>
+                <span class="n">year</span><span class="o">=</span><span class="n">queries</span><span class="o">.</span><span class="n">year</span><span class="p">,</span>
+                <span class="n">sample</span><span class="o">=</span><span class="n">queries</span><span class="o">.</span><span class="n">sample</span><span class="p">,</span>
+                <span class="n">ensemble_member</span><span class="o">=</span><span class="n">queries</span><span class="o">.</span><span class="n">ensemble_member</span><span class="p">,</span>
+            <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="WeatherGenerator.plot_k_nearest_and_random_neighbors">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator.plot_k_nearest_and_random_neighbors">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_k_nearest_and_random_neighbors</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">state</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+        <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">rng</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">,</span>
+        <span class="n">minimum_timedelta_days</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">vmin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">450</span><span class="p">,</span>
+        <span class="n">vmax</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">600</span><span class="p">,</span>
+        <span class="n">minor_spacing_contours</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="n">major_spacing_contours</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">Figure</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create comparison plot of nearest neighbors vs random neighbors.</span>
+
+<span class="sd">        Generates a visualization comparing the k nearest neighbors and k random</span>
+<span class="sd">        neighbors for a given weather state, showing the base state, and the random and</span>
+<span class="sd">        nearest neighbors (analogs) among the candidates and side by side.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        state : xr.Dataset</span>
+<span class="sd">            Reference weather state to find neighbors for.</span>
+<span class="sd">        k : int</span>
+<span class="sd">            Number of neighbors to display.</span>
+<span class="sd">        rng : np.random.Generator</span>
+<span class="sd">            Random number generator for random neighbor selection.</span>
+<span class="sd">        minimum_timedelta_days : int | None, optional</span>
+<span class="sd">            Minimum time separation constraint, by default None.</span>
+<span class="sd">        vmin : float, optional</span>
+<span class="sd">            Minimum value for color scale, by default 450.</span>
+<span class="sd">        vmax : float, optional</span>
+<span class="sd">            Maximum value for color scale, by default 600.</span>
+<span class="sd">        minor_spacing_contours : float, optional</span>
+<span class="sd">            Spacing for minor contour lines, by default 10.</span>
+<span class="sd">        major_spacing_contours : float, optional</span>
+<span class="sd">            Spacing for major contour lines, by default 30.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        matplotlib.figure.Figure</span>
+<span class="sd">            Figure containing the comparison plots.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">similarities_nbs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_similarities_k_closest_neighbors</span><span class="p">(</span>
+            <span class="n">states</span><span class="o">=</span><span class="n">state</span><span class="p">,</span>
+            <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span>
+            <span class="n">minimum_timedelta_days</span><span class="o">=</span><span class="n">minimum_timedelta_days</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">similarities_rands</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_similarities_k_random_neighbors</span><span class="p">(</span>
+            <span class="n">states</span><span class="o">=</span><span class="n">state</span><span class="p">,</span>
+            <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span>
+            <span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">,</span>
+            <span class="n">minimum_timedelta_days</span><span class="o">=</span><span class="n">minimum_timedelta_days</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">da_nbs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_analog_data</span><span class="p">(</span><span class="n">similarities_nbs</span><span class="p">,</span> <span class="n">use_candidate_coords</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">da_rands</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_analog_data</span><span class="p">(</span><span class="n">similarities_rands</span><span class="p">,</span> <span class="n">use_candidate_coords</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">da_base</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_analog_data</span><span class="p">(</span>
+            <span class="n">similarities_nbs</span><span class="p">,</span> <span class="n">use_candidate_coords</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">metpy</span><span class="o">.</span><span class="n">quantify</span><span class="p">()</span>
+
+        <span class="c1"># preps for contour plots</span>
+        <span class="n">major_levels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">major_spacing_contours</span><span class="p">)</span>
+        <span class="n">minor_levels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">minor_spacing_contours</span><span class="p">)</span>
+        <span class="n">minor_levels</span> <span class="o">=</span> <span class="n">minor_levels</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">minor_levels</span><span class="p">,</span> <span class="n">major_levels</span><span class="p">)]</span>
+
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">14</span><span class="p">))</span>
+        <span class="n">gs</span> <span class="o">=</span> <span class="n">GridSpec</span><span class="p">(</span>
+            <span class="n">k</span> <span class="o">+</span> <span class="mi">3</span><span class="p">,</span>
+            <span class="mi">2</span><span class="p">,</span>
+            <span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span>
+            <span class="n">height_ratios</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]</span>
+            <span class="o">+</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">k</span>
+            <span class="o">+</span> <span class="p">[</span>
+                <span class="mf">0.1</span><span class="p">,</span>
+            <span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="n">ax_cbar</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:])</span>
+
+        <span class="n">title_ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="n">title_ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">title_ax1</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+            <span class="n">y</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+            <span class="n">s</span><span class="o">=</span><span class="s2">&quot;Nearest neighbors</span><span class="se">\n</span><span class="s2">among candidates&quot;</span><span class="p">,</span>
+            <span class="n">horizontalalignment</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+            <span class="n">fontsize</span><span class="o">=</span><span class="s2">&quot;x-large&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">title_ax2</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+            <span class="n">y</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+            <span class="n">s</span><span class="o">=</span><span class="s2">&quot;Random samples</span><span class="se">\n</span><span class="s2">among candidates&quot;</span><span class="p">,</span>
+            <span class="n">horizontalalignment</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+            <span class="n">fontsize</span><span class="o">=</span><span class="s2">&quot;x-large&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">title_ax1</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+        <span class="n">title_ax2</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+
+        <span class="c1"># actual plotting</span>
+        <span class="c1"># base state:</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Robinson</span><span class="p">())</span>
+        <span class="n">map_plot_without_frame_with_bounds</span><span class="p">(</span>
+            <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+            <span class="n">da</span><span class="o">=</span><span class="n">da_base</span><span class="p">,</span>
+            <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span>
+            <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span>
+            <span class="n">cbar_ax</span><span class="o">=</span><span class="n">ax_cbar</span><span class="p">,</span>
+            <span class="n">cbar_kwargs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;orientation&quot;</span><span class="p">:</span> <span class="s2">&quot;horizontal&quot;</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">)</span>
+        <span class="n">add_contours</span><span class="p">(</span>
+            <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+            <span class="n">da</span><span class="o">=</span><span class="n">da_base</span><span class="p">,</span>
+            <span class="n">major_levels</span><span class="o">=</span><span class="n">major_levels</span><span class="p">,</span>
+            <span class="n">minor_levels</span><span class="o">=</span><span class="n">minor_levels</span><span class="p">,</span>
+            <span class="n">add_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ds_similarities</span><span class="o">.</span><span class="n">c_sample</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
+                <span class="sa">r</span><span class="s2">&quot;$t_</span><span class="si">{init}</span><span class="s2">$&quot;</span>
+                <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">datetime_as_string</span><span class="p">((</span><span class="n">da_base</span><span class="o">.</span><span class="n">init_time</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span><span class="w"> </span><span class="n">unit</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> &quot;</span>
+                <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;$t_</span><span class="si">{lead}</span><span class="s2">$&quot;</span>
+                <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;: </span><span class="si">{</span><span class="nb">int</span><span class="p">((</span><span class="n">da_base</span><span class="o">.</span><span class="n">lead_time</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;D&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s2">d &quot;</span>
+                <span class="o">+</span> <span class="s2">&quot;$m$&quot;</span>
+                <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;: </span><span class="si">{</span><span class="n">da_base</span><span class="o">.</span><span class="n">ensemble_member</span><span class="o">.</span><span class="n">data</span><span class="si">}</span><span class="s2"> &quot;</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">vt</span> <span class="o">=</span> <span class="n">da_base</span><span class="o">.</span><span class="n">init_time</span> <span class="o">+</span> <span class="n">da_base</span><span class="o">.</span><span class="n">lead_time</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
+                <span class="sa">r</span><span class="s2">&quot;$t_</span><span class="si">{valid}</span><span class="s2">$: &quot;</span>
+                <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">datetime_as_string</span><span class="p">((</span><span class="n">vt</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span><span class="w"> </span><span class="n">unit</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> &quot;</span>
+                <span class="o">+</span> <span class="s2">&quot;$m$&quot;</span>
+                <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;: </span><span class="si">{</span><span class="n">da_base</span><span class="o">.</span><span class="n">ensemble_member</span><span class="o">.</span><span class="n">data</span><span class="si">}</span><span class="s2"> &quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+            <span class="c1"># nearest neigbors:</span>
+            <span class="n">ax_nb</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">2</span> <span class="o">+</span> <span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Robinson</span><span class="p">())</span>
+            <span class="n">da_nb</span> <span class="o">=</span> <span class="n">da_nbs</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">neighbor</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">map_plot_without_frame_with_bounds</span><span class="p">(</span>
+                <span class="n">ax</span><span class="o">=</span><span class="n">ax_nb</span><span class="p">,</span> <span class="n">da</span><span class="o">=</span><span class="n">da_nb</span><span class="p">,</span> <span class="n">add_colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span>
+            <span class="p">)</span>
+            <span class="n">add_contours</span><span class="p">(</span>
+                <span class="n">ax</span><span class="o">=</span><span class="n">ax_nb</span><span class="p">,</span> <span class="n">da</span><span class="o">=</span><span class="n">da_nb</span><span class="p">,</span> <span class="n">major_levels</span><span class="o">=</span><span class="n">major_levels</span><span class="p">,</span> <span class="n">minor_levels</span><span class="o">=</span><span class="n">minor_levels</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ds_similarities</span><span class="o">.</span><span class="n">c_sample</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">t_init_out</span> <span class="o">=</span> <span class="p">(</span><span class="n">da_nb</span><span class="o">.</span><span class="n">c_init_time</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
+                <span class="n">ax_nb</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
+                    <span class="sa">r</span><span class="s2">&quot;$t_</span><span class="si">{init}</span><span class="s2">$: &quot;</span>
+                    <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">datetime_as_string</span><span class="p">(</span><span class="n">t_init_out</span><span class="p">,</span><span class="w"> </span><span class="n">unit</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot; $t_</span><span class="si">{lead}</span><span class="s2">$&quot;</span>
+                    <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;: </span><span class="si">{</span><span class="nb">int</span><span class="p">((</span><span class="n">da_nb</span><span class="o">.</span><span class="n">c_lead_time</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;D&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s2">d &quot;</span>
+                    <span class="o">+</span> <span class="s2">&quot;$m$&quot;</span>
+                    <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;: </span><span class="si">{</span><span class="n">da_nb</span><span class="o">.</span><span class="n">c_ensemble_member</span><span class="o">.</span><span class="n">data</span><span class="si">}</span><span class="s2"> &quot;</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">vt</span> <span class="o">=</span> <span class="n">da_nb</span><span class="o">.</span><span class="n">c_init_time</span> <span class="o">+</span> <span class="n">da_nb</span><span class="o">.</span><span class="n">c_lead_time</span>
+                <span class="n">ax_nb</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
+                    <span class="sa">r</span><span class="s2">&quot;$t_</span><span class="si">{valid}</span><span class="s2">$&quot;</span>
+                    <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">datetime_as_string</span><span class="p">((</span><span class="n">vt</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span><span class="w"> </span><span class="n">unit</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> &quot;</span>
+                    <span class="o">+</span> <span class="s2">&quot;$m$&quot;</span>
+                    <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;: </span><span class="si">{</span><span class="n">da_nb</span><span class="o">.</span><span class="n">c_ensemble_member</span><span class="o">.</span><span class="n">data</span><span class="si">}</span><span class="s2"> &quot;</span>
+                <span class="p">)</span>
+
+            <span class="c1"># random neighbors:</span>
+            <span class="n">ax_rand</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">2</span> <span class="o">+</span> <span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Robinson</span><span class="p">())</span>
+            <span class="n">da_rand</span> <span class="o">=</span> <span class="n">da_rands</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">neighbor</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">map_plot_without_frame_with_bounds</span><span class="p">(</span>
+                <span class="n">ax</span><span class="o">=</span><span class="n">ax_rand</span><span class="p">,</span> <span class="n">da</span><span class="o">=</span><span class="n">da_rand</span><span class="p">,</span> <span class="n">add_colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span>
+            <span class="p">)</span>
+            <span class="n">add_contours</span><span class="p">(</span>
+                <span class="n">ax</span><span class="o">=</span><span class="n">ax_rand</span><span class="p">,</span>
+                <span class="n">da</span><span class="o">=</span><span class="n">da_rand</span><span class="p">,</span>
+                <span class="n">major_levels</span><span class="o">=</span><span class="n">major_levels</span><span class="p">,</span>
+                <span class="n">minor_levels</span><span class="o">=</span><span class="n">minor_levels</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ds_similarities</span><span class="o">.</span><span class="n">c_sample</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">t_init_out</span> <span class="o">=</span> <span class="p">(</span><span class="n">da_rand</span><span class="o">.</span><span class="n">c_init_time</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
+                <span class="n">ax_rand</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
+                    <span class="sa">r</span><span class="s2">&quot;$t_</span><span class="si">{init}</span><span class="s2">$&quot;</span>
+                    <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">datetime_as_string</span><span class="p">(</span><span class="n">t_init_out</span><span class="p">,</span><span class="w"> </span><span class="n">unit</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> &quot;</span>
+                    <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;$t_</span><span class="si">{lead}</span><span class="s2">$&quot;</span>
+                    <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;: </span><span class="si">{</span><span class="nb">int</span><span class="p">((</span><span class="n">da_rand</span><span class="o">.</span><span class="n">c_lead_time</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;D&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s2">d &quot;</span>
+                    <span class="o">+</span> <span class="s2">&quot;$m$&quot;</span>
+                    <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;: </span><span class="si">{</span><span class="n">da_rand</span><span class="o">.</span><span class="n">c_sample</span><span class="o">.</span><span class="n">data</span><span class="si">}</span><span class="s2"> &quot;</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">vt</span> <span class="o">=</span> <span class="n">da_rand</span><span class="o">.</span><span class="n">c_init_time</span> <span class="o">+</span> <span class="n">da_rand</span><span class="o">.</span><span class="n">c_lead_time</span>
+                <span class="n">ax_rand</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
+                    <span class="sa">r</span><span class="s2">&quot;$t_</span><span class="si">{valid}</span><span class="s2">$&quot;</span>
+                    <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">datetime_as_string</span><span class="p">((</span><span class="n">vt</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span><span class="w"> </span><span class="n">unit</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> &quot;</span>
+                    <span class="o">+</span> <span class="s2">&quot;$m$&quot;</span>
+                    <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;: </span><span class="si">{</span><span class="n">da_rand</span><span class="o">.</span><span class="n">c_sample</span><span class="o">.</span><span class="n">data</span><span class="si">}</span><span class="s2"> &quot;</span>
+                <span class="p">)</span>
+        <span class="k">return</span> <span class="n">fig</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="main">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.weather_generator.main">[docs]</a>
+<span class="nd">@snakemake_handler</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">snakemake</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Main function for weather generator execution in Snakemake workflow.</span>
+
+<span class="sd">    Initializes and runs the weather generator with parameters from Snakemake,</span>
+<span class="sd">    handling logging and parameter management for the workflow execution.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    snakemake : Any</span>
+<span class="sd">        Snakemake object containing input/output paths, parameters, and logging</span>
+<span class="sd">        configuration.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">all_params</span> <span class="o">=</span> <span class="n">snakemake</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">all_params</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">tracked_params</span> <span class="o">=</span> <span class="n">snakemake</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">tracked_params</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="n">all_params</span><span class="p">[</span><span class="s2">&quot;zarr_year_dayofyear&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">snakemake</span><span class="o">.</span><span class="n">input</span><span class="p">[</span><span class="s2">&quot;zarr_year_dayofyear&quot;</span><span class="p">]</span>
+    <span class="n">tracked_params</span><span class="p">[</span><span class="s2">&quot;zarr_year_dayofyear&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">snakemake</span><span class="o">.</span><span class="n">input</span><span class="p">[</span><span class="s2">&quot;zarr_year_dayofyear&quot;</span><span class="p">]</span>
+    <span class="n">all_params</span><span class="p">[</span><span class="s2">&quot;dir_wg&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">snakemake</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="s2">&quot;dir_wg&quot;</span><span class="p">]</span>
+    <span class="n">tracked_params</span><span class="p">[</span><span class="s2">&quot;dir_wg&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">snakemake</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="s2">&quot;dir_wg&quot;</span><span class="p">]</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">snakemake</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="s2">&quot;dir_wg&quot;</span><span class="p">],</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">snakemake</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="s2">&quot;dir_wg&quot;</span><span class="p">],</span> <span class="s2">&quot;params.yaml&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">tracked_params</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">default_flow_style</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="n">WeatherGenerator</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">all_params</span><span class="p">)</span></div>
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">(</span><span class="n">snakemake</span><span class="o">=</span><span class="n">snakemake</span><span class="p">)</span>  <span class="c1"># noqa: F821</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

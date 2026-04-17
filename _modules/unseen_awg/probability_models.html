@@ -1,0 +1,787 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>unseen_awg.probability_models &mdash; unseen-awg 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            unseen-awg
+              <img src="../../_static/wg_white.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../what_is_unseen_awg.html">What is unseen-awg?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#adapting-predefined-paths">Adapting predefined paths</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_deal_with_archived_data.html">Downloading and preparing archived data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_deal_with_archived_data.html#extracting-the-data">Extracting the data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_deal_with_archived_data.html#snakemake-workflow-integration">Snakemake workflow integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../how_to_deal_with_archived_data.html#extract-the-input-datasets">1. Extract the input datasets:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_use_simulations.html">Using the provided simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_use_wg_to_create_simulations.html">Simulating time series with the provided <em>unseen-awg</em> weather generator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_use_wg_to_create_simulations.html#each-weather-generator-is-stored-in-a-directory">Each weather generator is stored in a directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_use_wg_to_create_simulations.html#loading-a-weather-generator">Loading a Weather Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_use_wg_to_create_simulations.html#sampling-a-time-series-with-the-weather-generator">Sampling a Time Series With the Weather Generator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_train_wg.html">Constructing an <em>unseen-awg</em> weather generator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_train_wg.html#using-snakemake-to-configure-generation">Using Snakemake to Configure Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_train_wg.html#preprocessing-details-and-motivation">Preprocessing Details and Motivation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../how_to_train_wg.html#reforecast-data">Reforecast Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../how_to_train_wg.html#era5-data">ERA5 Data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_documentation.html">API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/unseen_awg.html">unseen_awg package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.data_classes">unseen_awg.data_classes module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.data_classes.InitTimeLeadTimeMemberState"><code class="docutils literal notranslate"><span class="pre">InitTimeLeadTimeMemberState</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.data_utils">unseen_awg.data_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.data_utils.create_zarr_store_for_dataarray"><code class="docutils literal notranslate"><span class="pre">create_zarr_store_for_dataarray()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.data_utils.create_zarr_store_for_dataset"><code class="docutils literal notranslate"><span class="pre">create_zarr_store_for_dataset()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#unseen-awg-grids-module">unseen_awg.grids module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.plotting_utils">unseen_awg.plotting_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.add_contours"><code class="docutils literal notranslate"><span class="pre">add_contours()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.add_headers"><code class="docutils literal notranslate"><span class="pre">add_headers()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.add_label_to_axes"><code class="docutils literal notranslate"><span class="pre">add_label_to_axes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.contourf_plot_without_frame_with_bounds"><code class="docutils literal notranslate"><span class="pre">contourf_plot_without_frame_with_bounds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.map_plot_without_frame_with_bounds"><code class="docutils literal notranslate"><span class="pre">map_plot_without_frame_with_bounds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.transition_init_time_plot"><code class="docutils literal notranslate"><span class="pre">transition_init_time_plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.transition_lead_time_plot"><code class="docutils literal notranslate"><span class="pre">transition_lead_time_plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.transition_valid_time_plot"><code class="docutils literal notranslate"><span class="pre">transition_valid_time_plot()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.probability_models">unseen_awg.probability_models module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityAvoidDirectRepeats"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityAvoidDirectRepeats</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityKeepMinimalNDays"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityKeepMinimalNDays</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityModel"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityModelSeasonality"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityModelSeasonality</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityNotLargerThanFixedDate"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityNotLargerThanFixedDate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.ProbabilityModel"><code class="docutils literal notranslate"><span class="pre">ProbabilityModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.UniformProbabilityModel"><code class="docutils literal notranslate"><span class="pre">UniformProbabilityModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.gumbel_max_sample"><code class="docutils literal notranslate"><span class="pre">gumbel_max_sample()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.similarity_measures">unseen_awg.similarity_measures module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.similarity_measures.mse_similarity"><code class="docutils literal notranslate"><span class="pre">mse_similarity()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.simulate_trajectory">unseen_awg.simulate_trajectory module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.simulate_trajectory.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.simulate_trajectory.simulate_trajectory"><code class="docutils literal notranslate"><span class="pre">simulate_trajectory()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.time_steppers">unseen_awg.time_steppers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.time_steppers.FractionalYearStepper"><code class="docutils literal notranslate"><span class="pre">FractionalYearStepper</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.time_steppers.NoLeapYearStepper"><code class="docutils literal notranslate"><span class="pre">NoLeapYearStepper</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.time_steppers.StandardStepper"><code class="docutils literal notranslate"><span class="pre">StandardStepper</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.time_steppers.TimeStepper"><code class="docutils literal notranslate"><span class="pre">TimeStepper</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.timestep_utils">unseen_awg.timestep_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.convert_to_cftime_gregorian"><code class="docutils literal notranslate"><span class="pre">convert_to_cftime_gregorian()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.dayofyear_year_to_datetime64"><code class="docutils literal notranslate"><span class="pre">dayofyear_year_to_datetime64()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.dayofyear_year_to_datetime64_naive"><code class="docutils literal notranslate"><span class="pre">dayofyear_year_to_datetime64_naive()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.is_in_window_from_time"><code class="docutils literal notranslate"><span class="pre">is_in_window_from_time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.is_in_window_from_year_fraction"><code class="docutils literal notranslate"><span class="pre">is_in_window_from_year_fraction()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.time_to_year_fraction_cftime"><code class="docutils literal notranslate"><span class="pre">time_to_year_fraction_cftime()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.time_to_year_fraction_np_datetime64"><code class="docutils literal notranslate"><span class="pre">time_to_year_fraction_np_datetime64()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.tune_wg_by_forecasting">unseen_awg.tune_wg_by_forecasting module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.analog_ensemble_forecast"><code class="docutils literal notranslate"><span class="pre">analog_ensemble_forecast()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.crps_climatology"><code class="docutils literal notranslate"><span class="pre">crps_climatology()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.crps_persistence"><code class="docutils literal notranslate"><span class="pre">crps_persistence()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.crps_wg_forecasts"><code class="docutils literal notranslate"><span class="pre">crps_wg_forecasts()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.eval_analogue_forecast_skill"><code class="docutils literal notranslate"><span class="pre">eval_analogue_forecast_skill()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.eval_climatology_persistence_forecast"><code class="docutils literal notranslate"><span class="pre">eval_climatology_persistence_forecast()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.eval_wg"><code class="docutils literal notranslate"><span class="pre">eval_wg()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.get_gt"><code class="docutils literal notranslate"><span class="pre">get_gt()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.get_gt_coords"><code class="docutils literal notranslate"><span class="pre">get_gt_coords()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.get_n_valid_forecast_start_points"><code class="docutils literal notranslate"><span class="pre">get_n_valid_forecast_start_points()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.persistence_forecast"><code class="docutils literal notranslate"><span class="pre">persistence_forecast()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.utils">unseen_awg.utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.utils.apply_similarity_metric"><code class="docutils literal notranslate"><span class="pre">apply_similarity_metric()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.utils.get_k_random_indices"><code class="docutils literal notranslate"><span class="pre">get_k_random_indices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.utils.get_k_smallest_indices"><code class="docutils literal notranslate"><span class="pre">get_k_smallest_indices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.utils.get_map_valid_n_day_transitions"><code class="docutils literal notranslate"><span class="pre">get_map_valid_n_day_transitions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.utils.grids_are_identical_subset"><code class="docutils literal notranslate"><span class="pre">grids_are_identical_subset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.utils.is_no_jump"><code class="docutils literal notranslate"><span class="pre">is_no_jump()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.weather_generator">unseen_awg.weather_generator module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator"><code class="docutils literal notranslate"><span class="pre">WeatherGenerator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.weather_generator.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.weather_generator.setup_lazy_similarity_dataset"><code class="docutils literal notranslate"><span class="pre">setup_lazy_similarity_dataset()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">unseen-awg</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">unseen_awg.probability_models</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for unseen_awg.probability_models</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">NDArray</span>
+
+
+<div class="viewcode-block" id="ProbabilityModel">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.probability_models.ProbabilityModel">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ProbabilityModel</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Abstract base class for probability models used in analog sampling.</span>
+
+<span class="sd">    This class defines the interface for probability models that determine</span>
+<span class="sd">    the likelihood of selecting an analog based on its similarity with the true next</span>
+<span class="sd">    state. In some derived classes, restrictions on the coordinates of the candidate</span>
+<span class="sd">    samples are imposed and probabilities are zero-ed if they aren&#39;t fulfilled.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ProbabilityModel.__init__">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.probability_models.ProbabilityModel.__init__">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the probability model.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        *args : Any</span>
+<span class="sd">            Positional arguments for model initialization.</span>
+<span class="sd">        **kwargs : Any</span>
+<span class="sd">            Keyword arguments for model initialization.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="ProbabilityModel.unnormalized_log_probability">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.probability_models.ProbabilityModel.unnormalized_log_probability">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">unnormalized_log_probability</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">coords_s_next</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+        <span class="n">coords_candidates</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+        <span class="n">similarities</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute unnormalized log probabilities for candidate analogs.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        coords_s_next : xr.Dataset</span>
+<span class="sd">            Coordinates of the true next state.</span>
+<span class="sd">        coords_candidates : xr.Dataset</span>
+<span class="sd">            Coordinates of candidate states.</span>
+<span class="sd">        similarities : NDArray</span>
+<span class="sd">            Similarity values for candidate states.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        NDArray</span>
+<span class="sd">            Unnormalized log probabilities for each candidate.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="ProbabilityModel.sample">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.probability_models.ProbabilityModel.sample">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">rng</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">,</span>
+        <span class="n">size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
+        <span class="n">similarities</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
+        <span class="n">coords_s_next</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+        <span class="n">coords_candidates</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sample analog states using the Gumbel-max trick.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        rng : np.random.Generator</span>
+<span class="sd">            Random number generator.</span>
+<span class="sd">        size : int or tuple of int</span>
+<span class="sd">            Number of samples to generate.</span>
+<span class="sd">        similarities : NDArray</span>
+<span class="sd">            Similarity values for candidate states.</span>
+<span class="sd">        coords_s_next : xr.Dataset</span>
+<span class="sd">            Coordinates of the true next state.</span>
+<span class="sd">        coords_candidates : xr.Dataset</span>
+<span class="sd">            Coordinates of candidate states.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        NDArray</span>
+<span class="sd">            Indices of sampled analog states.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">unnormalized_logp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unnormalized_log_probability</span><span class="p">(</span>
+            <span class="n">similarities</span><span class="o">=</span><span class="n">similarities</span><span class="p">,</span>
+            <span class="n">coords_s_next</span><span class="o">=</span><span class="n">coords_s_next</span><span class="p">,</span>
+            <span class="n">coords_candidates</span><span class="o">=</span><span class="n">coords_candidates</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">gumbel_max_sample</span><span class="p">(</span>
+            <span class="n">unnormalized_logp</span><span class="o">=</span><span class="n">unnormalized_logp</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span>
+        <span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="NormalProbabilityModel">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityModel">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">NormalProbabilityModel</span><span class="p">(</span><span class="n">ProbabilityModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Probability model assuming probabilities follow a normal distribution.</span>
+
+<span class="sd">    If combined with MSE similarities, this amounts to assuming a normal</span>
+<span class="sd">    distribution centered at s_next with a given standard deviation sigma.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="NormalProbabilityModel.__init__">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityModel.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the Normal Probability Model.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        sigma : float</span>
+<span class="sd">            Standard deviation for the similarity weighting.</span>
+<span class="sd">            Must be a positive value.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        AssertionError</span>
+<span class="sd">            If sigma is not a positive value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">sigma</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Sigma must be a positive value&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span></div>
+
+
+<div class="viewcode-block" id="NormalProbabilityModel.unnormalized_log_probability">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityModel.unnormalized_log_probability">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">unnormalized_log_probability</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">similarities</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
+        <span class="n">coords_s_next</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+        <span class="n">coords_candidates</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute unnormalized log probabilities based on similarities.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        similarities : NDArray</span>
+<span class="sd">            Similarity values for candidate states.</span>
+<span class="sd">        coords_s_next : xr.Dataset</span>
+<span class="sd">            Coordinates of the true next state (unused in this model).</span>
+<span class="sd">        coords_candidates : xr.Dataset</span>
+<span class="sd">            Coordinates of candidate states (unused in this model).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        NDArray</span>
+<span class="sd">            Unnormalized log probabilities for each candidate.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">similarities</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="UniformProbabilityModel">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.probability_models.UniformProbabilityModel">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">UniformProbabilityModel</span><span class="p">(</span><span class="n">ProbabilityModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Probability model that assigns equal probability to all candidates.</span>
+
+<span class="sd">    This model treats all candidate states as equally likely,</span>
+<span class="sd">    regardless of their similarities or coordinates.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="UniformProbabilityModel.__init__">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.probability_models.UniformProbabilityModel.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the Uniform Probability Model.</span>
+
+<span class="sd">        No parameters are required, as all candidates are treated equally.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="UniformProbabilityModel.unnormalized_log_probability">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.probability_models.UniformProbabilityModel.unnormalized_log_probability">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">unnormalized_log_probability</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">similarities</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
+        <span class="n">coords_s_next</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+        <span class="n">coords_candidates</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute unnormalized log probabilities.</span>
+
+<span class="sd">        Returns a constant value of 1 for all candidates,</span>
+<span class="sd">        effectively making them uniformly probable.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        similarities : NDArray</span>
+<span class="sd">            Similarity values for candidate states (ignored in this model).</span>
+<span class="sd">        coords_s_next : xr.Dataset</span>
+<span class="sd">            Coordinates of the true next state (ignored in this model).</span>
+<span class="sd">        coords_candidates : xr.Dataset</span>
+<span class="sd">            Coordinates of candidate states (ignored in this model).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        NDArray</span>
+<span class="sd">            Constant array of ones, representing uniform probabilities.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">similarities</span> <span class="o">*</span> <span class="mi">0</span> <span class="o">+</span> <span class="mi">1</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="NormalProbabilityModelSeasonality">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityModelSeasonality">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">NormalProbabilityModelSeasonality</span><span class="p">(</span><span class="n">ProbabilityModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Probability model that incorporates seasonal variability in standard deviation.</span>
+
+<span class="sd">    This model adjusts the probability computation based on a sigma that varies</span>
+<span class="sd">    with the day of the year, reflecting changes in the atmosphere over the year.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="NormalProbabilityModelSeasonality.__init__">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityModelSeasonality.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">sigma_amplitude</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">normalized_sigma_climatology</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the Seasonally Variable Probability Model.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        sigma_amplitude : float</span>
+<span class="sd">            Amplitude factor for the climatological sigma.</span>
+<span class="sd">        normalized_sigma_climatology : xr.DataArray</span>
+<span class="sd">            Normalized sigma values for each day of the year.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        Sigma is split into amplitude and a normalized climatology to allow rescaling.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="n">normalized_sigma_climatology</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma_climatology</span> <span class="o">=</span> <span class="n">normalized_sigma_climatology</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma_amplitude</span> <span class="o">=</span> <span class="n">sigma_amplitude</span></div>
+
+
+<div class="viewcode-block" id="NormalProbabilityModelSeasonality.unnormalized_log_probability">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityModelSeasonality.unnormalized_log_probability">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">unnormalized_log_probability</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">similarities</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
+        <span class="n">coords_s_next</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+        <span class="n">coords_candidates</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute unnormalized log probabilities with seasonal sigma adjustment.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        similarities : NDArray</span>
+<span class="sd">            Similarity values for candidate states.</span>
+<span class="sd">        coords_s_next : xr.Dataset</span>
+<span class="sd">            Coordinates of the true next state, ignored for this model.</span>
+<span class="sd">        coords_candidates : xr.Dataset</span>
+<span class="sd">            Coordinates of candidate states, ignored for this model.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        NDArray</span>
+<span class="sd">            Unnormalized log probabilities for each candidate.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">similarities</span> <span class="o">/</span> <span class="p">(</span>
+            <span class="mi">2</span>
+            <span class="o">*</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sigma_climatology</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span>
+                    <span class="n">dayofyear</span><span class="o">=</span><span class="n">coords_s_next</span><span class="o">.</span><span class="n">valid_time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">dayofyear</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+                <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma_amplitude</span>
+            <span class="p">)</span>
+            <span class="o">**</span> <span class="mi">2</span>
+        <span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="NormalProbabilityAvoidDirectRepeats">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityAvoidDirectRepeats">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">NormalProbabilityAvoidDirectRepeats</span><span class="p">(</span><span class="n">ProbabilityModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Probability model that avoids sampling the base state.</span>
+
+<span class="sd">    This model computes probabilities using a Gaussian-like weighting,</span>
+<span class="sd">    but sets the probability to zero (unnormalized probability negative infinity)</span>
+<span class="sd">    for candidates that are exact repeats of the base state.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="NormalProbabilityAvoidDirectRepeats.__init__">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityAvoidDirectRepeats.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the Probability Model that Avoids Direct Repeats.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        sigma : float</span>
+<span class="sd">            Standard deviation for the similarity weighting.</span>
+<span class="sd">            Must be a positive value.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        AssertionError</span>
+<span class="sd">            If sigma is not a positive value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">sigma</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span></div>
+
+
+<div class="viewcode-block" id="NormalProbabilityAvoidDirectRepeats.unnormalized_log_probability">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityAvoidDirectRepeats.unnormalized_log_probability">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">unnormalized_log_probability</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">similarities</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
+        <span class="n">coords_s_next</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+        <span class="n">coords_candidates</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute unnormalized log probabilities, excluding direct repeats.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        similarities : NDArray</span>
+<span class="sd">            Similarity values for candidate states.</span>
+<span class="sd">        coords_s_next : xr.Dataset</span>
+<span class="sd">            Coordinates of the true next state (unused in this model).</span>
+<span class="sd">        coords_candidates : xr.Dataset</span>
+<span class="sd">            Coordinates of candidate states.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        NDArray</span>
+<span class="sd">            Unnormalized log probabilities for each candidate,</span>
+<span class="sd">            with direct repeats set to negative infinity.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="p">(</span>
+                <span class="n">coords_s_next</span><span class="o">.</span><span class="n">valid_time</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">)</span>
+                <span class="o">==</span> <span class="n">coords_candidates</span><span class="o">.</span><span class="n">valid_time</span>
+            <span class="p">)</span>
+            <span class="o">&amp;</span> <span class="p">(</span><span class="n">coords_s_next</span><span class="o">.</span><span class="n">init_time</span> <span class="o">==</span> <span class="n">coords_candidates</span><span class="o">.</span><span class="n">init_time</span><span class="p">)</span>
+            <span class="o">&amp;</span> <span class="p">(</span><span class="n">coords_s_next</span><span class="o">.</span><span class="n">ensemble_member</span> <span class="o">==</span> <span class="n">coords_candidates</span><span class="o">.</span><span class="n">ensemble_member</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">similarities</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="n">res</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+        <span class="k">return</span> <span class="n">res</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="NormalProbabilityKeepMinimalNDays">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityKeepMinimalNDays">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">NormalProbabilityKeepMinimalNDays</span><span class="p">(</span><span class="n">ProbabilityModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Probability model that enforces a minimum time separation to the true next state.</span>
+
+<span class="sd">    This model computes probabilities using a Gaussian-like weighting,</span>
+<span class="sd">    but sets the probability to zero (unnormalized probability negative infinity) for</span>
+<span class="sd">    candidates that are within a specified number of days from the true next state.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="NormalProbabilityKeepMinimalNDays.__init__">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityKeepMinimalNDays.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">n_days_min</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the Probability Model with Minimal Time Separation.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        sigma : float</span>
+<span class="sd">            Standard deviation for the similarity weighting.</span>
+<span class="sd">            Must be a positive value.</span>
+<span class="sd">        n_days_min : int</span>
+<span class="sd">            Minimum number of days required between candidate and next state.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        AssertionError</span>
+<span class="sd">            If sigma is not a positive value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">sigma</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_days_min</span> <span class="o">=</span> <span class="n">n_days_min</span></div>
+
+
+<div class="viewcode-block" id="NormalProbabilityKeepMinimalNDays.unnormalized_log_probability">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityKeepMinimalNDays.unnormalized_log_probability">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">unnormalized_log_probability</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">similarities</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>  <span class="c1"># similarities to other samples</span>
+        <span class="n">coords_s_next</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+        <span class="n">coords_candidates</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute unnormalized log probabilities, excluding candidates too close in time.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        similarities : NDArray</span>
+<span class="sd">            Similarity values for candidate states.</span>
+<span class="sd">        coords_s_next : xr.Dataset</span>
+<span class="sd">            Coordinates of the true next state.</span>
+<span class="sd">        coords_candidates : xr.Dataset</span>
+<span class="sd">            Coordinates of candidate states.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        NDArray</span>
+<span class="sd">            Unnormalized log probabilities for each candidate,</span>
+<span class="sd">            with candidates too close in time set to negative infinity.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span>
+            <span class="n">coords_s_next</span><span class="o">.</span><span class="n">valid_time</span> <span class="o">-</span> <span class="n">coords_candidates</span><span class="o">.</span><span class="n">valid_time</span>
+        <span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_days_min</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">similarities</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="n">res</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+        <span class="k">return</span> <span class="n">res</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="NormalProbabilityNotLargerThanFixedDate">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityNotLargerThanFixedDate">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">NormalProbabilityNotLargerThanFixedDate</span><span class="p">(</span><span class="n">ProbabilityModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Probability model that restricts candidates to a maximum date.</span>
+
+<span class="sd">    This model computes probabilities using a Gaussian-like weighting,</span>
+<span class="sd">    but sets the probability to zero (unnormalized probability negative infinity)</span>
+<span class="sd">    for candidates whose date is later than a specified maximum date.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="NormalProbabilityNotLargerThanFixedDate.__init__">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityNotLargerThanFixedDate.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">date_max</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the Probability Model with Maximum Date Restriction.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        sigma : float</span>
+<span class="sd">            Standard deviation for the similarity weighting.</span>
+<span class="sd">            Must be a positive value.</span>
+<span class="sd">        date_max : np.datetime64</span>
+<span class="sd">            Maximum allowed date for candidate states.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        AssertionError</span>
+<span class="sd">            If sigma is not a positive value, or if no candidates exist</span>
+<span class="sd">            before the maximum date.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">sigma</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">date_max</span> <span class="o">=</span> <span class="n">date_max</span></div>
+
+
+<div class="viewcode-block" id="NormalProbabilityNotLargerThanFixedDate.unnormalized_log_probability">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityNotLargerThanFixedDate.unnormalized_log_probability">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">unnormalized_log_probability</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">similarities</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>  <span class="c1"># similarities to other samples</span>
+        <span class="n">coords_s_next</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+        <span class="n">coords_candidates</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute unnormalized log probabilities, excluding candidates after max date.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        similarities : NDArray</span>
+<span class="sd">            Similarity values for candidate states.</span>
+<span class="sd">        coords_s_next : xr.Dataset</span>
+<span class="sd">            Coordinates of the true next state (unused in this model).</span>
+<span class="sd">        coords_candidates : xr.Dataset</span>
+<span class="sd">            Coordinates of candidate states.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        NDArray</span>
+<span class="sd">            Unnormalized log probabilities for each candidate,</span>
+<span class="sd">            with candidates after the maximum date set to negative infinity.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        AssertionError</span>
+<span class="sd">            If no candidates exist before the maximum date.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">coords_candidates</span><span class="o">.</span><span class="n">valid_time</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">date_max</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="o">~</span><span class="n">mask</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(),</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;No candidate found with valid time &lt;= self.date_max = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">date_max</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="o">+</span> <span class="s2">&quot; Consider using a more recent starting point.&quot;</span>
+        <span class="p">)</span>
+
+        <span class="n">res</span> <span class="o">=</span> <span class="n">similarities</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">res</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+        <span class="k">return</span> <span class="n">res</span></div>
+</div>
+
+
+
+<span class="c1"># gumbel sampling trick: https://en.wikipedia.org/wiki/Categorical_distribution#Sampling_via_the_Gumbel_distribution</span>
+<div class="viewcode-block" id="gumbel_max_sample">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.probability_models.gumbel_max_sample">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">gumbel_max_sample</span><span class="p">(</span>
+    <span class="n">unnormalized_logp</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
+    <span class="n">rng</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">,</span>
+    <span class="n">size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sample from a categorical distribution using the Gumbel-max trick.</span>
+
+<span class="sd">    This method provides an efficient way to sample from a categorical distribution</span>
+<span class="sd">    by using the properties of the Gumbel distribution.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    unnormalized_logp : NDArray</span>
+<span class="sd">        Unnormalized log probabilities for each category.</span>
+<span class="sd">    rng : np.random.Generator</span>
+<span class="sd">        Random number generator.</span>
+<span class="sd">    size : int or tuple of int</span>
+<span class="sd">        Number of samples to generate.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    NDArray</span>
+<span class="sd">        Indices of sampled categories.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The Gumbel-max trick allows sampling from a categorical distribution</span>
+<span class="sd">    without explicitly normalizing probabilities.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">size</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="n">size</span><span class="p">,)</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">gumbel</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span> <span class="o">+</span> <span class="n">unnormalized_logp</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">unnormalized_logp</span> <span class="o">+</span> <span class="n">z</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">size</span> <span class="o">+</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,))</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,545 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>unseen_awg.utils &mdash; unseen-awg 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            unseen-awg
+              <img src="../../_static/wg_white.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../what_is_unseen_awg.html">What is unseen-awg?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#adapting-predefined-paths">Adapting predefined paths</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_deal_with_archived_data.html">Downloading and preparing archived data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_deal_with_archived_data.html#extracting-the-data">Extracting the data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_deal_with_archived_data.html#snakemake-workflow-integration">Snakemake workflow integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../how_to_deal_with_archived_data.html#extract-the-input-datasets">1. Extract the input datasets:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_use_simulations.html">Using the provided simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_use_wg_to_create_simulations.html">Simulating time series with the provided <em>unseen-awg</em> weather generator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_use_wg_to_create_simulations.html#each-weather-generator-is-stored-in-a-directory">Each weather generator is stored in a directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_use_wg_to_create_simulations.html#loading-a-weather-generator">Loading a Weather Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_use_wg_to_create_simulations.html#sampling-a-time-series-with-the-weather-generator">Sampling a Time Series With the Weather Generator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_train_wg.html">Constructing an <em>unseen-awg</em> weather generator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_train_wg.html#using-snakemake-to-configure-generation">Using Snakemake to Configure Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_train_wg.html#preprocessing-details-and-motivation">Preprocessing Details and Motivation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../how_to_train_wg.html#reforecast-data">Reforecast Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../how_to_train_wg.html#era5-data">ERA5 Data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_documentation.html">API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/unseen_awg.html">unseen_awg package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.data_classes">unseen_awg.data_classes module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.data_classes.InitTimeLeadTimeMemberState"><code class="docutils literal notranslate"><span class="pre">InitTimeLeadTimeMemberState</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.data_utils">unseen_awg.data_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.data_utils.create_zarr_store_for_dataarray"><code class="docutils literal notranslate"><span class="pre">create_zarr_store_for_dataarray()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.data_utils.create_zarr_store_for_dataset"><code class="docutils literal notranslate"><span class="pre">create_zarr_store_for_dataset()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#unseen-awg-grids-module">unseen_awg.grids module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.plotting_utils">unseen_awg.plotting_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.add_contours"><code class="docutils literal notranslate"><span class="pre">add_contours()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.add_headers"><code class="docutils literal notranslate"><span class="pre">add_headers()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.add_label_to_axes"><code class="docutils literal notranslate"><span class="pre">add_label_to_axes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.contourf_plot_without_frame_with_bounds"><code class="docutils literal notranslate"><span class="pre">contourf_plot_without_frame_with_bounds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.map_plot_without_frame_with_bounds"><code class="docutils literal notranslate"><span class="pre">map_plot_without_frame_with_bounds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.transition_init_time_plot"><code class="docutils literal notranslate"><span class="pre">transition_init_time_plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.transition_lead_time_plot"><code class="docutils literal notranslate"><span class="pre">transition_lead_time_plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.transition_valid_time_plot"><code class="docutils literal notranslate"><span class="pre">transition_valid_time_plot()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.probability_models">unseen_awg.probability_models module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityAvoidDirectRepeats"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityAvoidDirectRepeats</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityKeepMinimalNDays"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityKeepMinimalNDays</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityModel"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityModelSeasonality"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityModelSeasonality</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityNotLargerThanFixedDate"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityNotLargerThanFixedDate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.ProbabilityModel"><code class="docutils literal notranslate"><span class="pre">ProbabilityModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.UniformProbabilityModel"><code class="docutils literal notranslate"><span class="pre">UniformProbabilityModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.gumbel_max_sample"><code class="docutils literal notranslate"><span class="pre">gumbel_max_sample()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.similarity_measures">unseen_awg.similarity_measures module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.similarity_measures.mse_similarity"><code class="docutils literal notranslate"><span class="pre">mse_similarity()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.simulate_trajectory">unseen_awg.simulate_trajectory module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.simulate_trajectory.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.simulate_trajectory.simulate_trajectory"><code class="docutils literal notranslate"><span class="pre">simulate_trajectory()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.time_steppers">unseen_awg.time_steppers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.time_steppers.FractionalYearStepper"><code class="docutils literal notranslate"><span class="pre">FractionalYearStepper</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.time_steppers.NoLeapYearStepper"><code class="docutils literal notranslate"><span class="pre">NoLeapYearStepper</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.time_steppers.StandardStepper"><code class="docutils literal notranslate"><span class="pre">StandardStepper</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.time_steppers.TimeStepper"><code class="docutils literal notranslate"><span class="pre">TimeStepper</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.timestep_utils">unseen_awg.timestep_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.convert_to_cftime_gregorian"><code class="docutils literal notranslate"><span class="pre">convert_to_cftime_gregorian()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.dayofyear_year_to_datetime64"><code class="docutils literal notranslate"><span class="pre">dayofyear_year_to_datetime64()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.dayofyear_year_to_datetime64_naive"><code class="docutils literal notranslate"><span class="pre">dayofyear_year_to_datetime64_naive()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.is_in_window_from_time"><code class="docutils literal notranslate"><span class="pre">is_in_window_from_time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.is_in_window_from_year_fraction"><code class="docutils literal notranslate"><span class="pre">is_in_window_from_year_fraction()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.time_to_year_fraction_cftime"><code class="docutils literal notranslate"><span class="pre">time_to_year_fraction_cftime()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.time_to_year_fraction_np_datetime64"><code class="docutils literal notranslate"><span class="pre">time_to_year_fraction_np_datetime64()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.tune_wg_by_forecasting">unseen_awg.tune_wg_by_forecasting module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.analog_ensemble_forecast"><code class="docutils literal notranslate"><span class="pre">analog_ensemble_forecast()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.crps_climatology"><code class="docutils literal notranslate"><span class="pre">crps_climatology()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.crps_persistence"><code class="docutils literal notranslate"><span class="pre">crps_persistence()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.crps_wg_forecasts"><code class="docutils literal notranslate"><span class="pre">crps_wg_forecasts()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.eval_analogue_forecast_skill"><code class="docutils literal notranslate"><span class="pre">eval_analogue_forecast_skill()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.eval_climatology_persistence_forecast"><code class="docutils literal notranslate"><span class="pre">eval_climatology_persistence_forecast()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.eval_wg"><code class="docutils literal notranslate"><span class="pre">eval_wg()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.get_gt"><code class="docutils literal notranslate"><span class="pre">get_gt()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.get_gt_coords"><code class="docutils literal notranslate"><span class="pre">get_gt_coords()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.get_n_valid_forecast_start_points"><code class="docutils literal notranslate"><span class="pre">get_n_valid_forecast_start_points()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.persistence_forecast"><code class="docutils literal notranslate"><span class="pre">persistence_forecast()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.utils">unseen_awg.utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.utils.apply_similarity_metric"><code class="docutils literal notranslate"><span class="pre">apply_similarity_metric()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.utils.get_k_random_indices"><code class="docutils literal notranslate"><span class="pre">get_k_random_indices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.utils.get_k_smallest_indices"><code class="docutils literal notranslate"><span class="pre">get_k_smallest_indices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.utils.get_map_valid_n_day_transitions"><code class="docutils literal notranslate"><span class="pre">get_map_valid_n_day_transitions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.utils.grids_are_identical_subset"><code class="docutils literal notranslate"><span class="pre">grids_are_identical_subset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.utils.is_no_jump"><code class="docutils literal notranslate"><span class="pre">is_no_jump()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.weather_generator">unseen_awg.weather_generator module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator"><code class="docutils literal notranslate"><span class="pre">WeatherGenerator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.weather_generator.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.weather_generator.setup_lazy_similarity_dataset"><code class="docutils literal notranslate"><span class="pre">setup_lazy_similarity_dataset()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">unseen-awg</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">unseen_awg.utils</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for unseen_awg.utils</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Utility functions for unseen-awg.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">NDArray</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">unseen_awg.timestep_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">dayofyear_year_to_datetime64</span>
+
+
+<div class="viewcode-block" id="get_map_valid_n_day_transitions">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.utils.get_map_valid_n_day_transitions">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_map_valid_n_day_transitions</span><span class="p">(</span><span class="n">da</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Map valid n-day transitions in a dataset.</span>
+
+<span class="sd">    This function is used when sampling trajectories. In particular, it allows</span>
+<span class="sd">    identifying the &quot;next state&quot; for each base state - and it allows identifying</span>
+<span class="sd">    which states are actually valid samples to be included in the sampled time series</span>
+<span class="sd">    (both the state and the next state are in data set).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    da : xr.Dataset</span>
+<span class="sd">        Input dataset containing valid_time and sample dimensions.</span>
+<span class="sd">    n : int</span>
+<span class="sd">        Number of days to look ahead.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    xr.Dataset</span>
+<span class="sd">        Dataset with next sample, year, and dayofyear information.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">next_year</span> <span class="o">=</span> <span class="p">(</span><span class="n">da</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">&quot;next_year&quot;</span><span class="p">)</span>
+    <span class="n">next_dayofyear</span> <span class="o">=</span> <span class="p">(</span><span class="n">da</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">&quot;next_dayofyear&quot;</span><span class="p">)</span>
+    <span class="n">next_sample</span> <span class="o">=</span> <span class="p">(</span><span class="n">da</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">&quot;next_sample&quot;</span><span class="p">)</span>
+
+    <span class="n">valid_time</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">apply_ufunc</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">dayofyear_year_to_datetime64</span><span class="p">),</span>
+        <span class="n">da</span><span class="o">.</span><span class="n">dayofyear</span><span class="p">,</span>
+        <span class="n">da</span><span class="o">.</span><span class="n">year</span><span class="p">,</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">({</span><span class="s2">&quot;sample&quot;</span><span class="p">:</span> <span class="n">da</span><span class="o">.</span><span class="n">sample</span><span class="o">.</span><span class="n">data</span><span class="p">},</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># mask for not missing init times:</span>
+    <span class="n">m_init_time_not_nat</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnat</span><span class="p">(</span><span class="n">da</span><span class="p">)</span>
+
+    <span class="n">sel_init_time</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">m_init_time_not_nat</span><span class="o">.</span><span class="n">data</span><span class="p">]</span>
+    <span class="n">sel_valid_time</span> <span class="o">=</span> <span class="n">valid_time</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">m_init_time_not_nat</span><span class="o">.</span><span class="n">data</span><span class="p">]</span>
+    <span class="n">sel_sample</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">sample</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span>
+        <span class="p">{</span><span class="s2">&quot;dayofyear&quot;</span><span class="p">:</span> <span class="n">da</span><span class="o">.</span><span class="n">dayofyear</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="n">da</span><span class="o">.</span><span class="n">year</span><span class="p">},</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">m_init_time_not_nat</span><span class="o">.</span><span class="n">data</span><span class="p">]</span>
+
+    <span class="n">next_valid_time</span> <span class="o">=</span> <span class="n">sel_valid_time</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">)</span>
+
+    <span class="c1"># mask for next valid time.</span>
+    <span class="n">m_next_valid_time_exists</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">next_valid_time</span><span class="p">)</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">sel_valid_time</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">next_valid_time</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
+        <span class="n">next_valid_time</span><span class="p">[</span><span class="n">m_next_valid_time_exists</span><span class="p">],</span> <span class="n">dims</span><span class="o">=</span><span class="s2">&quot;datapoint&quot;</span>
+    <span class="p">)</span>
+    <span class="n">next_init_time</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
+        <span class="n">sel_init_time</span><span class="p">[</span><span class="n">m_next_valid_time_exists</span><span class="p">],</span> <span class="n">dims</span><span class="o">=</span><span class="s2">&quot;datapoint&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">da_subset</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span>
+        <span class="n">dayofyear</span><span class="o">=</span><span class="n">next_valid_time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">dayofyear</span><span class="p">,</span> <span class="n">year</span><span class="o">=</span><span class="n">next_valid_time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
+    <span class="p">)</span>
+    <span class="n">idcs_datapoint</span><span class="p">,</span> <span class="n">idcs_sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">da_subset</span> <span class="o">==</span> <span class="n">next_init_time</span><span class="p">)</span>
+
+    <span class="n">nx_doy</span> <span class="o">=</span> <span class="n">da_subset</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span>
+        <span class="n">datapoint</span><span class="o">=</span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">idcs_datapoint</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="s2">&quot;dim_0&quot;</span><span class="p">),</span>
+        <span class="n">sample</span><span class="o">=</span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">idcs_sample</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="s2">&quot;dim_0&quot;</span><span class="p">),</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">dayofyear</span>
+    <span class="n">nx_yr</span> <span class="o">=</span> <span class="n">da_subset</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span>
+        <span class="n">datapoint</span><span class="o">=</span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">idcs_datapoint</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="s2">&quot;dim_0&quot;</span><span class="p">),</span>
+        <span class="n">sample</span><span class="o">=</span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">idcs_sample</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="s2">&quot;dim_0&quot;</span><span class="p">),</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">year</span>
+    <span class="n">nx_sample</span> <span class="o">=</span> <span class="n">da_subset</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span>
+        <span class="n">datapoint</span><span class="o">=</span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">idcs_datapoint</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="s2">&quot;dim_0&quot;</span><span class="p">),</span>
+        <span class="n">sample</span><span class="o">=</span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">idcs_sample</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="s2">&quot;dim_0&quot;</span><span class="p">),</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">sample</span>
+
+    <span class="n">current_doy</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
+        <span class="n">sel_valid_time</span><span class="p">[</span><span class="n">m_next_valid_time_exists</span><span class="p">][</span><span class="n">idcs_datapoint</span><span class="p">],</span> <span class="n">dims</span><span class="o">=</span><span class="s2">&quot;dim_0&quot;</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">dayofyear</span>
+    <span class="n">current_yr</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
+        <span class="n">sel_valid_time</span><span class="p">[</span><span class="n">m_next_valid_time_exists</span><span class="p">][</span><span class="n">idcs_datapoint</span><span class="p">],</span> <span class="n">dims</span><span class="o">=</span><span class="s2">&quot;dim_0&quot;</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
+    <span class="n">current_sample</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
+        <span class="n">sel_sample</span><span class="p">[</span><span class="n">m_next_valid_time_exists</span><span class="p">][</span><span class="n">idcs_datapoint</span><span class="p">],</span> <span class="n">dims</span><span class="o">=</span><span class="s2">&quot;dim_0&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">next_year</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="n">current_yr</span><span class="p">,</span> <span class="s2">&quot;dayofyear&quot;</span><span class="p">:</span> <span class="n">current_doy</span><span class="p">,</span> <span class="s2">&quot;sample&quot;</span><span class="p">:</span> <span class="n">current_sample</span><span class="p">}</span>
+    <span class="p">]</span> <span class="o">=</span> <span class="n">nx_yr</span>
+    <span class="n">next_sample</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="n">current_yr</span><span class="p">,</span> <span class="s2">&quot;dayofyear&quot;</span><span class="p">:</span> <span class="n">current_doy</span><span class="p">,</span> <span class="s2">&quot;sample&quot;</span><span class="p">:</span> <span class="n">current_sample</span><span class="p">}</span>
+    <span class="p">]</span> <span class="o">=</span> <span class="n">nx_sample</span>
+    <span class="n">next_dayofyear</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="n">current_yr</span><span class="p">,</span> <span class="s2">&quot;dayofyear&quot;</span><span class="p">:</span> <span class="n">current_doy</span><span class="p">,</span> <span class="s2">&quot;sample&quot;</span><span class="p">:</span> <span class="n">current_sample</span><span class="p">}</span>
+    <span class="p">]</span> <span class="o">=</span> <span class="n">nx_doy</span>
+
+    <span class="k">return</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;next_sample&quot;</span><span class="p">:</span> <span class="n">next_sample</span><span class="p">,</span>
+            <span class="s2">&quot;next_year&quot;</span><span class="p">:</span> <span class="n">next_year</span><span class="p">,</span>
+            <span class="s2">&quot;next_dayofyear&quot;</span><span class="p">:</span> <span class="n">next_dayofyear</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="apply_similarity_metric">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.utils.apply_similarity_metric">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">apply_similarity_metric</span><span class="p">(</span>
+    <span class="n">ds_reference</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+    <span class="n">ds_candidate</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+    <span class="n">similarity_func</span><span class="p">,</span>  <span class="c1"># The actual function object, e.g., metrics.mse_similarity</span>
+    <span class="n">variable_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;geopotential_height&quot;</span><span class="p">,</span>
+    <span class="n">ref_core_dims</span><span class="p">:</span> <span class="nb">list</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">cand_core_dims</span><span class="p">:</span> <span class="nb">list</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">output_core_dims</span><span class="p">:</span> <span class="nb">list</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">reduction_axes_for_numpy</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span>
+    <span class="n">dask_options</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">similarity_func_kwargs</span><span class="p">,</span>  <span class="c1"># Extra kwargs for the similarity_func</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply a similarity metric between reference point and candidates.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ds_reference : xr.Dataset</span>
+<span class="sd">        Reference dataset, expanded to match dimensions of candidates.</span>
+<span class="sd">    ds_candidate : xr.Dataset</span>
+<span class="sd">        Candidate for the candidate states.</span>
+<span class="sd">    similarity_func</span>
+<span class="sd">        The similarity function to apply.</span>
+<span class="sd">    variable_name : str, optional</span>
+<span class="sd">        Name of the variable to compare, by default &quot;geopotential_height&quot;.</span>
+<span class="sd">    ref_core_dims : list of str, optional</span>
+<span class="sd">        Core dimensions (passed to xr.apply_ufunc) of the reference dataset, by default</span>
+<span class="sd">        [&quot;latitude&quot;, &quot;longitude&quot;, &quot;lag&quot;].</span>
+<span class="sd">    cand_core_dims : list of str, optional</span>
+<span class="sd">        Core dimensions (passed to xr.apply_ufunc) of the candidate dataset, by default</span>
+<span class="sd">        [&quot;c_year&quot;, &quot;c_sample&quot;, &quot;c_ensemble_member&quot;, &quot;latitude&quot;, &quot;longitude&quot;, &quot;lag&quot;].</span>
+<span class="sd">    output_core_dims : list of str, optional</span>
+<span class="sd">        Output core dimensions, by default [&quot;c_year&quot;, &quot;c_sample&quot;, &quot;c_ensemble_member&quot;].</span>
+<span class="sd">    reduction_axes_for_numpy : tuple of int, optional</span>
+<span class="sd">        Axes to reduce when applying numpy function, by default (-3, -2, -1).</span>
+<span class="sd">    dask_options : dict, optional</span>
+<span class="sd">        Dask options for apply_ufunc, by default None.</span>
+<span class="sd">    **similarity_func_kwargs</span>
+<span class="sd">        Additional keyword arguments for the similarity function.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    xr.DataArray</span>
+<span class="sd">        Array of computed similarities.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">ref_core_dims</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ref_core_dims</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">,</span> <span class="s2">&quot;longitude&quot;</span><span class="p">,</span> <span class="s2">&quot;lag&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">cand_core_dims</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">cand_core_dims</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;c_year&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;c_sample&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;c_ensemble_member&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;latitude&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;longitude&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;lag&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="k">if</span> <span class="n">output_core_dims</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">output_core_dims</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">[</span><span class="s2">&quot;c_year&quot;</span><span class="p">,</span> <span class="s2">&quot;c_sample&quot;</span><span class="p">,</span> <span class="s2">&quot;c_ensemble_member&quot;</span><span class="p">]</span>
+        <span class="p">]</span>  <span class="c1"># apply_ufunc expects list of lists</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">output_core_dims</span> <span class="o">=</span> <span class="p">[</span><span class="n">output_core_dims</span><span class="p">]</span>  <span class="c1"># Ensure it&#39;s a list of lists</span>
+
+    <span class="k">if</span> <span class="n">dask_options</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">dask_options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;dask&quot;</span><span class="p">:</span> <span class="s2">&quot;parallelized&quot;</span><span class="p">,</span> <span class="s2">&quot;output_dtypes&quot;</span><span class="p">:</span> <span class="p">[</span><span class="nb">float</span><span class="p">]}</span>
+
+    <span class="c1"># Determine dimensions to exclude from broadcasting/alignment checks</span>
+    <span class="c1"># These are the dimensions that are *reduced* by the numpy function</span>
+    <span class="n">similarity_dims</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">ref_core_dims</span><span class="p">)</span>  <span class="c1"># Assuming these are the ones reduced</span>
+
+    <span class="n">da_reference</span> <span class="o">=</span> <span class="n">ds_reference</span><span class="p">[</span><span class="n">variable_name</span><span class="p">]</span>
+    <span class="n">da_candidate</span> <span class="o">=</span> <span class="n">ds_candidate</span><span class="p">[</span><span class="n">variable_name</span><span class="p">]</span>
+
+    <span class="c1"># Prepare kwargs for the similarity function</span>
+    <span class="c1"># The numpy function will receive these through apply_ufunc&#39;s kwargs argument</span>
+    <span class="n">numpy_func_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;reduction_axes&quot;</span><span class="p">:</span> <span class="n">reduction_axes_for_numpy</span><span class="p">}</span>
+    <span class="n">numpy_func_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">similarity_func_kwargs</span><span class="p">)</span>
+
+    <span class="n">da_similarities</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">apply_ufunc</span><span class="p">(</span>
+        <span class="n">similarity_func</span><span class="p">,</span>
+        <span class="n">da_reference</span><span class="p">,</span>
+        <span class="n">da_candidate</span><span class="p">,</span>
+        <span class="n">input_core_dims</span><span class="o">=</span><span class="p">[</span><span class="n">ref_core_dims</span><span class="p">,</span> <span class="n">cand_core_dims</span><span class="p">],</span>
+        <span class="n">output_core_dims</span><span class="o">=</span><span class="n">output_core_dims</span><span class="p">,</span>
+        <span class="n">exclude_dims</span><span class="o">=</span><span class="n">similarity_dims</span><span class="p">,</span>
+        <span class="n">vectorize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Important if non-core dims don&#39;t match perfectly</span>
+        <span class="n">kwargs</span><span class="o">=</span><span class="n">numpy_func_kwargs</span><span class="p">,</span>  <span class="c1"># Pass reduction_axes and other kwargs here</span>
+        <span class="o">**</span><span class="n">dask_options</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">da_similarities</span></div>
+
+
+
+<div class="viewcode-block" id="get_k_smallest_indices">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.utils.get_k_smallest_indices">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_k_smallest_indices</span><span class="p">(</span><span class="n">arr</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span> <span class="n">mask</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get indices of k smallest values in an array after applying masking.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    arr : NDArray</span>
+<span class="sd">        Array of values.</span>
+<span class="sd">    mask : NDArray</span>
+<span class="sd">        Boolean mask indicating valid elements.</span>
+<span class="sd">    k : int</span>
+<span class="sd">        Number of smallest indices to return.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    NDArray</span>
+<span class="sd">        Indices of k smallest values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">masked_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">arr</span><span class="p">),</span> <span class="o">~</span><span class="n">mask</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">arr</span><span class="p">)</span>
+    <span class="n">partitioned_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argpartition</span><span class="p">(</span><span class="n">masked_arr</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">smallest_indices</span> <span class="o">=</span> <span class="n">partitioned_indices</span><span class="p">[:</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">smallest_indices</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">masked_arr</span><span class="p">[</span><span class="n">smallest_indices</span><span class="p">])[</span><span class="mi">1</span><span class="p">:]]</span></div>
+
+
+
+<div class="viewcode-block" id="get_k_random_indices">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.utils.get_k_random_indices">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_k_random_indices</span><span class="p">(</span>
+    <span class="n">arr</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span> <span class="n">mask</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">rng</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get k random indices in an array after applying masking.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    arr : NDArray</span>
+<span class="sd">        Array of values.</span>
+<span class="sd">    mask : NDArray</span>
+<span class="sd">        Boolean mask indicating valid elements.</span>
+<span class="sd">    k : int</span>
+<span class="sd">        Number of random indices to return.</span>
+<span class="sd">    rng : np.random.Generator</span>
+<span class="sd">        Random number generator.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    NDArray</span>
+<span class="sd">        Array of k random indices.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">indices_valid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">))[</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">arr</span><span class="p">),</span> <span class="n">mask</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">indices_valid</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="is_no_jump">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.utils.is_no_jump">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">is_no_jump</span><span class="p">(</span><span class="n">traj</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check which steps in a trajectory are &quot;jumps&quot;.</span>
+
+<span class="sd">    For each pair of consecutive states in the trajectory, test whether the trajectory</span>
+<span class="sd">    has a &quot;jump&quot;, i.e. the samples aren&#39;t actually consecutive in the original dataset.</span>
+<span class="sd">    For a reforecast dataset, not having a jump means having the same init_time and</span>
+<span class="sd">    ensemble_member, while the second state in each pair has a lead_time 1 day larger</span>
+<span class="sd">    than the first state.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    traj : xr.Dataset</span>
+<span class="sd">        Sampled trajectory data.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    NDArray</span>
+<span class="sd">        Boolean DataArray indicating where there are no jumps.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span>
+            <span class="n">traj</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">out_time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span><span class="o">.</span><span class="n">ensemble_member</span><span class="o">.</span><span class="n">data</span>
+            <span class="o">==</span> <span class="n">traj</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">out_time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">ensemble_member</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+            <span class="n">traj</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">out_time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span><span class="o">.</span><span class="n">init_time</span><span class="o">.</span><span class="n">data</span>
+            <span class="o">==</span> <span class="n">traj</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">out_time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">init_time</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="n">traj</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">out_time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span><span class="o">.</span><span class="n">lead_time</span><span class="o">.</span><span class="n">data</span>
+        <span class="o">==</span> <span class="n">traj</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">out_time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">lead_time</span><span class="o">.</span><span class="n">data</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">),</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="grids_are_identical_subset">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.utils.grids_are_identical_subset">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">grids_are_identical_subset</span><span class="p">(</span>
+    <span class="n">source_ds</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span> <span class="o">|</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span>
+    <span class="n">target_ds</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span> <span class="o">|</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span>
+    <span class="n">coord_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">,</span> <span class="s2">&quot;longitude&quot;</span><span class="p">],</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check if target is a simple subset with IDENTICAL spacing&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">coord_names</span><span class="p">:</span>
+        <span class="n">source_vals</span> <span class="o">=</span> <span class="n">source_ds</span><span class="p">[</span><span class="n">coord</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+        <span class="n">target_vals</span> <span class="o">=</span> <span class="n">target_ds</span><span class="p">[</span><span class="n">coord</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+        <span class="c1"># Check all target values exist in source</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">target_vals</span><span class="p">,</span> <span class="n">source_vals</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="c1"># Check spacing is identical</span>
+        <span class="n">source_spacing</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">source_vals</span><span class="p">)</span>
+        <span class="n">target_spacing</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">target_vals</span><span class="p">)</span>
+
+        <span class="c1"># Compare typical spacing (accounting for floating point)</span>
+        <span class="n">source_typical</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">source_spacing</span><span class="p">)</span>
+        <span class="n">target_typical</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">target_spacing</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">source_typical</span><span class="p">,</span> <span class="n">target_typical</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">return</span> <span class="kc">True</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

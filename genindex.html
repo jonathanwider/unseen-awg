@@ -1,0 +1,762 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Index &mdash; unseen-awg 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=01f34227"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="#" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            unseen-awg
+              <img src="_static/wg_white.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="what_is_unseen_awg.html">What is unseen-awg?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#adapting-predefined-paths">Adapting predefined paths</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_deal_with_archived_data.html">Downloading and preparing archived data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="how_to_deal_with_archived_data.html#extracting-the-data">Extracting the data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_to_deal_with_archived_data.html#snakemake-workflow-integration">Snakemake workflow integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="how_to_deal_with_archived_data.html#extract-the-input-datasets">1. Extract the input datasets:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_use_simulations.html">Using the provided simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_use_wg_to_create_simulations.html">Simulating time series with the provided <em>unseen-awg</em> weather generator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="how_to_use_wg_to_create_simulations.html#each-weather-generator-is-stored-in-a-directory">Each weather generator is stored in a directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_to_use_wg_to_create_simulations.html#loading-a-weather-generator">Loading a Weather Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_to_use_wg_to_create_simulations.html#sampling-a-time-series-with-the-weather-generator">Sampling a Time Series With the Weather Generator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_train_wg.html">Constructing an <em>unseen-awg</em> weather generator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="how_to_train_wg.html#using-snakemake-to-configure-generation">Using Snakemake to Configure Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_to_train_wg.html#preprocessing-details-and-motivation">Preprocessing Details and Motivation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="how_to_train_wg.html#reforecast-data">Reforecast Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how_to_train_wg.html#era5-data">ERA5 Data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_documentation.html">API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/unseen_awg.html">unseen_awg package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/unseen_awg.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/unseen_awg.html#module-unseen_awg.data_classes">unseen_awg.data_classes module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.data_classes.InitTimeLeadTimeMemberState"><code class="docutils literal notranslate"><span class="pre">InitTimeLeadTimeMemberState</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/unseen_awg.html#module-unseen_awg.data_utils">unseen_awg.data_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.data_utils.create_zarr_store_for_dataarray"><code class="docutils literal notranslate"><span class="pre">create_zarr_store_for_dataarray()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.data_utils.create_zarr_store_for_dataset"><code class="docutils literal notranslate"><span class="pre">create_zarr_store_for_dataset()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/unseen_awg.html#unseen-awg-grids-module">unseen_awg.grids module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/unseen_awg.html#module-unseen_awg.plotting_utils">unseen_awg.plotting_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.plotting_utils.add_contours"><code class="docutils literal notranslate"><span class="pre">add_contours()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.plotting_utils.add_headers"><code class="docutils literal notranslate"><span class="pre">add_headers()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.plotting_utils.add_label_to_axes"><code class="docutils literal notranslate"><span class="pre">add_label_to_axes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.plotting_utils.contourf_plot_without_frame_with_bounds"><code class="docutils literal notranslate"><span class="pre">contourf_plot_without_frame_with_bounds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.plotting_utils.map_plot_without_frame_with_bounds"><code class="docutils literal notranslate"><span class="pre">map_plot_without_frame_with_bounds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.plotting_utils.transition_init_time_plot"><code class="docutils literal notranslate"><span class="pre">transition_init_time_plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.plotting_utils.transition_lead_time_plot"><code class="docutils literal notranslate"><span class="pre">transition_lead_time_plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.plotting_utils.transition_valid_time_plot"><code class="docutils literal notranslate"><span class="pre">transition_valid_time_plot()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/unseen_awg.html#module-unseen_awg.probability_models">unseen_awg.probability_models module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityAvoidDirectRepeats"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityAvoidDirectRepeats</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityKeepMinimalNDays"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityKeepMinimalNDays</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityModel"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityModelSeasonality"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityModelSeasonality</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityNotLargerThanFixedDate"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityNotLargerThanFixedDate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.probability_models.ProbabilityModel"><code class="docutils literal notranslate"><span class="pre">ProbabilityModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.probability_models.UniformProbabilityModel"><code class="docutils literal notranslate"><span class="pre">UniformProbabilityModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.probability_models.gumbel_max_sample"><code class="docutils literal notranslate"><span class="pre">gumbel_max_sample()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/unseen_awg.html#module-unseen_awg.similarity_measures">unseen_awg.similarity_measures module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.similarity_measures.mse_similarity"><code class="docutils literal notranslate"><span class="pre">mse_similarity()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/unseen_awg.html#module-unseen_awg.simulate_trajectory">unseen_awg.simulate_trajectory module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.simulate_trajectory.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.simulate_trajectory.simulate_trajectory"><code class="docutils literal notranslate"><span class="pre">simulate_trajectory()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/unseen_awg.html#module-unseen_awg.time_steppers">unseen_awg.time_steppers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.time_steppers.FractionalYearStepper"><code class="docutils literal notranslate"><span class="pre">FractionalYearStepper</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.time_steppers.NoLeapYearStepper"><code class="docutils literal notranslate"><span class="pre">NoLeapYearStepper</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.time_steppers.StandardStepper"><code class="docutils literal notranslate"><span class="pre">StandardStepper</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.time_steppers.TimeStepper"><code class="docutils literal notranslate"><span class="pre">TimeStepper</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/unseen_awg.html#module-unseen_awg.timestep_utils">unseen_awg.timestep_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.timestep_utils.convert_to_cftime_gregorian"><code class="docutils literal notranslate"><span class="pre">convert_to_cftime_gregorian()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.timestep_utils.dayofyear_year_to_datetime64"><code class="docutils literal notranslate"><span class="pre">dayofyear_year_to_datetime64()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.timestep_utils.dayofyear_year_to_datetime64_naive"><code class="docutils literal notranslate"><span class="pre">dayofyear_year_to_datetime64_naive()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.timestep_utils.is_in_window_from_time"><code class="docutils literal notranslate"><span class="pre">is_in_window_from_time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.timestep_utils.is_in_window_from_year_fraction"><code class="docutils literal notranslate"><span class="pre">is_in_window_from_year_fraction()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.timestep_utils.time_to_year_fraction_cftime"><code class="docutils literal notranslate"><span class="pre">time_to_year_fraction_cftime()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.timestep_utils.time_to_year_fraction_np_datetime64"><code class="docutils literal notranslate"><span class="pre">time_to_year_fraction_np_datetime64()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/unseen_awg.html#module-unseen_awg.tune_wg_by_forecasting">unseen_awg.tune_wg_by_forecasting module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.analog_ensemble_forecast"><code class="docutils literal notranslate"><span class="pre">analog_ensemble_forecast()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.crps_climatology"><code class="docutils literal notranslate"><span class="pre">crps_climatology()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.crps_persistence"><code class="docutils literal notranslate"><span class="pre">crps_persistence()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.crps_wg_forecasts"><code class="docutils literal notranslate"><span class="pre">crps_wg_forecasts()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.eval_analogue_forecast_skill"><code class="docutils literal notranslate"><span class="pre">eval_analogue_forecast_skill()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.eval_climatology_persistence_forecast"><code class="docutils literal notranslate"><span class="pre">eval_climatology_persistence_forecast()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.eval_wg"><code class="docutils literal notranslate"><span class="pre">eval_wg()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.get_gt"><code class="docutils literal notranslate"><span class="pre">get_gt()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.get_gt_coords"><code class="docutils literal notranslate"><span class="pre">get_gt_coords()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.get_n_valid_forecast_start_points"><code class="docutils literal notranslate"><span class="pre">get_n_valid_forecast_start_points()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.persistence_forecast"><code class="docutils literal notranslate"><span class="pre">persistence_forecast()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/unseen_awg.html#module-unseen_awg.utils">unseen_awg.utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.utils.apply_similarity_metric"><code class="docutils literal notranslate"><span class="pre">apply_similarity_metric()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.utils.get_k_random_indices"><code class="docutils literal notranslate"><span class="pre">get_k_random_indices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.utils.get_k_smallest_indices"><code class="docutils literal notranslate"><span class="pre">get_k_smallest_indices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.utils.get_map_valid_n_day_transitions"><code class="docutils literal notranslate"><span class="pre">get_map_valid_n_day_transitions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.utils.grids_are_identical_subset"><code class="docutils literal notranslate"><span class="pre">grids_are_identical_subset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.utils.is_no_jump"><code class="docutils literal notranslate"><span class="pre">is_no_jump()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/unseen_awg.html#module-unseen_awg.weather_generator">unseen_awg.weather_generator module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator"><code class="docutils literal notranslate"><span class="pre">WeatherGenerator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.weather_generator.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/unseen_awg.html#unseen_awg.weather_generator.setup_lazy_similarity_dataset"><code class="docutils literal notranslate"><span class="pre">setup_lazy_similarity_dataset()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">unseen-awg</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Index</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#_"><strong>_</strong></a>
+ | <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
+ | <a href="#V"><strong>V</strong></a>
+ | <a href="#W"><strong>W</strong></a>
+ 
+</div>
+<h2 id="_">_</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.FractionalYearStepper.__init__">__init__() (FractionalYearStepper method)</a>
+
+      <ul>
+        <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.NoLeapYearStepper.__init__">(NoLeapYearStepper method)</a>
+</li>
+        <li><a href="api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityAvoidDirectRepeats.__init__">(NormalProbabilityAvoidDirectRepeats method)</a>
+</li>
+        <li><a href="api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityKeepMinimalNDays.__init__">(NormalProbabilityKeepMinimalNDays method)</a>
+</li>
+        <li><a href="api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityModel.__init__">(NormalProbabilityModel method)</a>
+</li>
+        <li><a href="api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityModelSeasonality.__init__">(NormalProbabilityModelSeasonality method)</a>
+</li>
+        <li><a href="api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityNotLargerThanFixedDate.__init__">(NormalProbabilityNotLargerThanFixedDate method)</a>
+</li>
+        <li><a href="api/unseen_awg.html#unseen_awg.probability_models.ProbabilityModel.__init__">(ProbabilityModel method)</a>
+</li>
+        <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.StandardStepper.__init__">(StandardStepper method)</a>
+</li>
+        <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.TimeStepper.__init__">(TimeStepper method)</a>
+</li>
+        <li><a href="api/unseen_awg.html#unseen_awg.probability_models.UniformProbabilityModel.__init__">(UniformProbabilityModel method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.TimeStepper.__iter__">__iter__() (TimeStepper method)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.FractionalYearStepper.__next__">__next__() (FractionalYearStepper method)</a>
+
+      <ul>
+        <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.NoLeapYearStepper.__next__">(NoLeapYearStepper method)</a>
+</li>
+        <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.StandardStepper.__next__">(StandardStepper method)</a>
+</li>
+        <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.TimeStepper.__next__">(TimeStepper method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.plotting_utils.add_contours">add_contours() (in module unseen_awg.plotting_utils)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.plotting_utils.add_headers">add_headers() (in module unseen_awg.plotting_utils)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.plotting_utils.add_label_to_axes">add_label_to_axes() (in module unseen_awg.plotting_utils)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.analog_ensemble_forecast">analog_ensemble_forecast() (in module unseen_awg.tune_wg_by_forecasting)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.utils.apply_similarity_metric">apply_similarity_metric() (in module unseen_awg.utils)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.FractionalYearStepper.blocksize">blocksize (FractionalYearStepper attribute)</a>
+
+      <ul>
+        <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.NoLeapYearStepper.blocksize">(NoLeapYearStepper attribute)</a>
+</li>
+        <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.StandardStepper.blocksize">(StandardStepper attribute)</a>
+</li>
+        <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.TimeStepper.blocksize">(TimeStepper attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.plotting_utils.contourf_plot_without_frame_with_bounds">contourf_plot_without_frame_with_bounds() (in module unseen_awg.plotting_utils)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.timestep_utils.convert_to_cftime_gregorian">convert_to_cftime_gregorian() (in module unseen_awg.timestep_utils)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.data_utils.create_zarr_store_for_dataarray">create_zarr_store_for_dataarray() (in module unseen_awg.data_utils)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.data_utils.create_zarr_store_for_dataset">create_zarr_store_for_dataset() (in module unseen_awg.data_utils)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.crps_climatology">crps_climatology() (in module unseen_awg.tune_wg_by_forecasting)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.crps_persistence">crps_persistence() (in module unseen_awg.tune_wg_by_forecasting)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.crps_wg_forecasts">crps_wg_forecasts() (in module unseen_awg.tune_wg_by_forecasting)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.NoLeapYearStepper.current_time">current_time (NoLeapYearStepper attribute)</a>
+
+      <ul>
+        <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.StandardStepper.current_time">(StandardStepper attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.FractionalYearStepper.current_year_fraction">current_year_fraction (FractionalYearStepper attribute)</a>
+
+      <ul>
+        <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.NoLeapYearStepper.current_year_fraction">(NoLeapYearStepper attribute)</a>
+</li>
+        <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.StandardStepper.current_year_fraction">(StandardStepper attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.FractionalYearStepper.daily_increment">daily_increment (FractionalYearStepper attribute)</a>
+
+      <ul>
+        <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.NoLeapYearStepper.daily_increment">(NoLeapYearStepper attribute)</a>
+</li>
+        <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.StandardStepper.daily_increment">(StandardStepper attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.timestep_utils.dayofyear_year_to_datetime64">dayofyear_year_to_datetime64() (in module unseen_awg.timestep_utils)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.timestep_utils.dayofyear_year_to_datetime64_naive">dayofyear_year_to_datetime64_naive() (in module unseen_awg.timestep_utils)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator.ds_similarities">ds_similarities (WeatherGenerator attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.data_classes.InitTimeLeadTimeMemberState.ensemble_member">ensemble_member (InitTimeLeadTimeMemberState attribute)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.eval_analogue_forecast_skill">eval_analogue_forecast_skill() (in module unseen_awg.tune_wg_by_forecasting)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.eval_climatology_persistence_forecast">eval_climatology_persistence_forecast() (in module unseen_awg.tune_wg_by_forecasting)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.eval_wg">eval_wg() (in module unseen_awg.tune_wg_by_forecasting)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.FractionalYearStepper">FractionalYearStepper (class in unseen_awg.time_steppers)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator.get_analog_data">get_analog_data() (WeatherGenerator method)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.get_gt">get_gt() (in module unseen_awg.tune_wg_by_forecasting)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.get_gt_coords">get_gt_coords() (in module unseen_awg.tune_wg_by_forecasting)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator.get_initial_state">get_initial_state() (WeatherGenerator method)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.utils.get_k_random_indices">get_k_random_indices() (in module unseen_awg.utils)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.utils.get_k_smallest_indices">get_k_smallest_indices() (in module unseen_awg.utils)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.utils.get_map_valid_n_day_transitions">get_map_valid_n_day_transitions() (in module unseen_awg.utils)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.get_n_valid_forecast_start_points">get_n_valid_forecast_start_points() (in module unseen_awg.tune_wg_by_forecasting)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator.get_similarities_k_closest_neighbors">get_similarities_k_closest_neighbors() (WeatherGenerator method)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator.get_similarities_k_random_neighbors">get_similarities_k_random_neighbors() (WeatherGenerator method)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.utils.grids_are_identical_subset">grids_are_identical_subset() (in module unseen_awg.utils)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.probability_models.gumbel_max_sample">gumbel_max_sample() (in module unseen_awg.probability_models)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.data_classes.InitTimeLeadTimeMemberState.init_time">init_time (InitTimeLeadTimeMemberState attribute)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.FractionalYearStepper.initial_time">initial_time (FractionalYearStepper attribute)</a>
+
+      <ul>
+        <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.NoLeapYearStepper.initial_time">(NoLeapYearStepper attribute)</a>
+</li>
+        <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.StandardStepper.initial_time">(StandardStepper attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.NoLeapYearStepper.initial_year_fraction">initial_year_fraction (NoLeapYearStepper attribute)</a>
+
+      <ul>
+        <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.StandardStepper.initial_year_fraction">(StandardStepper attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.data_classes.InitTimeLeadTimeMemberState">InitTimeLeadTimeMemberState (class in unseen_awg.data_classes)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.timestep_utils.is_in_window_from_time">is_in_window_from_time() (in module unseen_awg.timestep_utils)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.timestep_utils.is_in_window_from_year_fraction">is_in_window_from_year_fraction() (in module unseen_awg.timestep_utils)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.utils.is_no_jump">is_no_jump() (in module unseen_awg.utils)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.data_classes.InitTimeLeadTimeMemberState.lead_time">lead_time (InitTimeLeadTimeMemberState attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator.load">load() (WeatherGenerator class method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.simulate_trajectory.main">main() (in module unseen_awg.simulate_trajectory)</a>
+
+      <ul>
+        <li><a href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.main">(in module unseen_awg.tune_wg_by_forecasting)</a>
+</li>
+        <li><a href="api/unseen_awg.html#unseen_awg.weather_generator.main">(in module unseen_awg.weather_generator)</a>
+</li>
+      </ul></li>
+      <li><a href="api/unseen_awg.html#unseen_awg.plotting_utils.map_plot_without_frame_with_bounds">map_plot_without_frame_with_bounds() (in module unseen_awg.plotting_utils)</a>
+</li>
+      <li>
+    module
+
+      <ul>
+        <li><a href="api/unseen_awg.html#module-unseen_awg.data_classes">unseen_awg.data_classes</a>
+</li>
+        <li><a href="api/unseen_awg.html#module-unseen_awg.data_utils">unseen_awg.data_utils</a>
+</li>
+        <li><a href="api/unseen_awg.html#module-unseen_awg.plotting_utils">unseen_awg.plotting_utils</a>
+</li>
+        <li><a href="api/unseen_awg.html#module-unseen_awg.probability_models">unseen_awg.probability_models</a>
+</li>
+        <li><a href="api/unseen_awg.html#module-unseen_awg.similarity_measures">unseen_awg.similarity_measures</a>
+</li>
+        <li><a href="api/unseen_awg.html#module-unseen_awg.simulate_trajectory">unseen_awg.simulate_trajectory</a>
+</li>
+        <li><a href="api/unseen_awg.html#module-unseen_awg.time_steppers">unseen_awg.time_steppers</a>
+</li>
+        <li><a href="api/unseen_awg.html#module-unseen_awg.timestep_utils">unseen_awg.timestep_utils</a>
+</li>
+        <li><a href="api/unseen_awg.html#module-unseen_awg.tune_wg_by_forecasting">unseen_awg.tune_wg_by_forecasting</a>
+</li>
+        <li><a href="api/unseen_awg.html#module-unseen_awg.utils">unseen_awg.utils</a>
+</li>
+        <li><a href="api/unseen_awg.html#module-unseen_awg.weather_generator">unseen_awg.weather_generator</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.similarity_measures.mse_similarity">mse_similarity() (in module unseen_awg.similarity_measures)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.NoLeapYearStepper">NoLeapYearStepper (class in unseen_awg.time_steppers)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityAvoidDirectRepeats">NormalProbabilityAvoidDirectRepeats (class in unseen_awg.probability_models)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityKeepMinimalNDays">NormalProbabilityKeepMinimalNDays (class in unseen_awg.probability_models)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityModel">NormalProbabilityModel (class in unseen_awg.probability_models)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityModelSeasonality">NormalProbabilityModelSeasonality (class in unseen_awg.probability_models)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityNotLargerThanFixedDate">NormalProbabilityNotLargerThanFixedDate (class in unseen_awg.probability_models)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator.path_dataset">path_dataset (WeatherGenerator attribute)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator.path_wg">path_wg (WeatherGenerator attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.persistence_forecast">persistence_forecast() (in module unseen_awg.tune_wg_by_forecasting)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator.plot_k_nearest_and_random_neighbors">plot_k_nearest_and_random_neighbors() (WeatherGenerator method)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.probability_models.ProbabilityModel">ProbabilityModel (class in unseen_awg.probability_models)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.NoLeapYearStepper.ref_time">ref_time (NoLeapYearStepper attribute)</a>
+
+      <ul>
+        <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.StandardStepper.ref_time">(StandardStepper attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.FractionalYearStepper.reference_time">reference_time (FractionalYearStepper attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.probability_models.ProbabilityModel.sample">sample() (ProbabilityModel method)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator.sample_trajectory">sample_trajectory() (WeatherGenerator method)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator.sampling_step">sampling_step() (WeatherGenerator method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.weather_generator.setup_lazy_similarity_dataset">setup_lazy_similarity_dataset() (in module unseen_awg.weather_generator)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator.similarity_function">similarity_function (WeatherGenerator attribute)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.simulate_trajectory.simulate_trajectory">simulate_trajectory() (in module unseen_awg.simulate_trajectory)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.StandardStepper">StandardStepper (class in unseen_awg.time_steppers)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator.time_evolution_step">time_evolution_step() (WeatherGenerator method)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.timestep_utils.time_to_year_fraction_cftime">time_to_year_fraction_cftime() (in module unseen_awg.timestep_utils)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.timestep_utils.time_to_year_fraction_np_datetime64">time_to_year_fraction_np_datetime64() (in module unseen_awg.timestep_utils)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.TimeStepper">TimeStepper (class in unseen_awg.time_steppers)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.plotting_utils.transition_init_time_plot">transition_init_time_plot() (in module unseen_awg.plotting_utils)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.plotting_utils.transition_lead_time_plot">transition_lead_time_plot() (in module unseen_awg.plotting_utils)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.plotting_utils.transition_valid_time_plot">transition_valid_time_plot() (in module unseen_awg.plotting_utils)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.FractionalYearStepper.tropical_year">tropical_year (FractionalYearStepper attribute)</a>
+
+      <ul>
+        <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.NoLeapYearStepper.tropical_year">(NoLeapYearStepper attribute)</a>
+</li>
+        <li><a href="api/unseen_awg.html#unseen_awg.time_steppers.StandardStepper.tropical_year">(StandardStepper attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.probability_models.UniformProbabilityModel">UniformProbabilityModel (class in unseen_awg.probability_models)</a>
+</li>
+      <li><a href="api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityAvoidDirectRepeats.unnormalized_log_probability">unnormalized_log_probability() (NormalProbabilityAvoidDirectRepeats method)</a>
+
+      <ul>
+        <li><a href="api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityKeepMinimalNDays.unnormalized_log_probability">(NormalProbabilityKeepMinimalNDays method)</a>
+</li>
+        <li><a href="api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityModel.unnormalized_log_probability">(NormalProbabilityModel method)</a>
+</li>
+        <li><a href="api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityModelSeasonality.unnormalized_log_probability">(NormalProbabilityModelSeasonality method)</a>
+</li>
+        <li><a href="api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityNotLargerThanFixedDate.unnormalized_log_probability">(NormalProbabilityNotLargerThanFixedDate method)</a>
+</li>
+        <li><a href="api/unseen_awg.html#unseen_awg.probability_models.ProbabilityModel.unnormalized_log_probability">(ProbabilityModel method)</a>
+</li>
+        <li><a href="api/unseen_awg.html#unseen_awg.probability_models.UniformProbabilityModel.unnormalized_log_probability">(UniformProbabilityModel method)</a>
+</li>
+      </ul></li>
+      <li>
+    unseen_awg.data_classes
+
+      <ul>
+        <li><a href="api/unseen_awg.html#module-unseen_awg.data_classes">module</a>
+</li>
+      </ul></li>
+      <li>
+    unseen_awg.data_utils
+
+      <ul>
+        <li><a href="api/unseen_awg.html#module-unseen_awg.data_utils">module</a>
+</li>
+      </ul></li>
+      <li>
+    unseen_awg.plotting_utils
+
+      <ul>
+        <li><a href="api/unseen_awg.html#module-unseen_awg.plotting_utils">module</a>
+</li>
+      </ul></li>
+      <li>
+    unseen_awg.probability_models
+
+      <ul>
+        <li><a href="api/unseen_awg.html#module-unseen_awg.probability_models">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    unseen_awg.similarity_measures
+
+      <ul>
+        <li><a href="api/unseen_awg.html#module-unseen_awg.similarity_measures">module</a>
+</li>
+      </ul></li>
+      <li>
+    unseen_awg.simulate_trajectory
+
+      <ul>
+        <li><a href="api/unseen_awg.html#module-unseen_awg.simulate_trajectory">module</a>
+</li>
+      </ul></li>
+      <li>
+    unseen_awg.time_steppers
+
+      <ul>
+        <li><a href="api/unseen_awg.html#module-unseen_awg.time_steppers">module</a>
+</li>
+      </ul></li>
+      <li>
+    unseen_awg.timestep_utils
+
+      <ul>
+        <li><a href="api/unseen_awg.html#module-unseen_awg.timestep_utils">module</a>
+</li>
+      </ul></li>
+      <li>
+    unseen_awg.tune_wg_by_forecasting
+
+      <ul>
+        <li><a href="api/unseen_awg.html#module-unseen_awg.tune_wg_by_forecasting">module</a>
+</li>
+      </ul></li>
+      <li>
+    unseen_awg.utils
+
+      <ul>
+        <li><a href="api/unseen_awg.html#module-unseen_awg.utils">module</a>
+</li>
+      </ul></li>
+      <li>
+    unseen_awg.weather_generator
+
+      <ul>
+        <li><a href="api/unseen_awg.html#module-unseen_awg.weather_generator">module</a>
+</li>
+      </ul></li>
+      <li><a href="api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator.use_precomputed_similarities">use_precomputed_similarities (WeatherGenerator attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator.var">var (WeatherGenerator attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator">WeatherGenerator (class in unseen_awg.weather_generator)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator.window_size">window_size (WeatherGenerator attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

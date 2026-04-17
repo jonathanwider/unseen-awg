@@ -1,0 +1,1076 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>unseen_awg.tune_wg_by_forecasting &mdash; unseen-awg 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            unseen-awg
+              <img src="../../_static/wg_white.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../what_is_unseen_awg.html">What is unseen-awg?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#adapting-predefined-paths">Adapting predefined paths</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_deal_with_archived_data.html">Downloading and preparing archived data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_deal_with_archived_data.html#extracting-the-data">Extracting the data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_deal_with_archived_data.html#snakemake-workflow-integration">Snakemake workflow integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../how_to_deal_with_archived_data.html#extract-the-input-datasets">1. Extract the input datasets:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_use_simulations.html">Using the provided simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_use_wg_to_create_simulations.html">Simulating time series with the provided <em>unseen-awg</em> weather generator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_use_wg_to_create_simulations.html#each-weather-generator-is-stored-in-a-directory">Each weather generator is stored in a directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_use_wg_to_create_simulations.html#loading-a-weather-generator">Loading a Weather Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_use_wg_to_create_simulations.html#sampling-a-time-series-with-the-weather-generator">Sampling a Time Series With the Weather Generator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_train_wg.html">Constructing an <em>unseen-awg</em> weather generator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_train_wg.html#using-snakemake-to-configure-generation">Using Snakemake to Configure Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_train_wg.html#preprocessing-details-and-motivation">Preprocessing Details and Motivation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../how_to_train_wg.html#reforecast-data">Reforecast Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../how_to_train_wg.html#era5-data">ERA5 Data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_documentation.html">API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/unseen_awg.html">unseen_awg package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.data_classes">unseen_awg.data_classes module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.data_classes.InitTimeLeadTimeMemberState"><code class="docutils literal notranslate"><span class="pre">InitTimeLeadTimeMemberState</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.data_utils">unseen_awg.data_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.data_utils.create_zarr_store_for_dataarray"><code class="docutils literal notranslate"><span class="pre">create_zarr_store_for_dataarray()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.data_utils.create_zarr_store_for_dataset"><code class="docutils literal notranslate"><span class="pre">create_zarr_store_for_dataset()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#unseen-awg-grids-module">unseen_awg.grids module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.plotting_utils">unseen_awg.plotting_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.add_contours"><code class="docutils literal notranslate"><span class="pre">add_contours()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.add_headers"><code class="docutils literal notranslate"><span class="pre">add_headers()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.add_label_to_axes"><code class="docutils literal notranslate"><span class="pre">add_label_to_axes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.contourf_plot_without_frame_with_bounds"><code class="docutils literal notranslate"><span class="pre">contourf_plot_without_frame_with_bounds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.map_plot_without_frame_with_bounds"><code class="docutils literal notranslate"><span class="pre">map_plot_without_frame_with_bounds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.transition_init_time_plot"><code class="docutils literal notranslate"><span class="pre">transition_init_time_plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.transition_lead_time_plot"><code class="docutils literal notranslate"><span class="pre">transition_lead_time_plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.transition_valid_time_plot"><code class="docutils literal notranslate"><span class="pre">transition_valid_time_plot()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.probability_models">unseen_awg.probability_models module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityAvoidDirectRepeats"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityAvoidDirectRepeats</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityKeepMinimalNDays"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityKeepMinimalNDays</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityModel"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityModelSeasonality"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityModelSeasonality</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityNotLargerThanFixedDate"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityNotLargerThanFixedDate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.ProbabilityModel"><code class="docutils literal notranslate"><span class="pre">ProbabilityModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.UniformProbabilityModel"><code class="docutils literal notranslate"><span class="pre">UniformProbabilityModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.gumbel_max_sample"><code class="docutils literal notranslate"><span class="pre">gumbel_max_sample()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.similarity_measures">unseen_awg.similarity_measures module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.similarity_measures.mse_similarity"><code class="docutils literal notranslate"><span class="pre">mse_similarity()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.simulate_trajectory">unseen_awg.simulate_trajectory module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.simulate_trajectory.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.simulate_trajectory.simulate_trajectory"><code class="docutils literal notranslate"><span class="pre">simulate_trajectory()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.time_steppers">unseen_awg.time_steppers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.time_steppers.FractionalYearStepper"><code class="docutils literal notranslate"><span class="pre">FractionalYearStepper</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.time_steppers.NoLeapYearStepper"><code class="docutils literal notranslate"><span class="pre">NoLeapYearStepper</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.time_steppers.StandardStepper"><code class="docutils literal notranslate"><span class="pre">StandardStepper</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.time_steppers.TimeStepper"><code class="docutils literal notranslate"><span class="pre">TimeStepper</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.timestep_utils">unseen_awg.timestep_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.convert_to_cftime_gregorian"><code class="docutils literal notranslate"><span class="pre">convert_to_cftime_gregorian()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.dayofyear_year_to_datetime64"><code class="docutils literal notranslate"><span class="pre">dayofyear_year_to_datetime64()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.dayofyear_year_to_datetime64_naive"><code class="docutils literal notranslate"><span class="pre">dayofyear_year_to_datetime64_naive()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.is_in_window_from_time"><code class="docutils literal notranslate"><span class="pre">is_in_window_from_time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.is_in_window_from_year_fraction"><code class="docutils literal notranslate"><span class="pre">is_in_window_from_year_fraction()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.time_to_year_fraction_cftime"><code class="docutils literal notranslate"><span class="pre">time_to_year_fraction_cftime()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.time_to_year_fraction_np_datetime64"><code class="docutils literal notranslate"><span class="pre">time_to_year_fraction_np_datetime64()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.tune_wg_by_forecasting">unseen_awg.tune_wg_by_forecasting module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.analog_ensemble_forecast"><code class="docutils literal notranslate"><span class="pre">analog_ensemble_forecast()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.crps_climatology"><code class="docutils literal notranslate"><span class="pre">crps_climatology()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.crps_persistence"><code class="docutils literal notranslate"><span class="pre">crps_persistence()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.crps_wg_forecasts"><code class="docutils literal notranslate"><span class="pre">crps_wg_forecasts()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.eval_analogue_forecast_skill"><code class="docutils literal notranslate"><span class="pre">eval_analogue_forecast_skill()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.eval_climatology_persistence_forecast"><code class="docutils literal notranslate"><span class="pre">eval_climatology_persistence_forecast()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.eval_wg"><code class="docutils literal notranslate"><span class="pre">eval_wg()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.get_gt"><code class="docutils literal notranslate"><span class="pre">get_gt()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.get_gt_coords"><code class="docutils literal notranslate"><span class="pre">get_gt_coords()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.get_n_valid_forecast_start_points"><code class="docutils literal notranslate"><span class="pre">get_n_valid_forecast_start_points()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.persistence_forecast"><code class="docutils literal notranslate"><span class="pre">persistence_forecast()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.utils">unseen_awg.utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.utils.apply_similarity_metric"><code class="docutils literal notranslate"><span class="pre">apply_similarity_metric()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.utils.get_k_random_indices"><code class="docutils literal notranslate"><span class="pre">get_k_random_indices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.utils.get_k_smallest_indices"><code class="docutils literal notranslate"><span class="pre">get_k_smallest_indices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.utils.get_map_valid_n_day_transitions"><code class="docutils literal notranslate"><span class="pre">get_map_valid_n_day_transitions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.utils.grids_are_identical_subset"><code class="docutils literal notranslate"><span class="pre">grids_are_identical_subset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.utils.is_no_jump"><code class="docutils literal notranslate"><span class="pre">is_no_jump()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.weather_generator">unseen_awg.weather_generator module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator"><code class="docutils literal notranslate"><span class="pre">WeatherGenerator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.weather_generator.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.weather_generator.setup_lazy_similarity_dataset"><code class="docutils literal notranslate"><span class="pre">setup_lazy_similarity_dataset()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">unseen-awg</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">unseen_awg.tune_wg_by_forecasting</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for unseen_awg.tune_wg_by_forecasting</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Module for tuning weather generator parameters by optimizing forecast accuracy.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">Tuple</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">optuna</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">yaml</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">icecream</span><span class="w"> </span><span class="kn">import</span> <span class="n">ic</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">NDArray</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">xskillscore</span><span class="w"> </span><span class="kn">import</span> <span class="n">crps_ensemble</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">unseen_awg.data_classes</span><span class="w"> </span><span class="kn">import</span> <span class="n">InitTimeLeadTimeMemberState</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">unseen_awg.probability_models</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">NormalProbabilityNotLargerThanFixedDate</span><span class="p">,</span>
+    <span class="n">ProbabilityModel</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">unseen_awg.snakemake_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">snakemake_handler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">unseen_awg.time_steppers</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardStepper</span><span class="p">,</span> <span class="n">TimeStepper</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">unseen_awg.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_map_valid_n_day_transitions</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">unseen_awg.weather_generator</span><span class="w"> </span><span class="kn">import</span> <span class="n">WeatherGenerator</span>
+
+
+<div class="viewcode-block" id="get_gt_coords">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.get_gt_coords">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_gt_coords</span><span class="p">(</span><span class="n">sel_valid_time</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">,</span> <span class="n">ds</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;For a given valid_time, get (ensemble_member, lead_time, init_time)</span>
+<span class="sd">    that allow extracting the ground truth sample from the dataset.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sel_valid_time : np.datetime64</span>
+<span class="sd">        The selected valid time.</span>
+<span class="sd">    ds : xr.Dataset</span>
+<span class="sd">        The dataset the weather generator is trained on.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict[str, Any]</span>
+<span class="sd">        Dictionary with ensemble_member, init_time, and lead_time keys.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    NotImplementedError</span>
+<span class="sd">        If the dataset type is not supported.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">ds</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;era5&quot;</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">sel_valid_time</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">init_time</span> <span class="o">+</span> <span class="n">ds</span><span class="o">.</span><span class="n">lead_time</span><span class="p">,</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Selected time </span><span class="si">{</span><span class="n">sel_valid_time</span><span class="si">}</span><span class="s2"> is not in dataset.&quot;</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;ensemble_member&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s2">&quot;init_time&quot;</span><span class="p">:</span> <span class="n">ds</span><span class="o">.</span><span class="n">init_time</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="s2">&quot;lead_time&quot;</span><span class="p">:</span> <span class="n">sel_valid_time</span> <span class="o">-</span> <span class="n">ds</span><span class="o">.</span><span class="n">init_time</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="p">}</span>
+    <span class="k">elif</span> <span class="n">ds</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;reforecasts&quot;</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">sel_valid_time</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">init_time</span><span class="p">,</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Selected time </span><span class="si">{</span><span class="n">sel_valid_time</span><span class="si">}</span><span class="s2"> is not an init_time in the dataset.&quot;</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;ensemble_member&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s2">&quot;init_time&quot;</span><span class="p">:</span> <span class="n">sel_valid_time</span><span class="p">,</span>
+            <span class="s2">&quot;lead_time&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">),</span>
+        <span class="p">}</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid dataset type: </span><span class="si">{</span><span class="n">ds</span><span class="o">.</span><span class="n">type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="get_gt">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.get_gt">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_gt</span><span class="p">(</span><span class="n">sel_valid_time</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">,</span> <span class="n">ds</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get ground truth data for a given valid time.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sel_valid_time : np.datetime64</span>
+<span class="sd">        The selected valid time.</span>
+<span class="sd">    ds : xr.Dataset</span>
+<span class="sd">        The dataset containing the data.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    xr.Dataset</span>
+<span class="sd">        Dataset with the ground truth data for the selected time.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">ds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">get_gt_coords</span><span class="p">(</span><span class="n">sel_valid_time</span><span class="o">=</span><span class="n">sel_valid_time</span><span class="p">,</span> <span class="n">ds</span><span class="o">=</span><span class="n">ds</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="persistence_forecast">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.persistence_forecast">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">persistence_forecast</span><span class="p">(</span><span class="n">ds_t0</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span> <span class="n">lead_time</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create persistence a forecast.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ds_t0 : xr.Dataset</span>
+<span class="sd">        Initial dataset at time t0.</span>
+<span class="sd">    lead_time : np.timedelta64</span>
+<span class="sd">        Lead time to add to the valid time.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    xr.Dataset</span>
+<span class="sd">        Persistence forecast, i.e. initial data with modified valid_time coordinate.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">ds_t0</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">({</span><span class="s2">&quot;valid_time&quot;</span><span class="p">:</span> <span class="n">ds_t0</span><span class="o">.</span><span class="n">valid_time</span> <span class="o">+</span> <span class="n">lead_time</span><span class="p">})</span></div>
+
+
+
+<div class="viewcode-block" id="crps_persistence">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.crps_persistence">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">crps_persistence</span><span class="p">(</span>
+    <span class="n">ground_truth</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+    <span class="n">ds_t0</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+    <span class="n">forecast_lead_time</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">,</span>
+    <span class="n">var</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate CRPS (Continuous Ranked Probability Score) for a persistence forecast.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ground_truth : xr.Dataset</span>
+<span class="sd">        Ground truth observations.</span>
+<span class="sd">    ds_t0 : xr.Dataset</span>
+<span class="sd">        Initial dataset at time t0.</span>
+<span class="sd">    forecast_lead_time : np.timedelta64</span>
+<span class="sd">        Lead time for the forecast.</span>
+<span class="sd">    var : str</span>
+<span class="sd">        Variable name to compute CRPS for.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    xr.Dataset</span>
+<span class="sd">        CRPS values for the persistence forecast.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">crps_ensemble</span><span class="p">(</span>
+        <span class="n">observations</span><span class="o">=</span><span class="n">ground_truth</span><span class="p">[[</span><span class="n">var</span><span class="p">]]</span><span class="o">.</span><span class="n">load</span><span class="p">(),</span>
+        <span class="n">forecasts</span><span class="o">=</span><span class="n">persistence_forecast</span><span class="p">(</span><span class="n">ds_t0</span><span class="o">=</span><span class="n">ds_t0</span><span class="p">,</span> <span class="n">lead_time</span><span class="o">=</span><span class="n">forecast_lead_time</span><span class="p">)[[</span><span class="n">var</span><span class="p">]]</span>
+        <span class="o">.</span><span class="n">load</span><span class="p">()</span>
+        <span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span>
+            <span class="s2">&quot;member&quot;</span>
+        <span class="p">),</span>  <span class="c1"># member dimension trivial because we just project init sample into future</span>
+        <span class="n">dim</span><span class="o">=</span><span class="p">(),</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="crps_climatology">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.crps_climatology">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">crps_climatology</span><span class="p">(</span>
+    <span class="n">ground_truth</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+    <span class="n">ds_t0</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+    <span class="n">forecast_lead_time</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">,</span>
+    <span class="n">ds_full</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+    <span class="n">var</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate CRPS (Continuous Ranked Probability Score) for a climatology forecast.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ground_truth : xr.Dataset</span>
+<span class="sd">        Ground truth observations.</span>
+<span class="sd">    ds_t0 : xr.Dataset</span>
+<span class="sd">        Initial dataset at time t0.</span>
+<span class="sd">    forecast_lead_time : np.timedelta64</span>
+<span class="sd">        Lead time for the forecast.</span>
+<span class="sd">    ds_full : xr.Dataset</span>
+<span class="sd">        Full dataset for climatology calculation.</span>
+<span class="sd">    var : str</span>
+<span class="sd">        Variable name to compute CRPS for.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    xr.Dataset</span>
+<span class="sd">        CRPS values for the climatology forecast.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">doy_target</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds_t0</span><span class="o">.</span><span class="n">valid_time</span> <span class="o">+</span> <span class="n">forecast_lead_time</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">dayofyear</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
+    <span class="n">ds_stacked</span> <span class="o">=</span> <span class="n">ds_full</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">member</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;ensemble_member&quot;</span><span class="p">,</span> <span class="s2">&quot;init_time&quot;</span><span class="p">,</span> <span class="s2">&quot;lead_time&quot;</span><span class="p">))</span>
+
+    <span class="n">res_chunks</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># to avoid memory errors, process each longitude separately</span>
+    <span class="k">for</span> <span class="n">lon</span> <span class="ow">in</span> <span class="n">ds_full</span><span class="o">.</span><span class="n">longitude</span><span class="p">:</span>
+        <span class="n">res_chunks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">crps_ensemble</span><span class="p">(</span>
+                <span class="n">ground_truth</span><span class="p">[[</span><span class="n">var</span><span class="p">]]</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">longitude</span><span class="o">=</span><span class="n">lon</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">(),</span>
+                <span class="n">ds_stacked</span><span class="p">[[</span><span class="n">var</span><span class="p">]]</span>
+                <span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">longitude</span><span class="o">=</span><span class="n">lon</span><span class="p">)</span>
+                <span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">ds_stacked</span><span class="o">.</span><span class="n">valid_time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">dayofyear</span> <span class="o">==</span> <span class="n">doy_target</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="o">.</span><span class="n">load</span><span class="p">(),</span>
+                <span class="n">dim</span><span class="o">=</span><span class="p">(),</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="s2">&quot;longitude&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">res_chunks</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;longitude&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="analog_ensemble_forecast">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.analog_ensemble_forecast">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">analog_ensemble_forecast</span><span class="p">(</span>
+    <span class="n">wg</span><span class="p">:</span> <span class="n">WeatherGenerator</span><span class="p">,</span>
+    <span class="n">probability_model</span><span class="p">:</span> <span class="n">ProbabilityModel</span><span class="p">,</span>
+    <span class="n">initial_datapoint</span><span class="p">:</span> <span class="n">InitTimeLeadTimeMemberState</span><span class="p">,</span>
+    <span class="n">lead_time</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">,</span>
+    <span class="n">n_members</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">blocksize</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">rng</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">,</span>
+    <span class="n">stepper_class</span><span class="p">:</span> <span class="n">TimeStepper</span> <span class="o">=</span> <span class="n">StandardStepper</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate an ensemble forecast using analog sampling.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    wg : WeatherGenerator</span>
+<span class="sd">        Weather generator instance.</span>
+<span class="sd">    probability_model : ProbabilityModel</span>
+<span class="sd">        Probability model for the weather generator&#39;s analog selection.</span>
+<span class="sd">    initial_datapoint : InitTimeLeadTimeMemberState</span>
+<span class="sd">        Initial state for the forecast.</span>
+<span class="sd">    lead_time : np.timedelta64</span>
+<span class="sd">        Forecast lead time.</span>
+<span class="sd">    n_members : int</span>
+<span class="sd">        Number of ensemble members to be created in the forecast.</span>
+<span class="sd">    blocksize : int</span>
+<span class="sd">        Block size for weather generator sampling.</span>
+<span class="sd">    rng : np.random.Generator</span>
+<span class="sd">        Random number generator.</span>
+<span class="sd">    stepper_class : TimeStepper, optional</span>
+<span class="sd">        Time stepper class, by default StandardStepper.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    xr.Dataset</span>
+<span class="sd">        Trajectories of ensemble forecast.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># n_steps:</span>
+    <span class="n">n_steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">lead_time</span> <span class="o">/</span> <span class="p">(</span><span class="n">blocksize</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">)))</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="n">trajs</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;lead_time&quot;</span><span class="p">:</span> <span class="p">(</span>
+                <span class="p">(</span><span class="s2">&quot;forecast&quot;</span><span class="p">),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">n_members</span><span class="p">),</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span>
+                    <span class="s2">&quot;timedelta64[ns]&quot;</span>
+                <span class="p">),</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;init_time&quot;</span><span class="p">:</span> <span class="p">(</span>
+                <span class="p">(</span><span class="s2">&quot;forecast&quot;</span><span class="p">),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">n_members</span><span class="p">),</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s2">&quot;2000-01-01&quot;</span><span class="p">,</span> <span class="s2">&quot;ns&quot;</span><span class="p">)),</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;ensemble_member&quot;</span><span class="p">:</span> <span class="p">((</span><span class="s2">&quot;forecast&quot;</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">n_members</span><span class="p">),</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)),</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_members</span><span class="p">):</span>
+        <span class="n">trajs</span><span class="o">.</span><span class="n">loc</span><span class="p">[{</span><span class="s2">&quot;forecast&quot;</span><span class="p">:</span> <span class="n">i</span><span class="p">}]</span> <span class="o">=</span> <span class="n">wg</span><span class="o">.</span><span class="n">sample_trajectory</span><span class="p">(</span>
+            <span class="n">blocksize</span><span class="o">=</span><span class="n">blocksize</span><span class="p">,</span>
+            <span class="n">probability_model</span><span class="o">=</span><span class="n">probability_model</span><span class="p">,</span>
+            <span class="n">stepper_class</span><span class="o">=</span><span class="n">stepper_class</span><span class="p">,</span>
+            <span class="n">n_steps</span><span class="o">=</span><span class="n">n_steps</span><span class="p">,</span>
+            <span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">,</span>
+            <span class="n">initialization</span><span class="o">=</span><span class="n">initial_datapoint</span><span class="p">,</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">out_time</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">trajs</span></div>
+
+
+
+<div class="viewcode-block" id="get_n_valid_forecast_start_points">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.get_n_valid_forecast_start_points">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_n_valid_forecast_start_points</span><span class="p">(</span>
+    <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">wg</span><span class="p">:</span> <span class="n">WeatherGenerator</span><span class="p">,</span>
+    <span class="n">rng</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">,</span>
+    <span class="n">forecast_lead_time</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">),</span>
+    <span class="n">min_timedelta_from_dataset_start</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">366</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">),</span>
+    <span class="n">with_replacement</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">balance_months</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Select n valid ground truth data points to start forecasts from.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    n : int</span>
+<span class="sd">        Number of start points to select.</span>
+<span class="sd">    wg : WeatherGenerator</span>
+<span class="sd">        Weather generator instance.</span>
+<span class="sd">    rng : np.random.Generator</span>
+<span class="sd">        Random number generator used in the selection.</span>
+<span class="sd">    forecast_lead_time : np.timedelta64, optional</span>
+<span class="sd">        Forecast lead time, by default np.timedelta64(0, &quot;D&quot;)</span>
+<span class="sd">    min_timedelta_from_dataset_start : np.timedelta64, optional</span>
+<span class="sd">        Samples are only considered as valid if min_timedelta_from_dataset_start</span>
+<span class="sd">        from the start of the dataset, by default np.timedelta64(366, &quot;D&quot;).</span>
+<span class="sd">        This is because the analog weather generator relies only on analogs with</span>
+<span class="sd">        valid_time smaller than the forecast start time. Therefore, on the end of the</span>
+<span class="sd">        dataset, the set of analogs would be very small.</span>
+<span class="sd">    with_replacement : bool, optional</span>
+<span class="sd">        Whether to sample with replacement, by default True.</span>
+<span class="sd">    balance_months : bool, optional</span>
+<span class="sd">        Whether to balance months in sampling, by default True.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    xr.DataArray</span>
+<span class="sd">        DataArray of valid forecast start points.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">transition_map</span> <span class="o">=</span> <span class="n">get_map_valid_n_day_transitions</span><span class="p">(</span>
+        <span class="n">wg</span><span class="o">.</span><span class="n">ds_similarities</span><span class="o">.</span><span class="n">init_time</span><span class="o">.</span><span class="n">load</span><span class="p">(),</span>
+        <span class="n">n</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">forecast_lead_time</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">)),</span>
+    <span class="p">)</span>
+    <span class="c1"># if they all have the same init time, we have an ERA5-like WG.</span>
+    <span class="k">if</span> <span class="p">(</span>
+        <span class="p">(</span><span class="n">wg</span><span class="o">.</span><span class="n">ds_similarities</span><span class="o">.</span><span class="n">init_time</span> <span class="o">==</span> <span class="n">wg</span><span class="o">.</span><span class="n">ds_similarities</span><span class="o">.</span><span class="n">init_time</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">isnat</span><span class="p">(</span><span class="n">wg</span><span class="o">.</span><span class="n">ds_similarities</span><span class="o">.</span><span class="n">init_time</span><span class="p">)</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>  <span class="c1"># ERA5 case</span>
+        <span class="n">ss_valid_forecast_start_points</span> <span class="o">=</span> <span class="n">wg</span><span class="o">.</span><span class="n">ds_similarities</span><span class="o">.</span><span class="n">valid_time</span><span class="o">.</span><span class="n">data</span><span class="p">[</span>
+            <span class="p">(</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">transition_map</span><span class="o">.</span><span class="n">next_sample</span><span class="p">))</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s2">&quot;sample&quot;</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="n">ss_valid_forecast_start_points</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;init_time&quot;</span><span class="p">:</span> <span class="p">(</span>
+                    <span class="s2">&quot;datapoint&quot;</span><span class="p">,</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+                        <span class="nb">len</span><span class="p">(</span><span class="n">ss_valid_forecast_start_points</span><span class="p">)</span>
+                        <span class="o">*</span> <span class="p">[</span><span class="n">wg</span><span class="o">.</span><span class="n">ds_similarities</span><span class="o">.</span><span class="n">init_time</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">]</span>
+                    <span class="p">),</span>
+                <span class="p">),</span>
+                <span class="s2">&quot;lead_time&quot;</span><span class="p">:</span> <span class="p">(</span>
+                    <span class="s2">&quot;datapoint&quot;</span><span class="p">,</span>
+                    <span class="n">ss_valid_forecast_start_points</span>
+                    <span class="o">-</span> <span class="n">wg</span><span class="o">.</span><span class="n">ds_similarities</span><span class="o">.</span><span class="n">init_time</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+                <span class="p">),</span>
+                <span class="s2">&quot;ensemble_member&quot;</span><span class="p">:</span> <span class="p">(</span>
+                    <span class="s2">&quot;datapoint&quot;</span><span class="p">,</span>
+                    <span class="mi">0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ss_valid_forecast_start_points</span><span class="p">)),</span>
+                <span class="p">),</span>
+            <span class="p">},</span>
+            <span class="n">coords</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;datapoint&quot;</span><span class="p">:</span> <span class="p">(</span>
+                    <span class="s2">&quot;datapoint&quot;</span><span class="p">,</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ss_valid_forecast_start_points</span><span class="p">)),</span>
+                <span class="p">)</span>
+            <span class="p">},</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># reforecast case</span>
+        <span class="c1"># get a mask of the (doy, year) points for which we have</span>
+        <span class="c1"># at least one sample with lead_time 0</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">wg</span><span class="o">.</span><span class="n">ds_similarities</span><span class="o">.</span><span class="n">lead_time</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s2">&quot;sample&quot;</span><span class="p">)</span>
+
+        <span class="c1"># extract valid times for this:</span>
+        <span class="n">vt_0</span> <span class="o">=</span> <span class="n">wg</span><span class="o">.</span><span class="n">ds_similarities</span><span class="o">.</span><span class="n">valid_time</span><span class="o">.</span><span class="n">load</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>
+
+        <span class="c1"># get time to be predicted:</span>
+        <span class="n">vt_new</span> <span class="o">=</span> <span class="n">vt_0</span> <span class="o">+</span> <span class="n">forecast_lead_time</span>
+        <span class="c1"># transform back to year and dayofyear:</span>
+        <span class="n">yr</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">vt_new</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
+        <span class="n">doy</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">vt_new</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">dayofyear</span>
+        <span class="c1"># keep subset of those points for which we also have</span>
+        <span class="c1"># a point with lead time zero at the new date.</span>
+        <span class="n">lead_times_new</span> <span class="o">=</span> <span class="n">wg</span><span class="o">.</span><span class="n">ds_similarities</span><span class="o">.</span><span class="n">lead_time</span><span class="o">.</span><span class="n">load</span><span class="p">()</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="n">yr</span><span class="p">,</span> <span class="n">dayofyear</span><span class="o">=</span><span class="n">doy</span><span class="p">)</span>
+        <span class="n">m_new_lead_times</span> <span class="o">=</span> <span class="p">(</span><span class="n">lead_times_new</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s2">&quot;sample&quot;</span><span class="p">)</span>
+
+        <span class="n">ss_valid_forecast_start_points</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span>
+            <span class="n">data_vars</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;init_time&quot;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;datapoint&quot;</span><span class="p">,</span> <span class="n">vt_0</span><span class="p">[</span><span class="n">m_new_lead_times</span><span class="o">.</span><span class="n">data</span><span class="p">]),</span>
+                <span class="s2">&quot;lead_time&quot;</span><span class="p">:</span> <span class="p">(</span>
+                    <span class="s2">&quot;datapoint&quot;</span><span class="p">,</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">),</span> <span class="n">repeats</span><span class="o">=</span><span class="n">m_new_lead_times</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span>
+                <span class="p">),</span>
+                <span class="s2">&quot;ensemble_member&quot;</span><span class="p">:</span> <span class="p">(</span>
+                    <span class="s2">&quot;datapoint&quot;</span><span class="p">,</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">repeats</span><span class="o">=</span><span class="n">m_new_lead_times</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span>
+                <span class="p">),</span>
+            <span class="p">},</span>
+            <span class="n">coords</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;datapoint&quot;</span><span class="p">:</span> <span class="p">(</span>
+                    <span class="s2">&quot;datapoint&quot;</span><span class="p">,</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">m_new_lead_times</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span>
+                <span class="p">)</span>
+            <span class="p">},</span>
+        <span class="p">)</span>
+
+    <span class="c1"># to make sure we don&#39;t run out of candidates when sampling the trajectory,</span>
+    <span class="c1"># allow setting a minimum time interval from dataset start.</span>
+    <span class="n">ss_valid_times</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">ss_valid_forecast_start_points</span><span class="o">.</span><span class="n">init_time</span>
+        <span class="o">+</span> <span class="n">ss_valid_forecast_start_points</span><span class="o">.</span><span class="n">lead_time</span>
+    <span class="p">)</span>
+    <span class="n">ss_valid_forecast_start_points</span> <span class="o">=</span> <span class="n">ss_valid_forecast_start_points</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+        <span class="n">ss_valid_times</span> <span class="o">&gt;</span> <span class="n">ss_valid_times</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">+</span> <span class="n">min_timedelta_from_dataset_start</span><span class="p">,</span>
+        <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">ss_valid_forecast_start_points</span><span class="o">.</span><span class="n">datapoint</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">n</span><span class="p">,</span> <span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;To make selection without replacement, require </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> datapoints, but only &quot;</span>
+        <span class="o">+</span> <span class="s2">&quot;{len(ss_valid_forecast_start_points.datapoint)} valid samples available.&quot;</span>
+    <span class="p">)</span>
+    <span class="n">ss_valid_forecast_start_points</span><span class="p">[</span><span class="s2">&quot;valid_time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">ss_valid_forecast_start_points</span><span class="p">[</span><span class="s2">&quot;init_time&quot;</span><span class="p">]</span>
+        <span class="o">+</span> <span class="n">ss_valid_forecast_start_points</span><span class="p">[</span><span class="s2">&quot;lead_time&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="c1"># in reforecast dataset, samples aren&#39;t distributed equally across months.</span>
+    <span class="c1"># Therefore allow rebalancing them:</span>
+    <span class="k">if</span> <span class="n">balance_months</span><span class="p">:</span>
+        <span class="n">months</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span>
+            <span class="n">ss_valid_forecast_start_points</span><span class="o">.</span><span class="n">valid_time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+        <span class="n">counts</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;month&quot;</span><span class="p">:</span> <span class="n">months</span><span class="p">})</span>
+        <span class="n">unnormalized_probabilities</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">counts</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span>
+            <span class="n">month</span><span class="o">=</span><span class="n">ss_valid_forecast_start_points</span><span class="o">.</span><span class="n">valid_time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span>
+        <span class="p">)</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">unnormalized_probabilities</span> <span class="o">/</span> <span class="n">unnormalized_probabilities</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">ss_valid_forecast_start_points</span><span class="p">)</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">ss_valid_forecast_start_points</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span>
+        <span class="n">datapoint</span><span class="o">=</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ss_valid_forecast_start_points</span><span class="o">.</span><span class="n">datapoint</span><span class="p">)),</span>
+            <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">,</span>
+            <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span>
+            <span class="n">replace</span><span class="o">=</span><span class="n">with_replacement</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="crps_wg_forecasts">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.crps_wg_forecasts">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">crps_wg_forecasts</span><span class="p">(</span>
+    <span class="n">ds</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+    <span class="n">wg</span><span class="p">:</span> <span class="n">WeatherGenerator</span><span class="p">,</span>
+    <span class="n">n_members</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">probability_model</span><span class="p">:</span> <span class="n">ProbabilityModel</span><span class="p">,</span>
+    <span class="n">forecast_init_time</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">,</span>
+    <span class="n">forecast_lead_time</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">,</span>
+    <span class="n">blocksize</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">rng</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">,</span>
+    <span class="n">stepper_class</span><span class="p">:</span> <span class="n">TimeStepper</span> <span class="o">=</span> <span class="n">StandardStepper</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute CRPS (Continuous Ranked Probability Score) for analog forecasts.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ds : xr.Dataset</span>
+<span class="sd">        Dataset the weather generator samples from.</span>
+<span class="sd">    wg : WeatherGenerator</span>
+<span class="sd">        Weather generator instance.</span>
+<span class="sd">    n_members : int</span>
+<span class="sd">        Number of members in the analog forecast ensemble.</span>
+<span class="sd">    probability_model : ProbabilityModel</span>
+<span class="sd">        Probability model for analog selection.</span>
+<span class="sd">    forecast_init_time : np.datetime64</span>
+<span class="sd">        Initial time for the analog forecast.</span>
+<span class="sd">    forecast_lead_time : np.timedelta64</span>
+<span class="sd">        Lead time for the analog forecast.</span>
+<span class="sd">    blocksize : int</span>
+<span class="sd">        Block size (days) for weather generator sampling.</span>
+<span class="sd">    rng : np.random.Generator</span>
+<span class="sd">        Random number generator.</span>
+<span class="sd">    stepper_class : TimeStepper, optional</span>
+<span class="sd">        Time stepper class, by default StandardStepper</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    xr.Dataset</span>
+<span class="sd">        CRPS for the weather generator&#39;s forecasts.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">forecasts</span> <span class="o">=</span> <span class="n">analog_ensemble_forecast</span><span class="p">(</span>
+        <span class="n">wg</span><span class="o">=</span><span class="n">wg</span><span class="p">,</span>
+        <span class="n">probability_model</span><span class="o">=</span><span class="n">probability_model</span><span class="p">,</span>
+        <span class="n">initial_datapoint</span><span class="o">=</span><span class="n">InitTimeLeadTimeMemberState</span><span class="p">(</span>
+            <span class="o">**</span><span class="n">get_gt_coords</span><span class="p">(</span><span class="n">forecast_init_time</span><span class="p">,</span> <span class="n">ds</span><span class="o">=</span><span class="n">ds</span><span class="p">)</span>
+        <span class="p">),</span>
+        <span class="n">lead_time</span><span class="o">=</span><span class="n">forecast_lead_time</span><span class="p">,</span>
+        <span class="n">n_members</span><span class="o">=</span><span class="n">n_members</span><span class="p">,</span>
+        <span class="n">blocksize</span><span class="o">=</span><span class="n">blocksize</span><span class="p">,</span>
+        <span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">,</span>
+        <span class="n">stepper_class</span><span class="o">=</span><span class="n">stepper_class</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">fc_data</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">forecasts</span><span class="p">)</span>
+    <span class="n">gt_data</span> <span class="o">=</span> <span class="n">get_gt</span><span class="p">(</span><span class="n">sel_valid_time</span><span class="o">=</span><span class="n">forecast_init_time</span> <span class="o">+</span> <span class="n">forecast_lead_time</span><span class="p">,</span> <span class="n">ds</span><span class="o">=</span><span class="n">ds</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">crps_ensemble</span><span class="p">(</span>
+        <span class="n">observations</span><span class="o">=</span><span class="n">gt_data</span><span class="o">.</span><span class="n">load</span><span class="p">(),</span>
+        <span class="n">forecasts</span><span class="o">=</span><span class="n">fc_data</span><span class="o">.</span><span class="n">load</span><span class="p">(),</span>
+        <span class="n">member_dim</span><span class="o">=</span><span class="s2">&quot;forecast&quot;</span><span class="p">,</span>
+        <span class="n">dim</span><span class="o">=</span><span class="p">(),</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="eval_climatology_persistence_forecast">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.eval_climatology_persistence_forecast">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">eval_climatology_persistence_forecast</span><span class="p">(</span>
+    <span class="n">sampled_timesteps</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span>
+    <span class="n">ds</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+    <span class="n">ds_rechunk</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+    <span class="n">var</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">forecast_lead_time</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">NDArray</span><span class="p">,</span> <span class="n">NDArray</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Evaluate climatology and persistence forecasts.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sampled_timesteps : xr.DataArray</span>
+<span class="sd">        Timesteps to initialize forecasts from.</span>
+<span class="sd">    ds : xr.Dataset</span>
+<span class="sd">        Dataset the weather generator samples from.</span>
+<span class="sd">    ds_rechunk : xr.Dataset</span>
+<span class="sd">        Rechunked dataset to allow faster computation of climatology forecasts.</span>
+<span class="sd">    var : str</span>
+<span class="sd">        Name of variable to evaluate.</span>
+<span class="sd">    forecast_lead_time : np.timedelta64</span>
+<span class="sd">        Forecast lead time.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Tuple[NDArray, NDArray]</span>
+<span class="sd">        Tuple of (climatology_CRPS, persistence_CRPS) arrays.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">crps_clim</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sampled_timesteps</span><span class="o">.</span><span class="n">datapoint</span><span class="p">)):</span>
+        <span class="n">vt</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">sampled_timesteps</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">datapoint</span><span class="o">=</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">init_time</span>
+            <span class="o">+</span> <span class="n">sampled_timesteps</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">datapoint</span><span class="o">=</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">lead_time</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">crps_clim</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">crps_climatology</span><span class="p">(</span>
+                <span class="n">ds_full</span><span class="o">=</span><span class="n">ds_rechunk</span><span class="p">,</span>
+                <span class="n">ds_t0</span><span class="o">=</span><span class="n">get_gt</span><span class="p">(</span><span class="n">sel_valid_time</span><span class="o">=</span><span class="n">vt</span><span class="p">,</span> <span class="n">ds</span><span class="o">=</span><span class="n">ds_rechunk</span><span class="p">),</span>
+                <span class="n">forecast_lead_time</span><span class="o">=</span><span class="n">forecast_lead_time</span><span class="p">,</span>
+                <span class="n">var</span><span class="o">=</span><span class="n">var</span><span class="p">,</span>
+                <span class="n">ground_truth</span><span class="o">=</span><span class="n">get_gt</span><span class="p">(</span>
+                    <span class="n">sel_valid_time</span><span class="o">=</span><span class="n">vt</span> <span class="o">+</span> <span class="n">forecast_lead_time</span><span class="p">,</span> <span class="n">ds</span><span class="o">=</span><span class="n">ds_rechunk</span>
+                <span class="p">),</span>
+            <span class="p">)</span>
+            <span class="o">.</span><span class="n">weighted</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">ds_rechunk</span><span class="o">.</span><span class="n">latitude</span><span class="p">)))</span>
+            <span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+            <span class="o">.</span><span class="n">compute</span><span class="p">()[</span><span class="n">var</span><span class="p">]</span>
+        <span class="p">)</span>
+
+    <span class="n">crps_clim</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">crps_clim</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;datapoint&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s2">&quot;datapoint&quot;</span><span class="p">)</span>
+
+    <span class="c1"># same for persistence</span>
+    <span class="n">crps_pers</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sampled_timesteps</span><span class="o">.</span><span class="n">datapoint</span><span class="p">)):</span>
+        <span class="n">vt</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">sampled_timesteps</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">datapoint</span><span class="o">=</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">init_time</span>
+            <span class="o">+</span> <span class="n">sampled_timesteps</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">datapoint</span><span class="o">=</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">lead_time</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">crps_pers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">crps_persistence</span><span class="p">(</span>
+                <span class="n">ds_t0</span><span class="o">=</span><span class="n">get_gt</span><span class="p">(</span><span class="n">sel_valid_time</span><span class="o">=</span><span class="n">vt</span><span class="p">,</span> <span class="n">ds</span><span class="o">=</span><span class="n">ds</span><span class="p">),</span>
+                <span class="n">forecast_lead_time</span><span class="o">=</span><span class="n">forecast_lead_time</span><span class="p">,</span>
+                <span class="n">ground_truth</span><span class="o">=</span><span class="n">get_gt</span><span class="p">(</span><span class="n">sel_valid_time</span><span class="o">=</span><span class="n">vt</span> <span class="o">+</span> <span class="n">forecast_lead_time</span><span class="p">,</span> <span class="n">ds</span><span class="o">=</span><span class="n">ds</span><span class="p">),</span>
+                <span class="n">var</span><span class="o">=</span><span class="n">var</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="o">.</span><span class="n">weighted</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">latitude</span><span class="p">)))</span>
+            <span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+            <span class="o">.</span><span class="n">compute</span><span class="p">()[</span><span class="n">var</span><span class="p">]</span>
+        <span class="p">)</span>
+
+    <span class="n">crps_pers</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">crps_pers</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;datapoint&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s2">&quot;datapoint&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">crps_clim</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">crps_pers</span><span class="o">.</span><span class="n">data</span></div>
+
+
+
+<div class="viewcode-block" id="eval_analogue_forecast_skill">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.eval_analogue_forecast_skill">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">eval_analogue_forecast_skill</span><span class="p">(</span>
+    <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">type_probability_model</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">wg</span><span class="p">:</span> <span class="n">WeatherGenerator</span><span class="p">,</span>
+    <span class="n">sampled_timesteps</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span>
+    <span class="n">ds</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+    <span class="n">var</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">n_analogs</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">forecast_lead_time</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">,</span>
+    <span class="n">blocksize</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">rng</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">,</span>
+    <span class="n">stepper_class</span><span class="p">:</span> <span class="n">TimeStepper</span> <span class="o">=</span> <span class="n">StandardStepper</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Evaluate the skill of analog forecasts.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sigma : float</span>
+<span class="sd">        Standard deviation parameter for the probability model.</span>
+<span class="sd">    type_probability_model : str</span>
+<span class="sd">        Type of probability model to use.</span>
+<span class="sd">    wg : WeatherGenerator</span>
+<span class="sd">        Weather generator instance.</span>
+<span class="sd">    sampled_timesteps : xr.DataArray</span>
+<span class="sd">        Timesteps to initialize forecasts from.</span>
+<span class="sd">    ds : xr.Dataset</span>
+<span class="sd">        Dataset the weather generator samples from.</span>
+<span class="sd">    var : str</span>
+<span class="sd">        Name of variable to evaluate.</span>
+<span class="sd">    n_analogs : int</span>
+<span class="sd">        Number of analog forecasts to create.</span>
+<span class="sd">    forecast_lead_time : np.timedelta64</span>
+<span class="sd">        Forecast lead time.</span>
+<span class="sd">    blocksize : int</span>
+<span class="sd">        Block size for sampling.</span>
+<span class="sd">    rng : np.random.Generator</span>
+<span class="sd">        Random number generator.</span>
+<span class="sd">    stepper_class : TimeStepper, optional</span>
+<span class="sd">        Time stepper class, by default StandardStepper.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    NDArray</span>
+<span class="sd">        Mean CRPS value for the analog forecasts.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">sampled_timesteps</span><span class="o">.</span><span class="n">datapoint</span><span class="p">),</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="p">(</span>
+        <span class="n">type_probability_model</span> <span class="o">==</span> <span class="s2">&quot;NormalProbabilityNotLargerThanFixedDate&quot;</span>
+    <span class="p">)</span>  <span class="c1"># for now, only allow this model - assures that no data from &quot;future&quot; is used.</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ts</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sampled_timesteps</span><span class="o">.</span><span class="n">valid_time</span><span class="o">.</span><span class="n">data</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">crps_wg_forecasts</span><span class="p">(</span>
+            <span class="n">ds</span><span class="o">=</span><span class="n">ds</span><span class="p">[[</span><span class="n">var</span><span class="p">]],</span>
+            <span class="n">wg</span><span class="o">=</span><span class="n">wg</span><span class="p">,</span>
+            <span class="n">n_members</span><span class="o">=</span><span class="n">n_analogs</span><span class="p">,</span>
+            <span class="n">probability_model</span><span class="o">=</span><span class="n">NormalProbabilityNotLargerThanFixedDate</span><span class="p">(</span>
+                <span class="n">sigma</span><span class="p">,</span> <span class="n">date_max</span><span class="o">=</span><span class="n">ts</span>
+            <span class="p">),</span>
+            <span class="n">forecast_init_time</span><span class="o">=</span><span class="n">ts</span><span class="p">,</span>
+            <span class="n">forecast_lead_time</span><span class="o">=</span><span class="n">forecast_lead_time</span><span class="p">,</span>
+            <span class="n">blocksize</span><span class="o">=</span><span class="n">blocksize</span><span class="p">,</span>
+            <span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">,</span>
+            <span class="n">stepper_class</span><span class="o">=</span><span class="n">stepper_class</span><span class="p">,</span>
+        <span class="p">)[</span><span class="n">var</span><span class="p">]</span>
+
+        <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">weighted</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">latitude</span><span class="p">)))</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">res</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="eval_wg">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.eval_wg">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">eval_wg</span><span class="p">(</span>
+    <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">forecast_lead_time_days</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">n_analogs</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">sigma_min</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">sigma_max</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">use_log_scale</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+    <span class="n">n_sampled_inits</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">min_timedelta_from_dataset_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">probability_model_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">var</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">blocksize</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">n_optuna_trials</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">path_ds</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">path_ds_rechunk</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">path_wg</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">path_study</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">ds_type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;era5&quot;</span><span class="p">,</span> <span class="s2">&quot;reforecasts&quot;</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Evaluate weather generator in terms of its accuracy as ensemble forecast model.</span>
+
+<span class="sd">    This function also runs climatology and persistance baseline forecasts and conducts</span>
+<span class="sd">    an optuna study to optimize parameters of the weather generator and the</span>
+<span class="sd">    trajectory sampling.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    seed : int</span>
+<span class="sd">        Seed used in sampling forecast initializations</span>
+<span class="sd">    forecast_lead_time_days : int</span>
+<span class="sd">        Lead time of the analog forecasts in days.</span>
+<span class="sd">    n_analogs : int</span>
+<span class="sd">        Number of ensemble members used in the analog ensemble forecast.</span>
+<span class="sd">    sigma_min : float</span>
+<span class="sd">        Lower bound of range of possible values of weather generator&#39;s sigma parameter.</span>
+<span class="sd">    sigma_max : float</span>
+<span class="sd">        Upper bound of range of possible values of weather generator&#39;s sigma parameter.</span>
+<span class="sd">    use_log_scale : bool</span>
+<span class="sd">        Use a logarithmic scaling during the optimization of the parameter sigma.</span>
+<span class="sd">    n_sampled_inits : int</span>
+<span class="sd">        Number of forecast initializations analog forecasts should be started from.</span>
+<span class="sd">        Performance is averaged across initialization times.</span>
+<span class="sd">    min_timedelta_from_dataset_start : int</span>
+<span class="sd">        In some settings, the weather generator only uses analogs from timesteps before</span>
+<span class="sd">        the forecast initialization. To avoid having few/zero analogs available, choose</span>
+<span class="sd">        initialization times only min_timedelta_from_dataset_start days after the start</span>
+<span class="sd">        of the dataset.</span>
+<span class="sd">    probability_model_type : str</span>
+<span class="sd">        A probability model to be used when sampling analogs.</span>
+<span class="sd">    var : str</span>
+<span class="sd">        Name of the variable to be evaluated.</span>
+<span class="sd">    blocksize : int</span>
+<span class="sd">        Blocksize of the simulated time series.</span>
+<span class="sd">    n_optuna_trials : int</span>
+<span class="sd">        Number of optimization steps in optuna.</span>
+<span class="sd">    path_ds : str</span>
+<span class="sd">        Path under which the dataset used during the evaluation is stored.</span>
+<span class="sd">    path_ds_rechunk : str</span>
+<span class="sd">        Path for dataset similar to the path_ds one but use chunking along longitudes.</span>
+<span class="sd">    path_wg : str</span>
+<span class="sd">        Path of the directory of the weather generator.</span>
+<span class="sd">    path_study : str</span>
+<span class="sd">        Path to write the optuna study to.</span>
+<span class="sd">    ds_type : Literal[&amp;quot;era5&amp;quot;, &amp;quot;reforecasts&amp;quot;]</span>
+<span class="sd">        Dataset used (ERA5 reanalysis or reforecasts).</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If the weather generator contains negative values in its `lag` dimension.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">forecast_lead_time</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">)</span> <span class="o">*</span> <span class="n">forecast_lead_time_days</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span>
+        <span class="s2">&quot;timedelta64[ns]&quot;</span>
+    <span class="p">)</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_zarr</span><span class="p">(</span><span class="n">path_ds</span><span class="p">,</span> <span class="n">decode_timedelta</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">assign_attrs</span><span class="p">({</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="n">ds_type</span><span class="p">})</span>
+
+    <span class="k">if</span> <span class="s2">&quot;valid_time&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">coords</span><span class="p">:</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">({</span><span class="s2">&quot;valid_time&quot;</span><span class="p">:</span> <span class="n">ds</span><span class="o">.</span><span class="n">init_time</span> <span class="o">+</span> <span class="n">ds</span><span class="o">.</span><span class="n">lead_time</span><span class="p">})</span>
+    <span class="n">ds_rechunk</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_zarr</span><span class="p">(</span><span class="n">path_ds_rechunk</span><span class="p">,</span> <span class="n">decode_timedelta</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ds_rechunk</span> <span class="o">=</span> <span class="n">ds_rechunk</span><span class="o">.</span><span class="n">assign_attrs</span><span class="p">({</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="n">ds_type</span><span class="p">})</span>
+    <span class="k">if</span> <span class="s2">&quot;valid_time&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ds_rechunk</span><span class="o">.</span><span class="n">coords</span><span class="p">:</span>
+        <span class="n">ds_rechunk</span> <span class="o">=</span> <span class="n">ds_rechunk</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">(</span>
+            <span class="p">{</span><span class="s2">&quot;valid_time&quot;</span><span class="p">:</span> <span class="n">ds_rechunk</span><span class="o">.</span><span class="n">init_time</span> <span class="o">+</span> <span class="n">ds_rechunk</span><span class="o">.</span><span class="n">lead_time</span><span class="p">}</span>
+        <span class="p">)</span>
+
+    <span class="n">wg</span> <span class="o">=</span> <span class="n">WeatherGenerator</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">wg_path</span><span class="o">=</span><span class="n">path_wg</span><span class="p">)</span>
+
+    <span class="n">min_lag</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_zarr</span><span class="p">(</span><span class="n">wg</span><span class="o">.</span><span class="n">path_dataset</span><span class="p">)</span><span class="o">.</span><span class="n">lag</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">min_lag</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Dataset with negative lag (lag=</span><span class="si">{</span><span class="n">min_lag</span><span class="o">.</span><span class="n">data</span><span class="si">}</span><span class="s2">) supplied.&quot;</span>
+            <span class="o">+</span> <span class="s2">&quot;Tuning necessitates comparisons with ground truth state at lead_time 0.&quot;</span>
+            <span class="o">+</span> <span class="s2">&quot;Therefore, tuning isn&#39;t possible for weather generators with lag &lt; 0.&quot;</span>
+            <span class="o">+</span> <span class="s2">&quot;Lag &lt; 0 imply accessing negative lead_time for ground truth sample.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
+
+    <span class="n">sampled_timesteps</span> <span class="o">=</span> <span class="n">get_n_valid_forecast_start_points</span><span class="p">(</span>
+        <span class="n">n</span><span class="o">=</span><span class="n">n_sampled_inits</span><span class="p">,</span>
+        <span class="n">wg</span><span class="o">=</span><span class="n">wg</span><span class="p">,</span>
+        <span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">,</span>
+        <span class="n">forecast_lead_time</span><span class="o">=</span><span class="n">forecast_lead_time</span><span class="p">,</span>
+        <span class="n">min_timedelta_from_dataset_start</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span>
+            <span class="n">min_timedelta_from_dataset_start</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span>
+        <span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
+        <span class="n">sigma</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span>
+            <span class="s2">&quot;sigma&quot;</span><span class="p">,</span>
+            <span class="n">sigma_min</span><span class="p">,</span>
+            <span class="n">sigma_max</span><span class="p">,</span>
+            <span class="n">log</span><span class="o">=</span><span class="n">use_log_scale</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">pm_type</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span>
+            <span class="s2">&quot;probability_model_type&quot;</span><span class="p">,</span> <span class="n">probability_model_type</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">eval_analogue_forecast_skill</span><span class="p">(</span>
+            <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span>
+            <span class="n">type_probability_model</span><span class="o">=</span><span class="n">pm_type</span><span class="p">,</span>
+            <span class="n">wg</span><span class="o">=</span><span class="n">wg</span><span class="p">,</span>
+            <span class="n">sampled_timesteps</span><span class="o">=</span><span class="n">sampled_timesteps</span><span class="p">,</span>
+            <span class="n">ds</span><span class="o">=</span><span class="n">ds</span><span class="p">,</span>
+            <span class="n">var</span><span class="o">=</span><span class="n">var</span><span class="p">,</span>
+            <span class="n">n_analogs</span><span class="o">=</span><span class="n">n_analogs</span><span class="p">,</span>
+            <span class="n">forecast_lead_time</span><span class="o">=</span><span class="n">forecast_lead_time</span><span class="p">,</span>
+            <span class="n">blocksize</span><span class="o">=</span><span class="n">blocksize</span><span class="p">,</span>
+            <span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="s2">&quot;minimize&quot;</span><span class="p">)</span>
+    <span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="n">n_optuna_trials</span><span class="p">,</span> <span class="n">show_progress_bar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">crps_clim</span><span class="p">,</span> <span class="n">crps_pers</span> <span class="o">=</span> <span class="n">eval_climatology_persistence_forecast</span><span class="p">(</span>
+        <span class="n">sampled_timesteps</span><span class="o">=</span><span class="n">sampled_timesteps</span><span class="p">,</span>
+        <span class="n">ds</span><span class="o">=</span><span class="n">ds</span><span class="p">,</span>
+        <span class="n">ds_rechunk</span><span class="o">=</span><span class="n">ds_rechunk</span><span class="p">,</span>
+        <span class="n">var</span><span class="o">=</span><span class="n">var</span><span class="p">,</span>
+        <span class="n">forecast_lead_time</span><span class="o">=</span><span class="n">forecast_lead_time</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">study</span><span class="o">.</span><span class="n">set_user_attr</span><span class="p">(</span><span class="s2">&quot;crps_clim&quot;</span><span class="p">,</span> <span class="n">crps_clim</span><span class="p">)</span>
+    <span class="n">study</span><span class="o">.</span><span class="n">set_user_attr</span><span class="p">(</span><span class="s2">&quot;crps_pers&quot;</span><span class="p">,</span> <span class="n">crps_pers</span><span class="p">)</span>
+
+    <span class="n">best_trial</span> <span class="o">=</span> <span class="n">study</span><span class="o">.</span><span class="n">best_trial</span>
+    <span class="n">ic</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Best trial: sigma=</span><span class="si">{</span><span class="n">best_trial</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;sigma&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, &quot;</span>
+        <span class="o">+</span> <span class="s2">&quot;probability_model_type=</span><span class="si">{best_trial.params[&#39;probability_model_type&#39;]}</span><span class="s2">,&quot;</span>
+        <span class="o">+</span> <span class="s2">&quot; value=</span><span class="si">{best_trial.value}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">study</span><span class="p">,</span> <span class="n">path_study</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="main">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.main">[docs]</a>
+<span class="nd">@snakemake_handler</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">snakemake</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">all_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">snakemake</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">all_params</span><span class="p">)</span>
+    <span class="n">tracked_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">snakemake</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">tracked_params</span><span class="p">)</span>
+
+    <span class="n">seed</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">snakemake</span><span class="o">.</span><span class="n">wildcards</span><span class="o">.</span><span class="n">n_analogs</span><span class="p">)</span>
+    <span class="n">forecast_lead_time_days</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">snakemake</span><span class="o">.</span><span class="n">wildcards</span><span class="o">.</span><span class="n">forecast_lead_time_days</span><span class="p">)</span>
+    <span class="n">n_analogs</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">snakemake</span><span class="o">.</span><span class="n">wildcards</span><span class="o">.</span><span class="n">n_analogs</span><span class="p">)</span>
+    <span class="n">tracked_params</span><span class="p">[</span><span class="s2">&quot;seed&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">seed</span>
+    <span class="n">tracked_params</span><span class="p">[</span><span class="s2">&quot;n_analogs&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">n_analogs</span>
+    <span class="n">tracked_params</span><span class="p">[</span><span class="s2">&quot;forecast_lead_time_days&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">forecast_lead_time_days</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">snakemake</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">tracked_params</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">default_flow_style</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="n">eval_wg</span><span class="p">(</span>
+        <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">,</span>
+        <span class="n">forecast_lead_time_days</span><span class="o">=</span><span class="n">forecast_lead_time_days</span><span class="p">,</span>
+        <span class="n">n_analogs</span><span class="o">=</span><span class="n">n_analogs</span><span class="p">,</span>
+        <span class="n">sigma_min</span><span class="o">=</span><span class="n">all_params</span><span class="p">[</span><span class="s2">&quot;tune_weather_generator.sigma_min&quot;</span><span class="p">],</span>
+        <span class="n">sigma_max</span><span class="o">=</span><span class="n">all_params</span><span class="p">[</span><span class="s2">&quot;tune_weather_generator.sigma_max&quot;</span><span class="p">],</span>
+        <span class="n">use_log_scale</span><span class="o">=</span><span class="n">all_params</span><span class="p">[</span><span class="s2">&quot;tune_weather_generator.use_log_scale&quot;</span><span class="p">],</span>
+        <span class="n">n_sampled_inits</span><span class="o">=</span><span class="n">all_params</span><span class="p">[</span><span class="s2">&quot;tune_weather_generator.N_sampled_inits&quot;</span><span class="p">],</span>
+        <span class="n">min_timedelta_from_dataset_start</span><span class="o">=</span><span class="n">all_params</span><span class="p">[</span>
+            <span class="s2">&quot;tune_weather_generator.min_timedelta_from_dataset_start&quot;</span>
+        <span class="p">],</span>
+        <span class="n">probability_model_type</span><span class="o">=</span><span class="n">all_params</span><span class="p">[</span>
+            <span class="s2">&quot;tune_weather_generator.probability_model_type&quot;</span>
+        <span class="p">],</span>
+        <span class="n">var</span><span class="o">=</span><span class="n">all_params</span><span class="p">[</span><span class="s2">&quot;tune_weather_generator.var&quot;</span><span class="p">],</span>
+        <span class="n">blocksize</span><span class="o">=</span><span class="n">all_params</span><span class="p">[</span><span class="s2">&quot;tune_weather_generator.blocksize&quot;</span><span class="p">],</span>
+        <span class="n">n_optuna_trials</span><span class="o">=</span><span class="n">all_params</span><span class="p">[</span><span class="s2">&quot;tune_weather_generator.N_optuna_trials&quot;</span><span class="p">],</span>
+        <span class="n">path_ds</span><span class="o">=</span><span class="n">snakemake</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">path_ds</span><span class="p">,</span>
+        <span class="n">path_ds_rechunk</span><span class="o">=</span><span class="n">snakemake</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">path_ds_rechunk</span><span class="p">,</span>
+        <span class="n">path_wg</span><span class="o">=</span><span class="n">snakemake</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">dir_wg</span><span class="p">,</span>
+        <span class="n">path_study</span><span class="o">=</span><span class="n">snakemake</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">study_pkl</span><span class="p">,</span>
+        <span class="n">ds_type</span><span class="o">=</span><span class="n">snakemake</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;dataset_type&quot;</span><span class="p">],</span>
+    <span class="p">)</span></div>
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">(</span><span class="n">snakemake</span><span class="o">=</span><span class="n">snakemake</span><span class="p">)</span>  <span class="c1"># noqa: F821</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

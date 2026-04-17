@@ -1,0 +1,622 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>unseen_awg.time_steppers &mdash; unseen-awg 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            unseen-awg
+              <img src="../../_static/wg_white.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../what_is_unseen_awg.html">What is unseen-awg?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#adapting-predefined-paths">Adapting predefined paths</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_deal_with_archived_data.html">Downloading and preparing archived data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_deal_with_archived_data.html#extracting-the-data">Extracting the data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_deal_with_archived_data.html#snakemake-workflow-integration">Snakemake workflow integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../how_to_deal_with_archived_data.html#extract-the-input-datasets">1. Extract the input datasets:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_use_simulations.html">Using the provided simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_use_wg_to_create_simulations.html">Simulating time series with the provided <em>unseen-awg</em> weather generator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_use_wg_to_create_simulations.html#each-weather-generator-is-stored-in-a-directory">Each weather generator is stored in a directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_use_wg_to_create_simulations.html#loading-a-weather-generator">Loading a Weather Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_use_wg_to_create_simulations.html#sampling-a-time-series-with-the-weather-generator">Sampling a Time Series With the Weather Generator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_train_wg.html">Constructing an <em>unseen-awg</em> weather generator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_train_wg.html#using-snakemake-to-configure-generation">Using Snakemake to Configure Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how_to_train_wg.html#preprocessing-details-and-motivation">Preprocessing Details and Motivation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../how_to_train_wg.html#reforecast-data">Reforecast Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../how_to_train_wg.html#era5-data">ERA5 Data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_documentation.html">API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/unseen_awg.html">unseen_awg package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.data_classes">unseen_awg.data_classes module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.data_classes.InitTimeLeadTimeMemberState"><code class="docutils literal notranslate"><span class="pre">InitTimeLeadTimeMemberState</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.data_utils">unseen_awg.data_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.data_utils.create_zarr_store_for_dataarray"><code class="docutils literal notranslate"><span class="pre">create_zarr_store_for_dataarray()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.data_utils.create_zarr_store_for_dataset"><code class="docutils literal notranslate"><span class="pre">create_zarr_store_for_dataset()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#unseen-awg-grids-module">unseen_awg.grids module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.plotting_utils">unseen_awg.plotting_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.add_contours"><code class="docutils literal notranslate"><span class="pre">add_contours()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.add_headers"><code class="docutils literal notranslate"><span class="pre">add_headers()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.add_label_to_axes"><code class="docutils literal notranslate"><span class="pre">add_label_to_axes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.contourf_plot_without_frame_with_bounds"><code class="docutils literal notranslate"><span class="pre">contourf_plot_without_frame_with_bounds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.map_plot_without_frame_with_bounds"><code class="docutils literal notranslate"><span class="pre">map_plot_without_frame_with_bounds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.transition_init_time_plot"><code class="docutils literal notranslate"><span class="pre">transition_init_time_plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.transition_lead_time_plot"><code class="docutils literal notranslate"><span class="pre">transition_lead_time_plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.plotting_utils.transition_valid_time_plot"><code class="docutils literal notranslate"><span class="pre">transition_valid_time_plot()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.probability_models">unseen_awg.probability_models module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityAvoidDirectRepeats"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityAvoidDirectRepeats</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityKeepMinimalNDays"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityKeepMinimalNDays</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityModel"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityModelSeasonality"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityModelSeasonality</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.NormalProbabilityNotLargerThanFixedDate"><code class="docutils literal notranslate"><span class="pre">NormalProbabilityNotLargerThanFixedDate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.ProbabilityModel"><code class="docutils literal notranslate"><span class="pre">ProbabilityModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.UniformProbabilityModel"><code class="docutils literal notranslate"><span class="pre">UniformProbabilityModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.probability_models.gumbel_max_sample"><code class="docutils literal notranslate"><span class="pre">gumbel_max_sample()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.similarity_measures">unseen_awg.similarity_measures module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.similarity_measures.mse_similarity"><code class="docutils literal notranslate"><span class="pre">mse_similarity()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.simulate_trajectory">unseen_awg.simulate_trajectory module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.simulate_trajectory.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.simulate_trajectory.simulate_trajectory"><code class="docutils literal notranslate"><span class="pre">simulate_trajectory()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.time_steppers">unseen_awg.time_steppers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.time_steppers.FractionalYearStepper"><code class="docutils literal notranslate"><span class="pre">FractionalYearStepper</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.time_steppers.NoLeapYearStepper"><code class="docutils literal notranslate"><span class="pre">NoLeapYearStepper</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.time_steppers.StandardStepper"><code class="docutils literal notranslate"><span class="pre">StandardStepper</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.time_steppers.TimeStepper"><code class="docutils literal notranslate"><span class="pre">TimeStepper</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.timestep_utils">unseen_awg.timestep_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.convert_to_cftime_gregorian"><code class="docutils literal notranslate"><span class="pre">convert_to_cftime_gregorian()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.dayofyear_year_to_datetime64"><code class="docutils literal notranslate"><span class="pre">dayofyear_year_to_datetime64()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.dayofyear_year_to_datetime64_naive"><code class="docutils literal notranslate"><span class="pre">dayofyear_year_to_datetime64_naive()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.is_in_window_from_time"><code class="docutils literal notranslate"><span class="pre">is_in_window_from_time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.is_in_window_from_year_fraction"><code class="docutils literal notranslate"><span class="pre">is_in_window_from_year_fraction()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.time_to_year_fraction_cftime"><code class="docutils literal notranslate"><span class="pre">time_to_year_fraction_cftime()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.timestep_utils.time_to_year_fraction_np_datetime64"><code class="docutils literal notranslate"><span class="pre">time_to_year_fraction_np_datetime64()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.tune_wg_by_forecasting">unseen_awg.tune_wg_by_forecasting module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.analog_ensemble_forecast"><code class="docutils literal notranslate"><span class="pre">analog_ensemble_forecast()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.crps_climatology"><code class="docutils literal notranslate"><span class="pre">crps_climatology()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.crps_persistence"><code class="docutils literal notranslate"><span class="pre">crps_persistence()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.crps_wg_forecasts"><code class="docutils literal notranslate"><span class="pre">crps_wg_forecasts()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.eval_analogue_forecast_skill"><code class="docutils literal notranslate"><span class="pre">eval_analogue_forecast_skill()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.eval_climatology_persistence_forecast"><code class="docutils literal notranslate"><span class="pre">eval_climatology_persistence_forecast()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.eval_wg"><code class="docutils literal notranslate"><span class="pre">eval_wg()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.get_gt"><code class="docutils literal notranslate"><span class="pre">get_gt()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.get_gt_coords"><code class="docutils literal notranslate"><span class="pre">get_gt_coords()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.get_n_valid_forecast_start_points"><code class="docutils literal notranslate"><span class="pre">get_n_valid_forecast_start_points()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.tune_wg_by_forecasting.persistence_forecast"><code class="docutils literal notranslate"><span class="pre">persistence_forecast()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.utils">unseen_awg.utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.utils.apply_similarity_metric"><code class="docutils literal notranslate"><span class="pre">apply_similarity_metric()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.utils.get_k_random_indices"><code class="docutils literal notranslate"><span class="pre">get_k_random_indices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.utils.get_k_smallest_indices"><code class="docutils literal notranslate"><span class="pre">get_k_smallest_indices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.utils.get_map_valid_n_day_transitions"><code class="docutils literal notranslate"><span class="pre">get_map_valid_n_day_transitions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.utils.grids_are_identical_subset"><code class="docutils literal notranslate"><span class="pre">grids_are_identical_subset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.utils.is_no_jump"><code class="docutils literal notranslate"><span class="pre">is_no_jump()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/unseen_awg.html#module-unseen_awg.weather_generator">unseen_awg.weather_generator module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.weather_generator.WeatherGenerator"><code class="docutils literal notranslate"><span class="pre">WeatherGenerator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.weather_generator.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/unseen_awg.html#unseen_awg.weather_generator.setup_lazy_similarity_dataset"><code class="docutils literal notranslate"><span class="pre">setup_lazy_similarity_dataset()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">unseen-awg</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">unseen_awg.time_steppers</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for unseen_awg.time_steppers</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Time stepping strategies for weather generation simulations.</span>
+
+<span class="sd">This module provides abstract and concrete implementations of time steppers</span>
+<span class="sd">that control how time progresses during weather generation. Different steppers</span>
+<span class="sd">handle various calendar systems and time representations.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Iterator</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">cftime</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">unseen_awg.timestep_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">time_to_year_fraction_cftime</span>
+
+
+<div class="viewcode-block" id="TimeStepper">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.time_steppers.TimeStepper">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">TimeStepper</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Abstract base class for time stepping strategies in weather generation.</span>
+
+<span class="sd">    This class defines a template for different time stepping methods,</span>
+<span class="sd">    allowing flexible time progression for weather simulation.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    blocksize : int</span>
+<span class="sd">        Number of days to advance in each time step.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    blocksize : int</span>
+<span class="sd">        Number of days to advance in each time step.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="TimeStepper.__init__">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.time_steppers.TimeStepper.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blocksize</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the time stepper with a specified block size.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        blocksize : int</span>
+<span class="sd">            Number of days to advance in each time step.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">blocksize</span> <span class="o">=</span> <span class="n">blocksize</span></div>
+
+
+<div class="viewcode-block" id="TimeStepper.__iter__">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.time_steppers.TimeStepper.__iter__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Make the time stepper iterable.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Iterator[Any]</span>
+<span class="sd">            The time stepper itself.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="TimeStepper.__next__">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.time_steppers.TimeStepper.__next__">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Abstract method to advance to the next time step.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Any</span>
+<span class="sd">            The next time step value(s).</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        StopIteration</span>
+<span class="sd">            When no more time steps are available.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="FractionalYearStepper">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.time_steppers.FractionalYearStepper">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">FractionalYearStepper</span><span class="p">(</span><span class="n">TimeStepper</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Time stepper that works with fractional year representations.</span>
+
+<span class="sd">    This stepper advances time using fractional year values.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    blocksize : int</span>
+<span class="sd">        Number of days to advance in each time step.</span>
+<span class="sd">    initial_time : cftime.DatetimeGregorian</span>
+<span class="sd">        Starting time for the simulation.</span>
+<span class="sd">    reference_time : cftime.DatetimeGregorian</span>
+<span class="sd">        Reference time used for fractional year calculations.</span>
+<span class="sd">    tropical_year : float, optional</span>
+<span class="sd">        Length of tropical year in days, by default 365.2422.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    blocksize : int</span>
+<span class="sd">        Number of days to advance in each time step.</span>
+<span class="sd">    initial_time : cftime.DatetimeGregorian</span>
+<span class="sd">        Starting time for the simulation.</span>
+<span class="sd">    reference_time : cftime.DatetimeGregorian</span>
+<span class="sd">        Reference time used for fractional year calculations.</span>
+<span class="sd">    tropical_year : float</span>
+<span class="sd">        Length of tropical year in days.</span>
+<span class="sd">    daily_increment : float</span>
+<span class="sd">        Fractional year increment per day.</span>
+<span class="sd">    current_year_fraction : float</span>
+<span class="sd">        Current position as fractional year.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="FractionalYearStepper.__init__">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.time_steppers.FractionalYearStepper.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">blocksize</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">initial_time</span><span class="p">:</span> <span class="n">cftime</span><span class="o">.</span><span class="n">DatetimeGregorian</span><span class="p">,</span>
+        <span class="n">reference_time</span><span class="p">:</span> <span class="n">cftime</span><span class="o">.</span><span class="n">DatetimeGregorian</span><span class="p">,</span>
+        <span class="n">tropical_year</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">365.2422</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the fractional year stepper.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        blocksize : int</span>
+<span class="sd">            Number of days to advance in each time step.</span>
+<span class="sd">        initial_time : cftime.DatetimeGregorian</span>
+<span class="sd">            Starting time for the simulation.</span>
+<span class="sd">        reference_time : cftime.DatetimeGregorian</span>
+<span class="sd">            Reference time used for fractional year calculations.</span>
+<span class="sd">        tropical_year : float, optional</span>
+<span class="sd">            Length of tropical year in days, by default 365.2422.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">blocksize</span> <span class="o">=</span> <span class="n">blocksize</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initial_time</span> <span class="o">=</span> <span class="n">initial_time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reference_time</span> <span class="o">=</span> <span class="n">reference_time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tropical_year</span> <span class="o">=</span> <span class="n">tropical_year</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">daily_increment</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">tropical_year</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_year_fraction</span> <span class="o">=</span> <span class="n">time_to_year_fraction_cftime</span><span class="p">(</span>
+            <span class="n">time</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_time</span><span class="p">,</span>
+            <span class="n">ref_time</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reference_time</span><span class="p">,</span>
+            <span class="n">tropical_year</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tropical_year</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="FractionalYearStepper.__next__">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.time_steppers.FractionalYearStepper.__next__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Advance to the next time step.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        float</span>
+<span class="sd">            Current fractional year before advancing.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">current_fraction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_year_fraction</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_year_fraction</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">daily_increment</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">blocksize</span>
+        <span class="k">return</span> <span class="n">current_fraction</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="StandardStepper">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.time_steppers.StandardStepper">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">StandardStepper</span><span class="p">(</span><span class="n">TimeStepper</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Standard time stepper using Gregorian calendar with leap years.</span>
+
+<span class="sd">    This stepper advances time using standard datetime objects and provides</span>
+<span class="sd">    both datetime and fractional year representations.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    init_year : int</span>
+<span class="sd">        Initial year for the simulation.</span>
+<span class="sd">    init_month : int</span>
+<span class="sd">        Initial month for the simulation.</span>
+<span class="sd">    init_day : int</span>
+<span class="sd">        Initial day for the simulation.</span>
+<span class="sd">    blocksize : int</span>
+<span class="sd">        Number of days to advance in each time step.</span>
+<span class="sd">    tropical_year : float, optional</span>
+<span class="sd">        Length of tropical year in days, by default 365.2422.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    blocksize : int</span>
+<span class="sd">        Number of days to advance in each time step.</span>
+<span class="sd">    initial_time : cftime.DatetimeGregorian</span>
+<span class="sd">        Starting time for the simulation.</span>
+<span class="sd">    ref_time : cftime.DatetimeGregorian</span>
+<span class="sd">        Reference time (2000-01-01) for fractional year calculations.</span>
+<span class="sd">    tropical_year : float</span>
+<span class="sd">        Length of tropical year in days.</span>
+<span class="sd">    daily_increment : float</span>
+<span class="sd">        Fractional year increment per day.</span>
+<span class="sd">    initial_year_fraction : float</span>
+<span class="sd">        Initial position as fractional year.</span>
+<span class="sd">    current_year_fraction : float</span>
+<span class="sd">        Current position as fractional year.</span>
+<span class="sd">    current_time : cftime.DatetimeGregorian</span>
+<span class="sd">        Current datetime.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    Uses cftime.DatetimeGregorian instead of standard datetime to avoid</span>
+<span class="sd">    issues with time delta calculations in time conversion operations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="StandardStepper.__init__">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.time_steppers.StandardStepper.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">init_year</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">init_month</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">init_day</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">blocksize</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">tropical_year</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">365.2422</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the standard stepper.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        init_year : int</span>
+<span class="sd">            Initial year for the simulation.</span>
+<span class="sd">        init_month : int</span>
+<span class="sd">            Initial month for the simulation.</span>
+<span class="sd">        init_day : int</span>
+<span class="sd">            Initial day for the simulation.</span>
+<span class="sd">        blocksize : int</span>
+<span class="sd">            Number of days to advance in each time step.</span>
+<span class="sd">        tropical_year : float, optional</span>
+<span class="sd">            Length of tropical year in days, by default 365.2422.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">blocksize</span> <span class="o">=</span> <span class="n">blocksize</span>
+        <span class="c1"># Use cftime.DatetimeGregorian to avoid time conversion issues</span>
+        <span class="c1"># when time deltas are added</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initial_time</span> <span class="o">=</span> <span class="n">cftime</span><span class="o">.</span><span class="n">DatetimeGregorian</span><span class="p">(</span>
+            <span class="n">year</span><span class="o">=</span><span class="n">init_year</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="n">init_month</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="n">init_day</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ref_time</span> <span class="o">=</span> <span class="n">cftime</span><span class="o">.</span><span class="n">DatetimeGregorian</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tropical_year</span> <span class="o">=</span> <span class="n">tropical_year</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">daily_increment</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">tropical_year</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">initial_year_fraction</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_time</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">ref_time</span><span class="p">)</span>
+            <span class="o">/</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">tropical_year</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_year_fraction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_year_fraction</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_time</span></div>
+
+
+<div class="viewcode-block" id="StandardStepper.__next__">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.time_steppers.StandardStepper.__next__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">cftime</span><span class="o">.</span><span class="n">DatetimeGregorian</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Advance to the next time step.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        tuple[cftime.DatetimeGregorian, float]</span>
+<span class="sd">            Tuple containing current datetime and current fractional year</span>
+<span class="sd">            before advancing.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">current_datetime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_time</span>
+        <span class="n">current_fraction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_year_fraction</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_time</span> <span class="o">+=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">blocksize</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_year_fraction</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_time</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">ref_time</span><span class="p">)</span> <span class="o">/</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">daily_increment</span>
+
+        <span class="k">return</span> <span class="n">current_datetime</span><span class="p">,</span> <span class="n">current_fraction</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="NoLeapYearStepper">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.time_steppers.NoLeapYearStepper">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">NoLeapYearStepper</span><span class="p">(</span><span class="n">TimeStepper</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Time stepper using a no-leap-year calendar system.</span>
+
+<span class="sd">    This stepper advances time using a calendar without leap years,</span>
+<span class="sd">    ensuring consistent 365-day years. The fractional year calculation</span>
+<span class="sd">    wraps around at 365 days to maintain annual periodicity.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    init_year : int</span>
+<span class="sd">        Initial year for the simulation.</span>
+<span class="sd">    init_month : int</span>
+<span class="sd">        Initial month for the simulation.</span>
+<span class="sd">    init_day : int</span>
+<span class="sd">        Initial day for the simulation.</span>
+<span class="sd">    blocksize : int</span>
+<span class="sd">        Number of days to advance in each time step.</span>
+<span class="sd">    tropical_year : float, optional</span>
+<span class="sd">        Length of tropical year in days, by default 365.2422.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    blocksize : int</span>
+<span class="sd">        Number of days to advance in each time step.</span>
+<span class="sd">    initial_time : cftime.DatetimeNoLeap</span>
+<span class="sd">        Starting time for the simulation.</span>
+<span class="sd">    ref_time : cftime.DatetimeNoLeap</span>
+<span class="sd">        Reference time (2000-01-01) for fractional year calculations.</span>
+<span class="sd">    tropical_year : float</span>
+<span class="sd">        Length of tropical year in days.</span>
+<span class="sd">    daily_increment : float</span>
+<span class="sd">        Fractional year increment per day.</span>
+<span class="sd">    initial_year_fraction : float</span>
+<span class="sd">        Initial position as fractional year.</span>
+<span class="sd">    current_year_fraction : float</span>
+<span class="sd">        Current position as fractional year.</span>
+<span class="sd">    current_time : cftime.DatetimeNoLeap</span>
+<span class="sd">        Current datetime.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The fractional year calculation uses modulo 365 to ensure proper</span>
+<span class="sd">    wrapping for the no-leap-year calendar system.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="NoLeapYearStepper.__init__">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.time_steppers.NoLeapYearStepper.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">init_year</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">init_month</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">init_day</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">blocksize</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">tropical_year</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">365.2422</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the no-leap-year stepper.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        init_year : int</span>
+<span class="sd">            Initial year for the simulation.</span>
+<span class="sd">        init_month : int</span>
+<span class="sd">            Initial month for the simulation.</span>
+<span class="sd">        init_day : int</span>
+<span class="sd">            Initial day for the simulation.</span>
+<span class="sd">        blocksize : int</span>
+<span class="sd">            Number of days to advance in each time step.</span>
+<span class="sd">        tropical_year : float, optional</span>
+<span class="sd">            Length of tropical year in days, by default 365.2422.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">blocksize</span> <span class="o">=</span> <span class="n">blocksize</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initial_time</span> <span class="o">=</span> <span class="n">cftime</span><span class="o">.</span><span class="n">DatetimeNoLeap</span><span class="p">(</span>
+            <span class="n">year</span><span class="o">=</span><span class="n">init_year</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="n">init_month</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="n">init_day</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ref_time</span> <span class="o">=</span> <span class="n">cftime</span><span class="o">.</span><span class="n">DatetimeNoLeap</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tropical_year</span> <span class="o">=</span> <span class="n">tropical_year</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">daily_increment</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">tropical_year</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">initial_year_fraction</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_time</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">ref_time</span><span class="p">)</span>
+            <span class="o">/</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">tropical_year</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_year_fraction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_year_fraction</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_time</span></div>
+
+
+<div class="viewcode-block" id="NoLeapYearStepper.__next__">
+<a class="viewcode-back" href="../../api/unseen_awg.html#unseen_awg.time_steppers.NoLeapYearStepper.__next__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">cftime</span><span class="o">.</span><span class="n">DatetimeNoLeap</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Advance to the next time step.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        tuple[cftime.DatetimeNoLeap, float]</span>
+<span class="sd">            Tuple containing current datetime and current fractional year</span>
+<span class="sd">            before advancing.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        The fractional year is calculated with modulo 365 to ensure</span>
+<span class="sd">        proper wrapping for the no-leap-year calendar.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">current_datetime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_time</span>
+        <span class="n">current_fraction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_year_fraction</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_time</span> <span class="o">+=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">blocksize</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_year_fraction</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">current_time</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">ref_time</span><span class="p">)</span> <span class="o">/</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> <span class="o">%</span> <span class="mi">365</span>
+        <span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">daily_increment</span>
+
+        <span class="k">return</span> <span class="n">current_datetime</span><span class="p">,</span> <span class="n">current_fraction</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
