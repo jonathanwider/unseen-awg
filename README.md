@@ -37,6 +37,8 @@ Additionally, we include preprocessed daily ERA5 data retrieved from the Coperni
 In the `data/` subdirectory, we include a land-sea mask derived from ERA5 data (CC BY 4.0).
 
 
+![Gif of unseen-awg simulations showing fields of geopotential height at 500hPa, daily total precipitation sums, and daily mean, maximum, and minimum temperatures over Europe.](docs/source/images/animation_all_vars.gif)
+
 > [1] ECMWF (2023). IFS Documentation CY48R1 - Part V: Ensemble Prediction System. DOI: [https://doi.org/10.21957/E529074162](https://doi.org/10.21957/E529074162)
 
 > [2] Hersbach, H., Comyn-Platt, E., Bell, B., Berrisford, P., Biavati, G., Horányi, A., Muñoz Sabater, J., Nicolas, J., Peubey, C., Radu, R., Rozum, I., Schepers, D., Simmons, A., Soci, C., Dee, D., Thépaut, J-N., Cagnazo, C., Cucchi, M. (2023): ERA5 post-processed daily-statistics on pressure levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS), DOI: [https://doi.org/10.24381/cds.4991cf48](https://doi.org/10.24381/cds.4991cf48)
