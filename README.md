@@ -6,7 +6,7 @@
 
 # Spatio-temporal weather generation using analogs and unseen data
 
-unseen-awg provides a method for the generation of spatio-temporal weather data from "UNSEEN" reforecast data, i.e. data from weather forecasts initialized with historical weather conditions.
+*unseen-awg* provides a method for the generation of spatio-temporal weather data from "UNSEEN" reforecast data, i.e. data from weather forecasts initialized with historical weather conditions.
 
 **You want to analyze simulations created with the weather generator?**
 - We provide 500 21-year simulations with the weather generator and a reforecast dataset of impact-relevant atmospheric variables over Europe at 0.4° resolution [[ECMWF Data]](ecmwf-data).
@@ -14,7 +14,7 @@ unseen-awg provides a method for the generation of spatio-temporal weather data 
 **You want to generate new simulations with a weather generator?**
 - We provide a weather generator with precomputed similarities.
 
-**You want to set up your own (unseen-awg) weather generator?**
+**You want to set up your own (*unseen-awg*) weather generator?**
 - We provide a reforecast dataset of geopotential height fields [[ECMWF Data]](ecmwf-data) as a starting point for a new weather generator.
 
 ## Accompanying resources
@@ -23,20 +23,20 @@ unseen-awg provides a method for the generation of spatio-temporal weather data 
 | Paper preprint | To be submitted. |
 | User guide | [https://jonathanwider.github.io/unseen-awg/](https://jonathanwider.github.io/unseen-awg/) |
 | Achived input ECMWF data ([overview](ecmwf-data)) | [https://www.wdc-climate.de/ui/entry?acronym=unsawg_inp](https://www.wdc-climate.de/ui/entry?acronym=unsawg_inp) |
-| Unseen-awg instance and simulations | [https://www.wdc-climate.de/ui/entry?acronym=unsawg_wg](https://www.wdc-climate.de/ui/entry?acronym=unsawg_wg) |
+| *unseen-awg* instance and simulations | [https://www.wdc-climate.de/ui/entry?acronym=unsawg_wg](https://www.wdc-climate.de/ui/entry?acronym=unsawg_wg) |
 | Evaluation code | [https://codebase.helmholtz.cloud/jonathan.wider/eval-unseen-awg](https://codebase.helmholtz.cloud/jonathan.wider/eval-unseen-awg)|
 
 ## Installation
 Installation instructions are specified in the [user guide](accompanying-resources).
 
 ## Data & model availability
-We release data to allow reproducing our results and creating new unseen-awg weather generators as described in the table of [accompanying resources](accompanying-resources).
+We release data to allow reproducing our results and creating new *unseen-awg* weather generators as described in the table of [accompanying resources](accompanying-resources).
 A high-level introduction on how to work with these data is given in the [user guide](accompanying-resources).
 
 ## ECMWF data
 Our work utilizes data from the European Centre for Medium-Range Weather Forecasts (ECMWF, [www.ecmwf.int](www.ecmwf.int)). 
 
-In the [accompanying resources](accompanying-resources), we make available a preprocessed version of their "Extended ensemble forecast hindcast" dataset [1] from cycle 48r1 of the Integrated Forecast System (IFS). The preprocessed version follows the input data format used by `unseen-awg`.
+In the [accompanying resources](accompanying-resources), we make available a preprocessed version of their "Extended ensemble forecast hindcast" dataset [1] from cycle 48r1 of the Integrated Forecast System (IFS). The preprocessed version follows the input data format used by *unseen-awg*.
 
 This data is published under a Creative Commons Attribution 4.0 International (CC BY 4.0) license https://creativecommons.org/licenses/by/4.0/
 
@@ -54,7 +54,7 @@ In the `data/` subdirectory, we include a land-sea mask derived from ERA5 data (
 
 
 
-An example simulation created with unseen-awg
+An example simulation created with *unseen-awg*
 
 <div align="center">
   <img src="docs/source/images/animation_all_vars.gif" width="600" alt="Gif of unseen-awg simulations showing fields of geopotential height at 500hPa, daily total precipitation sums, and daily mean, maximum, and minimum temperatures over Europe."/>
