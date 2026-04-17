@@ -35,7 +35,7 @@ Our work utilizes data from the European Centre for Medium-Range Weather Forecas
 
 In the [accompanying resources](#accompanying-resources), we make available a preprocessed version of their "Extended ensemble forecast hindcast" dataset [1] from cycle 48r1 of the Integrated Forecast System (IFS). The preprocessed version follows the input data format used by *unseen-awg*.
 
-This data is published under a Creative Commons Attribution 4.0 International (CC BY 4.0) license https://creativecommons.org/licenses/by/4.0/
+This data is published under a Creative Commons Attribution 4.0 International (CC BY 4.0) license https://creativecommons.org/licenses/by/4.0/.
 
 Disclaimer: ECMWF does not accept any liability whatsoever for any error or omission in the data, their availability, or for any loss or damage arising from their use.
 
