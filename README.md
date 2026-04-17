@@ -4,7 +4,7 @@
   <img alt="unseen-awg logo" src="docs/source/images/wg.png" width="400">
 </picture>
 
-# unseen-awg: spatio-temporal weather generation using analogs and unseen data
+# Spatio-temporal weather generation using analogs and unseen data
 
 unseen-awg provides a method for the generation of spatio-temporal weather data from "UNSEEN" reforecast data, i.e. data from weather forecasts initialized with historical weather conditions.
 
