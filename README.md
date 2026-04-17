@@ -1,7 +1,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/source/images/wg_white_with_text.png">
   <source media="(prefers-color-scheme: light)" srcset="docs/source/images/wg.png">
-  <img alt="unseen-awg logo" src="docs/source/images/wg.png" width="300">
+  <img alt="unseen-awg logo" src="docs/source/images/wg.png" width="500">
 </picture>
 
 # Spatio-temporal weather generation using analogs and unseen data
@@ -53,7 +53,9 @@ In the `data/` subdirectory, we include a land-sea mask derived from ERA5 data (
 > [3] Copernicus Climate Change Service, Climate Data Store, (2024): ERA5 post-processed daily-statistics on single levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS), DOI: [https://doi.org/10.24381/cds.4991cf48](https://doi.org/10.24381/cds.4991cf48)
 
 
-## An example simulation created with unseen-awg
+
+An example simulation created with unseen-awg
+
 <div align="center">
   <img src="docs/source/images/animation_all_vars.gif" width="600" alt="Gif of unseen-awg simulations showing fields of geopotential height at 500hPa, daily total precipitation sums, and daily mean, maximum, and minimum temperatures over Europe."/>
 </div>
