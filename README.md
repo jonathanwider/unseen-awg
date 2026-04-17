@@ -54,4 +54,4 @@ In the `data/` subdirectory, we include a land-sea mask derived from ERA5 data (
 
 
 ## An example simulation created with unseen-awg
-![Gif of unseen-awg simulations showing fields of geopotential height at 500hPa, daily total precipitation sums, and daily mean, maximum, and minimum temperatures over Europe.](docs/source/images/animation_all_vars.gif)
+<img src="docs/source/images/animation_all_vars.gif" width="600" alt="Gif of unseen-awg simulations showing fields of geopotential height at 500hPa, daily total precipitation sums, and daily mean, maximum, and minimum temperatures over Europe."/>
