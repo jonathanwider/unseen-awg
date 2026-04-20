@@ -1,4 +1,4 @@
-# *unseen-awg*: analog weather generation using UNSEEN data
+# *unseen-awg*: spatio-temporal weather generation using analogs and unseen data
 
 ```{toctree}
 :maxdepth: 1

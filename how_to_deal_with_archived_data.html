@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Downloading and preparing archived data &mdash; unseen-awg 0.1.0 documentation</title>
+  <title>Data download and preparation &mdash; unseen-awg 0.1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
@@ -20,7 +20,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Using the provided simulations" href="how_to_use_simulations.html" />
+    <link rel="next" title="The provided simulations" href="how_to_use_simulations.html" />
     <link rel="prev" title="Installation" href="installation.html" /> 
 </head>
 
@@ -45,31 +45,37 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="what_is_unseen_awg.html">What is unseen-awg?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="what_is_unseen_awg.html">What is <em>unseen-awg</em>?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#adapting-predefined-paths">Adapting predefined paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#defining-paths-in-configs-paths-yaml">Defining paths in <code class="docutils literal notranslate"><span class="pre">configs/paths.yaml</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Downloading and preparing archived data</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#extracting-the-data">Extracting the data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#snakemake-workflow-integration">Snakemake workflow integration</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#extract-the-input-datasets">1. Extract the input datasets:</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Data download and preparation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#data-extraction">Data extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#integrating-extracted-data-into-provided-snakemake-workflow">Integrating extracted data into provided Snakemake workflow</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_use_simulations.html">The provided simulations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="how_to_use_simulations.html#opening-the-simulations-using-xarray">Opening the simulations using xarray</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="how_to_use_simulations.html">Using the provided simulations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="how_to_use_wg_to_create_simulations.html">Simulating time series with the provided <em>unseen-awg</em> weather generator</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="how_to_use_wg_to_create_simulations.html#each-weather-generator-is-stored-in-a-directory">Each weather generator is stored in a directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_use_wg_to_create_simulations.html">Creating new simulations with the provided <em>unseen-awg</em> weather generator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="how_to_use_wg_to_create_simulations.html#storage-format">Storage format</a></li>
 <li class="toctree-l2"><a class="reference internal" href="how_to_use_wg_to_create_simulations.html#loading-a-weather-generator">Loading a Weather Generator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="how_to_use_wg_to_create_simulations.html#sampling-a-time-series-with-the-weather-generator">Sampling a Time Series With the Weather Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_to_use_wg_to_create_simulations.html#sampling-a-time-series-with-the-weather-generator">Sampling a time series with the weather generator</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="how_to_train_wg.html">Constructing an <em>unseen-awg</em> weather generator</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="how_to_train_wg.html#using-snakemake-to-configure-generation">Using Snakemake to Configure Generation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="how_to_train_wg.html#preprocessing-details-and-motivation">Preprocessing Details and Motivation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="how_to_train_wg.html#reforecast-data">Reforecast Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="how_to_train_wg.html#era5-data">ERA5 Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_train_wg.html">Creating new <em>unseen-awg</em> weather generators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="how_to_train_wg.html#using-snakemake-to-configure-weather-generators">Using Snakemake to configure weather generators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="how_to_train_wg.html#configuration-files">Configuration files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how_to_train_wg.html#a-note-on-resource-demands">A note on resource demands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how_to_train_wg.html#visualizing-the-snakemake-workflow">Visualizing the Snakemake workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="how_to_train_wg.html#preprocessing-details-and-motivation">Preprocessing details and motivation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="how_to_train_wg.html#from-initiazlization-time-and-lead-time-to-valid-time-and-sample">From initiazlization time and lead time to valid time and sample</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how_to_train_wg.html#splitting-valid-time-dimension-into-year-and-dayofyear">Splitting valid time dimension into year and dayofyear</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how_to_train_wg.html#a-note-on-the-provided-era5-datasets">A note on the provided ERA5 datasets</a></li>
 </ul>
 </li>
 </ul>
@@ -185,7 +191,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Downloading and preparing archived data</li>
+      <li class="breadcrumb-item active">Data download and preparation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/how_to_deal_with_archived_data.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -195,44 +201,49 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section class="tex2jax_ignore mathjax_ignore" id="downloading-and-preparing-archived-data">
-<h1>Downloading and preparing archived data<a class="headerlink" href="#downloading-and-preparing-archived-data" title="Link to this heading"></a></h1>
-<p>A set of archived data are available at [TODO: insert link/DOI]. This dataset allows you to:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="data-download-and-preparation">
+<span id="data-download"></span><h1>Data download and preparation<a class="headerlink" href="#data-download-and-preparation" title="Link to this heading"></a></h1>
+<p>A set of archived data are available at the <a class="reference external" href="https://www.wdc-climate.de/">World Data Center for Climate</a>: <a class="reference external" href="https://www.wdc-climate.de/ui/entry?acronym=unsawg_wg_sim">https://www.wdc-climate.de/ui/entry?acronym=unsawg_wg_sim</a>.</p>
+<p>The data are split into two “Experiments”:</p>
 <ul class="simple">
-<li><p>Use existing unseen-awg simulations.</p></li>
-<li><p>Generate new simulations.</p></li>
-<li><p>Create new unseen-awg instances.</p></li>
+<li><p><a class="reference external" href="https://www.wdc-climate.de/ui/entry?acronym=unsawg_wg">“An instance of the analog weather generator unseen-awg with precomputed similarities and a large set of generated weather data”</a></p></li>
+<li><p><a class="reference external" href="https://www.wdc-climate.de/ui/entry?acronym=unsawg_inp">“Preprocessed atmospheric circulation and impact-relevant variables from ERA5 and “Extended ensemble forecast hindcast” (ECMWF) for unseen-awg simulations”</a></p></li>
 </ul>
-<p>The archived data consist of NetCDF4 files and Zarr stores. For practical reasons, the Zarr stores are archived as multi-part (split) zip files. When using the Zarr stores, you must unzip all partial files for a given dataset together; otherwise, the resulting store will suffer from missing data.</p>
-<section id="extracting-the-data">
-<span id="extracting-data"></span><h2>Extracting the data<a class="headerlink" href="#extracting-the-data" title="Link to this heading"></a></h2>
-<p>We provide a script called unzip_provided_datasets.sh to facilitate a safe extraction. The general syntax is:</p>
+<p>Together, these data allow:</p>
+<ul class="simple">
+<li><p>Using an existing large dataset of <em>unseen-awg</em> simulations. Available impact-relevant variables are: daily minimum, maximum, and mean temperatures, daily total precipitation sums.</p></li>
+<li><p>Generating new simulations.</p></li>
+<li><p>Creating new <em>unseen-awg</em> instances.</p></li>
+</ul>
+<p>No bias correction was applied to these datasets. The provided <a class="reference internal" href="#snakemake-workflow"><span class="std std-ref">Snakemake workflow</span></a> allows applying simple mean bias correction (per lead time, location and day of year) to the temperature variables; implementing more elaborate for bias computation and correction methods is possible.</p>
+<section id="data-extraction">
+<span id="extracting-data"></span><h2>Data extraction<a class="headerlink" href="#data-extraction" title="Link to this heading"></a></h2>
+<p>The archived data consist of NetCDF4 files and Zarr stores. For practical reasons, the Zarr stores are archived as multi-part (split) zip files. When using the Zarr stores, you must unzip all partial files for a given dataset; otherwise, the resulting store will suffer from missing data.</p>
+<p>We provide a script <code class="docutils literal notranslate"><span class="pre">unzip_provided_datasets.sh</span></code> to facilitate unzipping the data. The general syntax is:</p>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>./unzip_provided_datasets.sh<span class="w"> </span>&lt;dir_containing_zipped_files&gt;<span class="w"> </span>&lt;dir_target&gt;
 </pre></div>
 </div>
 </section>
-<section id="snakemake-workflow-integration">
-<h2>Snakemake workflow integration<a class="headerlink" href="#snakemake-workflow-integration" title="Link to this heading"></a></h2>
-<p>In <code class="docutils literal notranslate"><span class="pre">workflow/</span></code>, we also provide a Snakemake workflow to facilitate using this data. The extraction script automatically generates directory and file names that are compatible with this workflow (e.g., it includes parameter hashes in the file names).</p>
-<p>To use the workflow, the unzipped data must be placed in the specific directories defined in <code class="docutils literal notranslate"><span class="pre">configs/paths.yaml</span></code> (the paths can be modified in this file).</p>
-<section id="extract-the-input-datasets">
-<h3>1. Extract the input datasets:<a class="headerlink" href="#extract-the-input-datasets" title="Link to this heading"></a></h3>
-<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>./unzip_provided_datasets.sh<span class="w"> </span>dir_with_partial_files<span class="w"> </span>dir_preprocessed_datasets
+<section id="integrating-extracted-data-into-provided-snakemake-workflow">
+<span id="snakemake-workflow"></span><h2>Integrating extracted data into provided Snakemake workflow<a class="headerlink" href="#integrating-extracted-data-into-provided-snakemake-workflow" title="Link to this heading"></a></h2>
+<p>The directory <code class="docutils literal notranslate"><span class="pre">workflow/</span></code> contains the <a class="reference external" href="https://snakemake.readthedocs.io/">Snakemake</a> workflow we built for our study. It can be used to generate new weather generators or bias-corrected datasets of impact-relevant variables.</p>
+<p>Unzipping the data results in a directory structure and file names that facilitate integration into this workflow (e.g., file names include parameter hashes).</p>
+<p>To use the workflow, the unzipped data must be placed in the specific directories defined in <code class="docutils literal notranslate"><span class="pre">configs/paths.yaml</span></code> (where important base directories are defined, as described <a class="reference internal" href="installation.html#configs-paths"><span class="std std-ref">here</span></a>). The weather generator’s directory must be placed in the <code class="docutils literal notranslate"><span class="pre">&lt;dir_wgs&gt;</span></code> directory, the input datasets in <code class="docutils literal notranslate"><span class="pre">&lt;dir_preprocessed_datasets&gt;</span></code>, i.e.,</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>./unzip_provided_datasets.sh<span class="w"> </span>&lt;dir_with_partial_weather_generator_files&gt;<span class="w"> </span>&lt;dir_preprocessed_datasets&gt;
 </pre></div>
 </div>
-<p>####2. Extract the weather generator instances:</p>
-<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>./unzip_provided_datasets.sh<span class="w"> </span>dir_with_partial_files<span class="w"> </span>dir_wgs
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>./unzip_provided_datasets.sh<span class="w"> </span>&lt;dir_with_partial_input_files&gt;<span class="w"> </span>&lt;dir_wgs&gt;
 </pre></div>
 </div>
 <p>After extraction, your resulting directory paths should look like this:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>dir_wgs/wg_reforecasts_5e06172f_f40e9460_1e69bda9
-dir_preprocessed_datasets/preprocessed_impact_variables_reforecasts/combined_7d1d3d97.zarr
-dir_preprocessed_datasets/preprocessed_impact_variables_era5/combined_facc0e91.zarr
-dir_preprocessed_datasets/preprocessed_circulation_reforecasts/combined_5e06172f.zarr
-dir_preprocessed_datasets/preprocessed_circulation_era5/combined_f3d1f2f7.zarr
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;dir_wgs&gt;/wg_reforecasts_5e06172f_f40e9460_1e69bda9
+&lt;dir_preprocessed_datasets&gt;/preprocessed_impact_variables_reforecasts/combined_7d1d3d97.zarr
+&lt;dir_preprocessed_datasets&gt;/preprocessed_impact_variables_era5/combined_facc0e91.zarr
+&lt;dir_preprocessed_datasets&gt;/preprocessed_circulation_reforecasts/combined_5e06172f.zarr
+&lt;dir_preprocessed_datasets&gt;/preprocessed_circulation_era5/combined_f3d1f2f7.zarr
 </pre></div>
 </div>
-</section>
+<p>There is no prescribed path that the provided <em>unseen-awg</em> simulations must be stored under.</p>
 </section>
 </section>
 
@@ -241,7 +252,7 @@ dir_preprocessed_datasets/preprocessed_circulation_era5/combined_f3d1f2f7.zarr
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="how_to_use_simulations.html" class="btn btn-neutral float-right" title="Using the provided simulations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="how_to_use_simulations.html" class="btn btn-neutral float-right" title="The provided simulations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

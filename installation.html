@@ -20,7 +20,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Downloading and preparing archived data" href="how_to_deal_with_archived_data.html" />
+    <link rel="next" title="Data download and preparation" href="how_to_deal_with_archived_data.html" />
     <link rel="prev" title="What is unseen-awg?" href="what_is_unseen_awg.html" /> 
 </head>
 
@@ -45,31 +45,37 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="what_is_unseen_awg.html">What is unseen-awg?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="what_is_unseen_awg.html">What is <em>unseen-awg</em>?</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#adapting-predefined-paths">Adapting predefined paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#defining-paths-in-configs-paths-yaml">Defining paths in <code class="docutils literal notranslate"><span class="pre">configs/paths.yaml</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="how_to_deal_with_archived_data.html">Downloading and preparing archived data</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="how_to_deal_with_archived_data.html#extracting-the-data">Extracting the data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="how_to_deal_with_archived_data.html#snakemake-workflow-integration">Snakemake workflow integration</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="how_to_deal_with_archived_data.html#extract-the-input-datasets">1. Extract the input datasets:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_deal_with_archived_data.html">Data download and preparation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="how_to_deal_with_archived_data.html#data-extraction">Data extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_to_deal_with_archived_data.html#integrating-extracted-data-into-provided-snakemake-workflow">Integrating extracted data into provided Snakemake workflow</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_use_simulations.html">The provided simulations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="how_to_use_simulations.html#opening-the-simulations-using-xarray">Opening the simulations using xarray</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="how_to_use_simulations.html">Using the provided simulations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="how_to_use_wg_to_create_simulations.html">Simulating time series with the provided <em>unseen-awg</em> weather generator</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="how_to_use_wg_to_create_simulations.html#each-weather-generator-is-stored-in-a-directory">Each weather generator is stored in a directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_use_wg_to_create_simulations.html">Creating new simulations with the provided <em>unseen-awg</em> weather generator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="how_to_use_wg_to_create_simulations.html#storage-format">Storage format</a></li>
 <li class="toctree-l2"><a class="reference internal" href="how_to_use_wg_to_create_simulations.html#loading-a-weather-generator">Loading a Weather Generator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="how_to_use_wg_to_create_simulations.html#sampling-a-time-series-with-the-weather-generator">Sampling a Time Series With the Weather Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_to_use_wg_to_create_simulations.html#sampling-a-time-series-with-the-weather-generator">Sampling a time series with the weather generator</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="how_to_train_wg.html">Constructing an <em>unseen-awg</em> weather generator</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="how_to_train_wg.html#using-snakemake-to-configure-generation">Using Snakemake to Configure Generation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="how_to_train_wg.html#preprocessing-details-and-motivation">Preprocessing Details and Motivation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="how_to_train_wg.html#reforecast-data">Reforecast Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="how_to_train_wg.html#era5-data">ERA5 Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_train_wg.html">Creating new <em>unseen-awg</em> weather generators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="how_to_train_wg.html#using-snakemake-to-configure-weather-generators">Using Snakemake to configure weather generators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="how_to_train_wg.html#configuration-files">Configuration files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how_to_train_wg.html#a-note-on-resource-demands">A note on resource demands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how_to_train_wg.html#visualizing-the-snakemake-workflow">Visualizing the Snakemake workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="how_to_train_wg.html#preprocessing-details-and-motivation">Preprocessing details and motivation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="how_to_train_wg.html#from-initiazlization-time-and-lead-time-to-valid-time-and-sample">From initiazlization time and lead time to valid time and sample</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how_to_train_wg.html#splitting-valid-time-dimension-into-year-and-dayofyear">Splitting valid time dimension into year and dayofyear</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how_to_train_wg.html#a-note-on-the-provided-era5-datasets">A note on the provided ERA5 datasets</a></li>
 </ul>
 </li>
 </ul>
@@ -197,24 +203,24 @@
              
   <section class="tex2jax_ignore mathjax_ignore" id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h1>
-<p>Conda is used to install the required dependencies because at the time of writing the installation of the required xESMF package through pip wasn’t straightforward.</p>
-<p>To install and activate the conda environment, navigate to the package’s base directory and run:</p>
+<p>Conda is used to manage and install required dependencies.</p>
+<p>To install and activate the provided conda environment, navigate <em>unseen-awg</em>’s base directory and run:</p>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>env<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>env.yml
 conda<span class="w"> </span>activate<span class="w"> </span>unseen-awg
 pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="w">  </span><span class="c1"># Install the unseen-awg package in development mode</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">unseen_awg</span></code> source code is installed in editable mode.</p>
-<p>Alternatively, we also provide the environment as conda-lock.yml, created with <code class="docutils literal notranslate"><span class="pre">conda-lock</span></code>. To install it:</p>
+<p>Alternatively, we also provide the environment as <code class="docutils literal notranslate"><span class="pre">conda-lock.yml</span></code>, created with <code class="docutils literal notranslate"><span class="pre">conda-lock</span></code>. To install it:</p>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>conda-lock
 conda-lock<span class="w"> </span>install<span class="w"> </span>-n<span class="w"> </span>unseen-awg<span class="w"> </span>conda-lock.yml
 conda<span class="w"> </span>activate<span class="w"> </span>unseen-awg
 pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
 </pre></div>
 </div>
-<section id="adapting-predefined-paths">
-<h2>Adapting predefined paths<a class="headerlink" href="#adapting-predefined-paths" title="Link to this heading"></a></h2>
-<p>Base directories for different components of the unseen-awg workflow are specified in <code class="docutils literal notranslate"><span class="pre">configs/</span></code>. Use the provided <code class="docutils literal notranslate"><span class="pre">configs/paths_template.yaml</span></code> to create a <code class="docutils literal notranslate"><span class="pre">configs/paths.yaml</span></code> containing your own paths.</p>
+<p>Both methods should yield similar results but they may differ in the precise versions of packages being installed. In both cases, the <em>unseen-awg</em> source code is installed in editable mode.</p>
+<section id="defining-paths-in-configs-paths-yaml">
+<span id="configs-paths"></span><h2>Defining paths in <code class="docutils literal notranslate"><span class="pre">configs/paths.yaml</span></code><a class="headerlink" href="#defining-paths-in-configs-paths-yaml" title="Link to this heading"></a></h2>
+<p>A file <code class="docutils literal notranslate"><span class="pre">configs/paths.yaml</span></code> is used as a central location for storing paths to base directories for different components of the <em>unseen-awg</em> workflow. If you want to make use of this workflow, use the provided <code class="docutils literal notranslate"><span class="pre">configs/paths_template.yaml</span></code> to create a <code class="docutils literal notranslate"><span class="pre">configs/paths.yaml</span></code> containing paths to directories of your choice.</p>
 </section>
 </section>
 
@@ -223,7 +229,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="what_is_unseen_awg.html" class="btn btn-neutral float-left" title="What is unseen-awg?" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="how_to_deal_with_archived_data.html" class="btn btn-neutral float-right" title="Downloading and preparing archived data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="how_to_deal_with_archived_data.html" class="btn btn-neutral float-right" title="Data download and preparation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

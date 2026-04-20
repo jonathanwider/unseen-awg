@@ -44,31 +44,37 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../what_is_unseen_awg.html">What is unseen-awg?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../what_is_unseen_awg.html">What is <em>unseen-awg</em>?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../installation.html#adapting-predefined-paths">Adapting predefined paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#defining-paths-in-configs-paths-yaml">Defining paths in <code class="docutils literal notranslate"><span class="pre">configs/paths.yaml</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../how_to_deal_with_archived_data.html">Downloading and preparing archived data</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../how_to_deal_with_archived_data.html#extracting-the-data">Extracting the data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../how_to_deal_with_archived_data.html#snakemake-workflow-integration">Snakemake workflow integration</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../how_to_deal_with_archived_data.html#extract-the-input-datasets">1. Extract the input datasets:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how_to_deal_with_archived_data.html">Data download and preparation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../how_to_deal_with_archived_data.html#data-extraction">Data extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../how_to_deal_with_archived_data.html#integrating-extracted-data-into-provided-snakemake-workflow">Integrating extracted data into provided Snakemake workflow</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../how_to_use_simulations.html">The provided simulations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../how_to_use_simulations.html#opening-the-simulations-using-xarray">Opening the simulations using xarray</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../how_to_use_simulations.html">Using the provided simulations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../how_to_use_wg_to_create_simulations.html">Simulating time series with the provided <em>unseen-awg</em> weather generator</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../how_to_use_wg_to_create_simulations.html#each-weather-generator-is-stored-in-a-directory">Each weather generator is stored in a directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how_to_use_wg_to_create_simulations.html">Creating new simulations with the provided <em>unseen-awg</em> weather generator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../how_to_use_wg_to_create_simulations.html#storage-format">Storage format</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../how_to_use_wg_to_create_simulations.html#loading-a-weather-generator">Loading a Weather Generator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../how_to_use_wg_to_create_simulations.html#sampling-a-time-series-with-the-weather-generator">Sampling a Time Series With the Weather Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../how_to_use_wg_to_create_simulations.html#sampling-a-time-series-with-the-weather-generator">Sampling a time series with the weather generator</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../how_to_train_wg.html">Constructing an <em>unseen-awg</em> weather generator</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../how_to_train_wg.html#using-snakemake-to-configure-generation">Using Snakemake to Configure Generation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../how_to_train_wg.html#preprocessing-details-and-motivation">Preprocessing Details and Motivation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../how_to_train_wg.html#reforecast-data">Reforecast Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../how_to_train_wg.html#era5-data">ERA5 Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how_to_train_wg.html">Creating new <em>unseen-awg</em> weather generators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../how_to_train_wg.html#using-snakemake-to-configure-weather-generators">Using Snakemake to configure weather generators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../how_to_train_wg.html#configuration-files">Configuration files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../how_to_train_wg.html#a-note-on-resource-demands">A note on resource demands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../how_to_train_wg.html#visualizing-the-snakemake-workflow">Visualizing the Snakemake workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../how_to_train_wg.html#preprocessing-details-and-motivation">Preprocessing details and motivation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../how_to_train_wg.html#from-initiazlization-time-and-lead-time-to-valid-time-and-sample">From initiazlization time and lead time to valid time and sample</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../how_to_train_wg.html#splitting-valid-time-dimension-into-year-and-dayofyear">Splitting valid time dimension into year and dayofyear</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../how_to_train_wg.html#a-note-on-the-provided-era5-datasets">A note on the provided ERA5 datasets</a></li>
 </ul>
 </li>
 </ul>
