@@ -46,6 +46,10 @@ pip install -e .
 We release data to allow reproducing our results and creating new *unseen-awg* weather generators as described in the table of [accompanying resources](#accompanying-resources).
 A high-level introduction on how to work with these data is given in the [user guide](#accompanying-resources).
 
+## Citation
+This work is not peer reviewed yet. Please cite the Zenodo release created from this repository.
+
+
 ## ECMWF data
 Our work utilizes data from the European Centre for Medium-Range Weather Forecasts (ECMWF, [www.ecmwf.int](www.ecmwf.int)). 
 
